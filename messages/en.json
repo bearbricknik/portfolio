@@ -1,17 +1,16 @@
 {
   "Metadata": {
-    "title": "Max Mustermann",
-    "description": "Developer based in Munich. I build small products that feel good to use."
+    "siteName": "Dominik Huber",
+    "title": "Dominik Huber",
+    "description": "Self-taught software developer from Germany, building fast, precise interfaces with Next.js, React and TypeScript."
   },
   "Controls": {
     "switchLocale": "Auf Deutsch wechseln",
     "toggleTheme": "Toggle theme"
   },
   "HomePage": {
-    "name": "Max Mustermann",
-    "intro": "I'm a developer based in Munich. I build small products that feel good to use. The kind where you only notice the details when they're missing.",
-    "projectsLead": "I started",
-    "projectsTail": ". Evenings I'm working on a quiet chat for coding agents. By day I build web apps with Next.js and TypeScript.",
-    "contact": "Say hi on <github>GitHub</github>, <linkedin>LinkedIn</linkedin> or <x>X</x>. Building something? Send me an <email>email</email>."
+    "name": "Dominik Huber",
+    "role": "UI/UX Developer",
+    "bio": "Hi 👋 I'm Dominik, a former automotive and engine engineering student at the <uni>University of Stuttgart</uni>. During the pandemic I taught myself programming, and I've been building software ever since, with a focus on interfaces that feel fast, precise and calm.\n\nIt started with <extensions>browser extensions</extensions> in plain <js>JavaScript</js>, and honestly a lot of wrestling with HTML and CSS, with great support from my team along the way. From there I moved into data: scraping pipelines in <python>Python</python> and <node>Node.js</node>. Eventually I found where I'm happiest: the frontend. Today I build with <next>Next.js</next>, <react>React</react> and <ts>TypeScript</ts>, and I care about the details you only notice when they're missing: type-safe APIs, accessible components, motion that supports instead of distracts, and interfaces that stay responsive under real data.\n\nThat foundation led me to build <profitpath>ProfitPath</profitpath>, an Amazon arbitrage platform that makes online arbitrage accessible for sellers. It processes data from 1,000+ companies and suppliers and 200M+ products updated daily, and turns it into tools like supplier search, wholesale scanning, competitor analysis and automated profit calculations. The hard part isn't the data, it's the UX: making millions of rows scannable, filterable and actionable in seconds. Want to know more? Reach out on <linkedin>LinkedIn</linkedin>"
   }
 }

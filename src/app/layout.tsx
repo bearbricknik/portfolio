@@ -16,6 +16,7 @@ const ogLocales = { de: "de_DE", en: "en_US" } as const;
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const t = await getTranslations("Metadata");
+  const siteName = t("siteName");
   const title = t("title");
   const description = t("description");
 
@@ -24,13 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteConfig.url),
     title: {
       default: title,
-      // Subpages set `title: "Projekte"` → "Projekte — Max Mustermann"
-      template: `%s — ${title}`,
+      // Subpages set `title: "Projekte"` → "Projekte — Dominik Huber"
+      template: `%s — ${siteName}`,
     },
     description,
-    applicationName: title,
-    authors: [{ name: title, url: siteConfig.url }],
-    creator: title,
+    applicationName: siteName,
+    authors: [{ name: siteName, url: siteConfig.url }],
+    creator: siteName,
     alternates: {
       canonical: "/",
     },
@@ -43,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: "website",
       url: "/",
-      siteName: title,
+      siteName,
       title,
       description,
       // Language comes from a cookie, not the URL: both locales share one URL

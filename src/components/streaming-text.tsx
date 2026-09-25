@@ -231,35 +231,64 @@ export function StreamingText({
             {showCaret && count === 0 && paragraphIndex === 0 && (
               <span aria-hidden className="stream-caret" />
             )}
-            {paragraph.map(({ token, index }) => {
-              const visible = !animated || index < count;
-              const caretHere = showCaret && index === count - 1 && (
-                <span aria-hidden className="stream-caret" />
+            {paragraph.map(({ token, index }, position) => {
+              const caretAfter = (tokenIndex: number) =>
+                showCaret &&
+                tokenIndex === count - 1 && <span aria-hidden className="stream-caret" />;
+
+              if (token.kind === "break") return <Fragment key={index}>{caretAfter(index)}</Fragment>;
+
+              const renderWord = (word: Extract<Token, { kind: "word" }>, wordIndex: number) => (
+                <span className={tokenClass(!animated || wordIndex < count, "stream-word")}>
+                  {word.spaceBefore ? " " : ""}
+                  {word.text}
+                </span>
               );
 
-              if (token.kind === "break") return <Fragment key={index}>{caretHere}</Fragment>;
+              if (token.kind === "word") {
+                // Punctuation glued to an element is rendered together with it (see below)
+                const previous = paragraph[position - 1]?.token;
+                if (!token.spaceBefore && previous?.kind === "node") return null;
+                return (
+                  <Fragment key={index}>
+                    {renderWord(token, index)}
+                    {caretAfter(index)}
+                  </Fragment>
+                );
+              }
 
-              const space = token.spaceBefore ? " " : "";
+              const visible = !animated || index < count;
+              const element = (
+                <span
+                  className={cn("inline-block", tokenClass(visible, "stream-pop"))}
+                  // Links/buttons inside are not focusable before they appear
+                  inert={!visible}
+                >
+                  {token.node}
+                </span>
+              );
+
+              // A word directly after an element (", " / "." without space) must not
+              // wrap onto the next line on its own, so both share a nowrap span
+              const next = paragraph[position + 1];
+              const glued = next?.token.kind === "word" && !next.token.spaceBefore ? next : undefined;
+
               return (
                 <Fragment key={index}>
-                  {token.kind === "word" ? (
-                    <span className={tokenClass(visible, "stream-word")}>
-                      {space}
-                      {token.text}
+                  {token.spaceBefore ? " " : ""}
+                  {glued && glued.token.kind === "word" ? (
+                    <span className="whitespace-nowrap">
+                      {element}
+                      {caretAfter(index)}
+                      {renderWord(glued.token, glued.index)}
+                      {caretAfter(glued.index)}
                     </span>
                   ) : (
                     <>
-                      {space}
-                      <span
-                        className={cn("inline-block", tokenClass(visible, "stream-pop"))}
-                        // Links/buttons inside are not focusable before they appear
-                        inert={!visible}
-                      >
-                        {token.node}
-                      </span>
+                      {element}
+                      {caretAfter(index)}
                     </>
                   )}
-                  {caretHere}
                 </Fragment>
               );
             })}

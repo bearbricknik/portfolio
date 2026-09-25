@@ -1,17 +1,16 @@
 {
   "Metadata": {
-    "title": "Max Mustermann",
-    "description": "Entwickler aus München. Ich baue kleine Produkte, die sich gut anfühlen."
+    "siteName": "Dominik Huber",
+    "title": "Dominik Huber",
+    "description": "Autodidaktischer Software-Entwickler aus Deutschland. Ich baue schnelle, präzise Interfaces mit Next.js, React und TypeScript."
   },
   "Controls": {
     "switchLocale": "Switch to English",
     "toggleTheme": "Theme wechseln"
   },
   "HomePage": {
-    "name": "Max Mustermann",
-    "intro": "Ich bin Entwickler aus München. Ich baue kleine Produkte, die sich gut anfühlen. Die Art, bei der man die Details erst bemerkt, wenn sie fehlen.",
-    "projectsLead": "Ich habe",
-    "projectsTail": "gestartet. Abends arbeite ich an einem ruhigen Chat für Coding-Agents. Tagsüber baue ich Web-Apps mit Next.js und TypeScript.",
-    "contact": "Sag hallo auf <github>GitHub</github>, <linkedin>LinkedIn</linkedin> oder <x>X</x>. Du baust etwas? Schreib mir eine <email>E-Mail</email>."
+    "name": "Dominik Huber",
+    "role": "UI/UX Developer",
+    "bio": "Hi 👋 ich bin Dominik, ehemaliger Student der Fahrzeug- und Motorentechnik an der <uni>Universität Stuttgart</uni>. Während der Pandemie habe ich mir das Programmieren selbst beigebracht und baue seitdem Software, mit Fokus auf Interfaces, die sich schnell, präzise und ruhig anfühlen.\n\nAngefangen hat alles mit <extensions>Browser-Extensions</extensions> in reinem <js>JavaScript</js>, und ehrlich gesagt mit viel Ringen mit HTML und CSS, bei dem mich mein Team großartig unterstützt hat. Danach ging es in Richtung Daten: Scraping-Pipelines mit <python>Python</python> und <node>Node.js</node>. Irgendwann habe ich gemerkt, wo ich mich am wohlsten fühle: im Frontend. Heute baue ich mit <next>Next.js</next>, <react>React</react> und <ts>TypeScript</ts> und achte auf die Details, die man erst bemerkt, wenn sie fehlen: typsichere APIs, barrierefreie Komponenten, Animationen, die unterstützen statt ablenken, und Interfaces, die auch mit echten Datenmengen flüssig bleiben.\n\nAuf dieser Basis habe ich <profitpath>ProfitPath</profitpath> aufgebaut, eine Amazon-Arbitrage-Plattform, die Online-Arbitrage für Seller zugänglich macht. Sie verarbeitet täglich Daten von über 1.000 Unternehmen und Lieferanten und mehr als 200 Mio. aktualisierten Produkten und macht daraus Werkzeuge wie Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung. Die eigentliche Herausforderung sind dabei nicht die Daten, sondern die UX: Millionen von Zeilen so aufzubereiten, dass man sie in Sekunden überblicken, filtern und nutzen kann. Mehr erfahren? Schreib mir gern auf <linkedin>LinkedIn</linkedin>"
   }
 }
