@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  // Overridable build dir: `NEXT_DIST_DIR=.next-verify pnpm build` runs a
+  // verification build without breaking a running dev server on `.next`
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   experimental: {
     // Tree-shake per-import from the full Central Icons sets (~2k icons each)
     // so only the icons actually imported get bundled.

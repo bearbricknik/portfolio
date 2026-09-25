@@ -1,13 +1,16 @@
+/** Canonical production origin; the apex domain redirects here */
+const PRODUCTION_URL = "https://www.huberdominik.com";
+
 /**
  * Public origin of the site, without trailing slash.
- * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://example.com);
- * on Vercel the production domain is used as fallback.
+ * NEXT_PUBLIC_SITE_URL overrides it (e.g. for a staging domain); production
+ * builds use PRODUCTION_URL, `pnpm dev` uses localhost. (NODE_ENV is inlined
+ * reliably at build time, VERCEL_ENV is not.)
  */
 export function getSiteUrl() {
   const url =
     process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
-    "http://localhost:3000";
+    (process.env.NODE_ENV === "production" ? PRODUCTION_URL : "http://localhost:3000");
   const withProtocol = url.startsWith("http") ? url : `https://${url}`;
   return withProtocol.replace(/\/$/, "");
 }
