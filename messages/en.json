@@ -1,0 +1,17 @@
+{
+  "Metadata": {
+    "title": "Max Mustermann",
+    "description": "Developer based in Munich. I build small products that feel good to use."
+  },
+  "Controls": {
+    "switchLocale": "Auf Deutsch wechseln",
+    "toggleTheme": "Toggle theme"
+  },
+  "HomePage": {
+    "name": "Max Mustermann",
+    "intro": "I'm a developer based in Munich. I build small products that feel good to use. The kind where you only notice the details when they're missing.",
+    "projectsLead": "I started",
+    "projectsTail": ". Evenings I'm working on a quiet chat for coding agents. By day I build web apps with Next.js and TypeScript.",
+    "contact": "Say hi on <github>GitHub</github>, <linkedin>LinkedIn</linkedin> or <x>X</x>. Building something? Send me an <email>email</email>."
+  }
+}

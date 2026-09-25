@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -126,5 +127,162 @@
   }
   html {
     @apply font-sans;
+  }
+
+  /* Hide scrollbars everywhere; scrolling itself keeps working */
+  * {
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* Scroll edges: blurred top/bottom when content overflows (see ScrollContainer).
+   The tint fades from the solid background at the edge to transparent, so the
+   blur blends into the frame without a visible seam. */
+.scroll-edge {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  z-index: 10;
+  height: 5rem;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.scroll-edge-top {
+  top: 0;
+  background: linear-gradient(to bottom, var(--background) 10%, transparent);
+  mask-image: linear-gradient(to bottom, black 30%, transparent);
+}
+
+.scroll-edge-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, var(--background) 10%, transparent);
+  mask-image: linear-gradient(to top, black 30%, transparent);
+}
+
+[data-overflow-top] > .scroll-edge-top,
+[data-overflow-bottom] > .scroll-edge-bottom {
+  opacity: 1;
+}
+
+/* Streaming text (see StreamingText): tokens stay in the layout but are
+   invisible until streamed, then resolve out of blur / pop in. */
+.stream-token {
+  opacity: 0;
+}
+
+.stream-word {
+  animation: stream-word 400ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.stream-pop {
+  animation: stream-pop 250ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.stream-fade-up {
+  animation: stream-fade-up 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.stream-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  margin-left: 2px;
+  translate: 0 0.12em;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: stream-caret-in 150ms ease-out both;
+}
+
+@keyframes stream-word {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes stream-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes stream-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes stream-caret-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stream-word,
+  .stream-pop,
+  .stream-fade-up,
+  .stream-caret {
+    animation: none;
+  }
+}
+
+/* Intro overlay: pure CSS so it runs from the first paint, before hydration */
+.intro-overlay {
+  animation: intro-out 0.6s ease-out 3.5s forwards;
+}
+
+.intro-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
+
+.intro-path-h {
+  animation:
+    intro-draw 0.8s ease-in-out forwards,
+    intro-fade-in 0.4s forwards;
+}
+
+.intro-path-ello {
+  animation:
+    intro-draw 2.8s ease-in-out 0.7s forwards,
+    intro-fade-in 0.7s 0.7s forwards;
+}
+
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes intro-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }
