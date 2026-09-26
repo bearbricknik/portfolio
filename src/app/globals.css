@@ -247,8 +247,9 @@
 }
 
 /* Intro overlay: pure CSS so it runs from the first paint, before hydration */
+/* Timings come from src/lib/intro-timing.ts via CSS variables (set on .intro-overlay) */
 .intro-overlay {
-  animation: intro-out 0.6s ease-out 3.5s forwards;
+  animation: intro-out var(--intro-fade-out) ease-out var(--intro-written-at) forwards;
 }
 
 .intro-path {
@@ -259,14 +260,14 @@
 
 .intro-path-h {
   animation:
-    intro-draw 0.8s ease-in-out forwards,
+    intro-draw var(--intro-h-draw) ease-in-out forwards,
     intro-fade-in 0.4s forwards;
 }
 
 .intro-path-ello {
   animation:
-    intro-draw 2.8s ease-in-out 0.7s forwards,
-    intro-fade-in 0.7s 0.7s forwards;
+    intro-draw var(--intro-ello-draw) ease-in-out var(--intro-ello-delay) forwards,
+    intro-fade-in 0.7s var(--intro-ello-delay) forwards;
 }
 
 @keyframes intro-draw {

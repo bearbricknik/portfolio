@@ -20,6 +20,7 @@ import { LocaleSwitcher } from "@/components/locale-switcher";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StreamingText } from "@/components/streaming-text";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { INTRO_TIMING } from "@/lib/intro-timing";
 import { SOCIALS } from "@/lib/socials";
 import { cn } from "@/lib/utils";
 
@@ -95,7 +96,8 @@ export default function Home() {
       <StreamingText
         key={locale}
         id={introStreamId}
-        notBefore={3800}
+        // Starts shortly before "hello" is written, see src/lib/intro-timing.ts
+        notBefore={INTRO_TIMING.streamStart}
         interval={30}
         className="flex flex-col gap-6"
         // Justified text; hyphenation (uses <html lang>) avoids wide gaps, especially in German
@@ -153,7 +155,7 @@ export default function Home() {
           ),
           linkedin: (chunks) => (
             <ExternalBadge
-              href="https://www.linkedin.com/in/dominik-huber-7a4394227"
+              href={SOCIALS.find((social) => social.key === "linkedin")!.href}
               icon={IconLinkedin}
               color="text-blue-700 dark:text-blue-400"
               cursorLabel="LinkedIn ↗"

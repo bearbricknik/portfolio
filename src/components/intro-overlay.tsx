@@ -1,3 +1,5 @@
+import { INTRO_TIMING } from "@/lib/intro-timing";
+
 // Same paths and timing as AppleHelloEffectEnglish, but animated with CSS so the
 // intro starts with the server-rendered HTML instead of waiting for hydration.
 const H1 =
@@ -10,8 +12,18 @@ export function IntroOverlay() {
     <div
       aria-hidden
       className="intro-overlay fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
-      // Purely visual: never block clicks, even if the stylesheet fails to load
-      style={{ pointerEvents: "none" }}
+      style={
+        {
+          // Purely visual: never block clicks, even if the stylesheet fails to load
+          pointerEvents: "none",
+          // Timeline shared with the streaming text, see src/lib/intro-timing.ts
+          "--intro-h-draw": `${INTRO_TIMING.helloHDraw}ms`,
+          "--intro-ello-delay": `${INTRO_TIMING.helloElloDelay}ms`,
+          "--intro-ello-draw": `${INTRO_TIMING.helloElloDraw}ms`,
+          "--intro-written-at": `${INTRO_TIMING.helloWrittenAt}ms`,
+          "--intro-fade-out": `${INTRO_TIMING.overlayFadeOut}ms`,
+        } as React.CSSProperties
+      }
     >
       <svg
         className="h-10 sm:h-14"
