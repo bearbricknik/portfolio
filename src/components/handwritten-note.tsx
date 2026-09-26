@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { useRevealGate } from "@/components/scroll-reveal";
+import { type RevealGateOptions, useRevealGate } from "@/components/scroll-reveal";
 import { cn } from "@/lib/utils";
 
 export type HandwrittenArrow = "left" | "right" | "up" | "down";
@@ -40,13 +40,11 @@ function Arrow({ direction, visible, delay }: { direction: HandwrittenArrow; vis
   );
 }
 
-type HandwrittenNoteProps = {
+type HandwrittenNoteProps = RevealGateOptions & {
   /** The handwritten text (any string, translatable) */
   children: React.ReactNode;
   /** Optional hand-drawn arrow after the text, pointing in this direction */
   arrow?: HandwrittenArrow;
-  /** Wait for this StreamingText id to finish before writing (see ScrollReveal) */
-  after?: string;
   /** Seconds to wait once the note may appear, e.g. to let a parent fade in first */
   delay?: number;
   /** Seconds the "writing" of the text takes */
@@ -68,13 +66,14 @@ export function HandwrittenNote({
   children,
   arrow,
   after,
+  waitForStreams,
   delay = 0,
   duration = 0.9,
   tilt = -3,
   className,
 }: HandwrittenNoteProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const gateOpen = useRevealGate(ref, after);
+  const gateOpen = useRevealGate(ref, { after, waitForStreams });
   const reducedMotion = useReducedMotion();
   const visible = gateOpen || reducedMotion === true;
 

@@ -12,9 +12,15 @@ import { cn } from "@/lib/utils";
  */
 export function ScrollContainer({
   className,
+  edgeClassName,
   children,
 }: {
   className?: string;
+  /**
+   * Classes for the blurred top/bottom edges, e.g. `mx-auto max-w-xl` to limit
+   * them to the content width (they span the whole container by default)
+   */
+  edgeClassName?: string;
   children: React.ReactNode;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -58,8 +64,8 @@ export function ScrollContainer({
           {children}
         </div>
       </div>
-      <div aria-hidden className="scroll-edge scroll-edge-top" />
-      <div aria-hidden className="scroll-edge scroll-edge-bottom" />
+      <div aria-hidden className={cn("scroll-edge scroll-edge-top", edgeClassName)} />
+      <div aria-hidden className={cn("scroll-edge scroll-edge-bottom", edgeClassName)} />
     </div>
   );
 }

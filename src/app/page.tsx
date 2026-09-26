@@ -1,5 +1,4 @@
 import {
-  IconArrowUpRight,
   IconChart1,
   IconCodeBrackets,
   IconGraduateCap,
@@ -11,82 +10,25 @@ import {
   IconTypescript,
   IconVercel,
 } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-import { HandwrittenNote } from "@/components/handwritten-note";
-import { LocalTime } from "@/components/local-time";
-import { LocaleSwitcher } from "@/components/locale-switcher";
-import { ScrollReveal } from "@/components/scroll-reveal";
+import { Badge, ExternalBadge } from "@/components/inline-badge";
 import { StreamingText } from "@/components/streaming-text";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { INTRO_TIMING } from "@/lib/intro-timing";
 import { SOCIALS } from "@/lib/socials";
-import { cn } from "@/lib/utils";
-
-type Icon = React.ComponentType<{ className?: string }>;
-
-const badgeClassName =
-  "inline-flex items-center gap-1 rounded-md border bg-muted/60 px-1.5 py-0.5 text-sm leading-none";
-
-/** Inline badge with a colored icon, e.g. for a technology */
-function Badge({ icon: Icon, color, children }: { icon: Icon; color: string; children: React.ReactNode }) {
-  return (
-    <span className={badgeClassName}>
-      <Icon className={cn("size-3.5", color)} />
-      {children}
-    </span>
-  );
-}
-
-/** Badge that links to an external page; the cursor shows `cursorLabel` on hover */
-function ExternalBadge({
-  href,
-  icon: Icon,
-  color,
-  cursorLabel,
-  children,
-}: {
-  href: string;
-  icon: Icon;
-  color: string;
-  cursorLabel: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      data-cursor={cursorLabel}
-      className={cn(badgeClassName, "transition-colors hover:bg-muted")}
-    >
-      <Icon className={cn("size-3.5", color)} />
-      {children}
-      <IconArrowUpRight className="size-3 text-muted-foreground" />
-    </a>
-  );
-}
 
 export default function Home() {
   const t = useTranslations("HomePage");
-  const tSocials = useTranslations("Socials");
+  const tSite = useTranslations("Site");
   const locale = useLocale();
-  // Everything below the intro waits for this stream to finish (see ScrollReveal)
   const introStreamId = `home-intro-${locale}`;
 
   return (
-    <section className="flex flex-col gap-6 leading-relaxed">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <h1 className="font-medium">{t("name")}</h1>
-          <p className="text-muted-foreground">{t("role")}</p>
-        </div>
-        <div className="flex items-center gap-1">
-          <LocaleSwitcher />
-          <ThemeSwitcher />
-        </div>
-      </div>
+    <section className="flex flex-col gap-6">
+      {/* Page heading for screen readers and SEO; the visible name sits in the shared header */}
+      <h1 className="sr-only">
+        {tSite("name")} – {tSite("role")}
+      </h1>
 
       {/*
           Streams in once the intro overlay is gone; "\n\n" in the message starts a new paragraph.
@@ -166,51 +108,6 @@ export default function Home() {
         })}
       />
 
-      {/* Appears once the intro has streamed and it is in view; later sections work the same way */}
-      <ScrollReveal after={introStreamId}>
-        <footer className="flex flex-col items-start gap-1 text-sm">
-          {/* Row 1: time and icons on one line */}
-          <div className="flex w-full items-center justify-between gap-4">
-            <p>
-              <LocalTime timeZone="Europe/Berlin" />{" "}
-              <span className="text-muted-foreground">{t("location")}</span>
-            </p>
-            <nav aria-label={tSocials("label")}>
-              <ul className="flex items-center gap-1">
-                {SOCIALS.map(({ key, href, icon: Icon }) => {
-                  const className =
-                    "flex rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground";
-                  const icon = <Icon className="size-4" />;
-                  return (
-                    <li key={key}>
-                      {href.startsWith("/") ? (
-                        // Internal page (e.g. /cv): client-side navigation
-                        <Link href={href} aria-label={tSocials(key)} className={className}>
-                          {icon}
-                        </Link>
-                      ) : (
-                        <a
-                          href={href}
-                          aria-label={tSocials(key)}
-                          // mailto: opens the mail app, everything else a new tab
-                          {...(href.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
-                          className={className}
-                        >
-                          {icon}
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-          {/* Row 2: signature below, written once the footer has faded in */}
-          <HandwrittenNote after={introStreamId} delay={0.5} tilt={0} className="text-2xl">
-            {t("name")}
-          </HandwrittenNote>
-        </footer>
-      </ScrollReveal>
     </section>
   );
 }

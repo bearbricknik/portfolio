@@ -9,11 +9,13 @@
     "toggleTheme": "Theme wechseln",
     "aboutMe": "Über mich"
   },
-  "HomePage": {
+  "Site": {
     "name": "Dominik Huber",
     "role": "Full-Stack Developer",
-    "bio": "Hi 👋 ich bin Dominik, ehemaliger Student der Fahrzeug- und Motorentechnik an der <uni>Universität Stuttgart</uni>. Während der Pandemie habe ich mir das Programmieren selbst beigebracht und baue seitdem Software, mit Fokus auf Interfaces, die sich schnell, präzise und ruhig anfühlen.\n\nAngefangen hat alles mit <extensions>Browser-Extensions</extensions> in reinem <js>JavaScript</js>, und ehrlich gesagt mit viel Ringen mit HTML und CSS, bei dem mich mein Team großartig unterstützt hat. Danach ging es in Richtung Daten: Scraping-Pipelines mit <python>Python</python> und <node>Node.js</node>. Irgendwann habe ich gemerkt, wo ich mich am wohlsten fühle: im Frontend. Heute baue ich mit <next>Next.js</next>, <react>React</react> und <ts>TypeScript</ts> und achte auf die Details, die man erst bemerkt, wenn sie fehlen: typsichere APIs, barrierefreie Komponenten, Animationen, die unterstützen statt ablenken, und Interfaces, die auch mit echten Datenmengen flüssig bleiben.\n\nAuf dieser Basis habe ich <profitpath>ProfitPath</profitpath> aufgebaut, eine Amazon-Arbitrage-Plattform, die Online-Arbitrage für Seller zugänglich macht. Sie verarbeitet täglich Daten von über 1.000 Unternehmen und Lieferanten und mehr als 200 Mio. aktualisierten Produkten und macht daraus Werkzeuge wie Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung. Die eigentliche Herausforderung sind dabei nicht die Daten, sondern die UX: Millionen von Zeilen so aufzubereiten, dass man sie in Sekunden überblicken, filtern und nutzen kann. Mehr erfahren? Schreib mir gern auf <linkedin>LinkedIn</linkedin>",
     "location": "in Deutschland"
+  },
+  "HomePage": {
+    "bio": "Hi 👋 ich bin Dominik, ehemaliger Student der Fahrzeug- und Motorentechnik an der <uni>Universität Stuttgart</uni>. Während der Pandemie habe ich mir das Programmieren selbst beigebracht und baue seitdem Software, mit Fokus auf Interfaces, die sich schnell, präzise und ruhig anfühlen.\n\nAngefangen hat alles mit <extensions>Browser-Extensions</extensions> in reinem <js>JavaScript</js>, und ehrlich gesagt mit viel Ringen mit HTML und CSS, bei dem mich mein Team großartig unterstützt hat. Danach ging es in Richtung Daten: Scraping-Pipelines mit <python>Python</python> und <node>Node.js</node>. Irgendwann habe ich gemerkt, wo ich mich am wohlsten fühle: im Frontend. Heute baue ich mit <next>Next.js</next>, <react>React</react> und <ts>TypeScript</ts> und achte auf die Details, die man erst bemerkt, wenn sie fehlen: typsichere APIs, barrierefreie Komponenten, Animationen, die unterstützen statt ablenken, und Interfaces, die auch mit echten Datenmengen flüssig bleiben.\n\nAuf dieser Basis habe ich <profitpath>ProfitPath</profitpath> aufgebaut, eine Amazon-Arbitrage-Plattform, die Online-Arbitrage für Seller zugänglich macht. Sie verarbeitet täglich Daten von über 1.000 Unternehmen und Lieferanten und mehr als 200 Mio. aktualisierten Produkten und macht daraus Werkzeuge wie Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung. Die eigentliche Herausforderung sind dabei nicht die Daten, sondern die UX: Millionen von Zeilen so aufzubereiten, dass man sie in Sekunden überblicken, filtern und nutzen kann. Mehr erfahren? Schreib mir gern auf <linkedin>LinkedIn</linkedin>"
   },
   "Socials": {
     "label": "Profile und Kontakt",
@@ -22,5 +24,44 @@
     "linkedin": "LinkedIn",
     "email": "E-Mail",
     "cv": "Lebenslauf"
+  },
+  "AboutPage": {
+    "title": "Über mich",
+    "intro": "Ich heiße Dominik und bin <years>{years}</years> <muted>Jahre</muted>, <days>{days}</days> <muted>{days, plural, one {Tag} other {Tage}}</muted> und <seconds>{seconds}</seconds> <muted>{seconds, plural, one {Sekunde} other {Sekunden}}</muted> jung.",
+    "origin": "Ich komme gebürtig aus Ulm, Deutschland, und bin passionierter Full-Stack-Entwickler.",
+    "story": {
+      "p1": "Ich verbringe wahrscheinlich mehr Zeit vor einem Bildschirm, als ich zugeben möchte – aber immerhin meistens aus einem guten Grund. Ich liebe es zu programmieren, neue Ideen umzusetzen und aus einem Gedanken Schritt für Schritt etwas zu bauen, das am Ende tatsächlich funktioniert. Meistens jedenfalls.",
+      "p2": "Technologie interessiert mich aber auch weit über das Programmieren hinaus. Besonders <apple>Apple</apple> hat es mir angetan. Ich mag gutes Design, durchdachte Produkte und diese kleinen Details, über die sich vermutlich nur Menschen freuen, die viel zu lange auf Benutzeroberflächen schauen. Neue Apple-Produkte verfolge ich deshalb meistens mit einer Mischung aus Begeisterung und der Frage, ob ich das jetzt wirklich brauche. Die Antwort kennen wir wahrscheinlich beide.",
+      "p3": "Wenn ich etwas Abstand vom Bildschirm brauche, zieht es mich gerne auf den <golf>Golfplatz</golf>. Ich mag die Mischung aus Ruhe, Konzentration und der Tatsache, dass dieser Sport einen regelmäßig daran erinnert, sich selbst nicht zu ernst zu nehmen. An manchen Tagen läuft alles genau so, wie man es sich vorgestellt hat – und an anderen ist man einfach froh, den Ball wiederzufinden.",
+      "p4": "Ein ganz anderer Teil von mir ist meine Begeisterung für <latam>Lateinamerika</latam>. Ich liebe die Musik, die Kultur, die Lebensfreude und besonders die Energie, die damit verbunden ist. Lateinamerikanische Musik läuft bei mir ziemlich regelmäßig – egal ob beim Arbeiten, unterwegs oder wenn aus „nur ein Song“ plötzlich eine ganze Playlist geworden ist.",
+      "p5": "Am Ende bin ich wahrscheinlich eine etwas ungewöhnliche Mischung: Entwickler, Apple-Enthusiast, Golfer und großer Fan lateinamerikanischer Kultur.",
+      "p6": "Und genau diese Mischung beschreibt mich eigentlich ziemlich gut."
+    },
+    "golfPhotos": [
+      {
+        "alt": "Dominik beim Abschlag auf dem Golfplatz",
+        "title": "das bin ich"
+      },
+      {
+        "alt": "Fairway mit Sandbunker, zwei Golfcarts und Bergen im Hintergrund",
+        "title": "Bunker? Kennen wir uns"
+      },
+      {
+        "alt": "Weites Fairway in der tiefstehenden Sonne",
+        "title": "Golden Hour auf der 18"
+      },
+      {
+        "alt": "Golfbag am Hang über einem See in der Sonne",
+        "title": "Bulgarien war intensiv"
+      },
+      {
+        "alt": "Golfplatz zwischen Wald und Bergen unter blauem Himmel",
+        "title": "Allgäu war in Ordnung"
+      },
+      {
+        "alt": "Teich am Golfplatz, in dem sich Himmel und Bäume spiegeln",
+        "title": "Der Teich hat gewonnen"
+      }
+    ]
   }
 }

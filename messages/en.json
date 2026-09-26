@@ -9,11 +9,13 @@
     "toggleTheme": "Toggle theme",
     "aboutMe": "About me"
   },
-  "HomePage": {
+  "Site": {
     "name": "Dominik Huber",
     "role": "Full-Stack Developer",
-    "bio": "Hi 👋 I'm Dominik, a former automotive and engine engineering student at the <uni>University of Stuttgart</uni>. During the pandemic I taught myself programming, and I've been building software ever since, with a focus on interfaces that feel fast, precise and calm.\n\nIt started with <extensions>browser extensions</extensions> in plain <js>JavaScript</js>, and honestly a lot of wrestling with HTML and CSS, with great support from my team along the way. From there I moved into data: scraping pipelines in <python>Python</python> and <node>Node.js</node>. Eventually I found where I'm happiest: the frontend. Today I build with <next>Next.js</next>, <react>React</react> and <ts>TypeScript</ts>, and I care about the details you only notice when they're missing: type-safe APIs, accessible components, motion that supports instead of distracts, and interfaces that stay responsive under real data.\n\nThat foundation led me to build <profitpath>ProfitPath</profitpath>, an Amazon arbitrage platform that makes online arbitrage accessible for sellers. It processes data from 1,000+ companies and suppliers and 200M+ products updated daily, and turns it into tools like supplier search, wholesale scanning, competitor analysis and automated profit calculations. The hard part isn't the data, it's the UX: making millions of rows scannable, filterable and actionable in seconds. Want to know more? Reach out on <linkedin>LinkedIn</linkedin>",
     "location": "in Germany"
+  },
+  "HomePage": {
+    "bio": "Hi 👋 I'm Dominik, a former automotive and engine engineering student at the <uni>University of Stuttgart</uni>. During the pandemic I taught myself programming, and I've been building software ever since, with a focus on interfaces that feel fast, precise and calm.\n\nIt started with <extensions>browser extensions</extensions> in plain <js>JavaScript</js>, and honestly a lot of wrestling with HTML and CSS, with great support from my team along the way. From there I moved into data: scraping pipelines in <python>Python</python> and <node>Node.js</node>. Eventually I found where I'm happiest: the frontend. Today I build with <next>Next.js</next>, <react>React</react> and <ts>TypeScript</ts>, and I care about the details you only notice when they're missing: type-safe APIs, accessible components, motion that supports instead of distracts, and interfaces that stay responsive under real data.\n\nThat foundation led me to build <profitpath>ProfitPath</profitpath>, an Amazon arbitrage platform that makes online arbitrage accessible for sellers. It processes data from 1,000+ companies and suppliers and 200M+ products updated daily, and turns it into tools like supplier search, wholesale scanning, competitor analysis and automated profit calculations. The hard part isn't the data, it's the UX: making millions of rows scannable, filterable and actionable in seconds. Want to know more? Reach out on <linkedin>LinkedIn</linkedin>"
   },
   "Socials": {
     "label": "Profiles and contact",
@@ -22,5 +24,44 @@
     "linkedin": "LinkedIn",
     "email": "Email",
     "cv": "CV"
+  },
+  "AboutPage": {
+    "title": "About me",
+    "intro": "My name is Dominik and I'm <years>{years}</years> <muted>years</muted>, <days>{days}</days> <muted>{days, plural, one {day} other {days}}</muted> and <seconds>{seconds}</seconds> <muted>{seconds, plural, one {second} other {seconds}}</muted> young.",
+    "origin": "I was born in Ulm, Germany, and I'm a passionate full-stack developer.",
+    "story": {
+      "p1": "I probably spend more time in front of a screen than I'd like to admit – but at least it's usually for a good reason. I love writing code, turning new ideas into something real and building, step by step, a thought into something that actually works in the end. Most of the time, anyway.",
+      "p2": "My interest in technology goes far beyond programming, though. <apple>Apple</apple> in particular has won me over. I love good design, well-thought-out products and those small details that probably only delight people who spend far too long staring at user interfaces. So I usually follow new Apple products with a mix of excitement and the question of whether I really need them. We both probably know the answer.",
+      "p3": "When I need a break from the screen, you'll often find me on the <golf>golf course</golf>. I like the mix of calm, focus and the fact that this sport regularly reminds you not to take yourself too seriously. Some days everything goes exactly as planned – and on others you're just happy to find your ball again.",
+      "p4": "A completely different side of me is my passion for <latam>Latin America</latam>. I love the music, the culture, the joy of life and especially the energy that comes with it. Latin music is on pretty much all the time – whether I'm working, on the go, or when “just one song” has suddenly turned into an entire playlist.",
+      "p5": "In the end, I'm probably a somewhat unusual mix: developer, Apple enthusiast, golfer and big fan of Latin American culture.",
+      "p6": "And that mix actually describes me pretty well."
+    },
+    "golfPhotos": [
+      {
+        "alt": "Dominik teeing off on the golf course",
+        "title": "that's me"
+      },
+      {
+        "alt": "Fairway with a sand bunker, two golf carts and mountains behind",
+        "title": "Bunker? We've met"
+      },
+      {
+        "alt": "Wide fairway in the low afternoon sun",
+        "title": "Golden hour on the 18th"
+      },
+      {
+        "alt": "Golf bag on a slope above a lake in the sun",
+        "title": "Bulgaria was intense"
+      },
+      {
+        "alt": "Golf course between forest and mountains under a blue sky",
+        "title": "Allgäu was alright"
+      },
+      {
+        "alt": "Pond on the golf course reflecting the sky and trees",
+        "title": "The pond won"
+      }
+    ]
   }
 }

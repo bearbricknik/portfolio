@@ -8,6 +8,7 @@ import {
   useContext,
   useEffect,
   useEffectEvent,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -172,6 +173,8 @@ export function StreamingText({
   // Store starts empty on every page load, so server and client render the same
   const seen = useStreamingStore((state) => (id ? state.seen[id] === true : false));
   const markSeen = useStreamingStore((state) => state.markSeen);
+  const setActive = useStreamingStore((state) => state.setActive);
+  const registryKey = useId();
   const animated = !seen;
   const done = seen || (started && count >= tokens.length);
 
@@ -192,6 +195,14 @@ export function StreamingText({
     observer.observe(root);
     return () => observer.disconnect();
   }, [startOnView]);
+
+  // Registered as "active" while it animates, so content with `waitForStreams`
+  // (e.g. the footer) waits for it — on any page, without knowing its id
+  useEffect(() => {
+    if (!animated || done || loop) return;
+    setActive(registryKey, true);
+    return () => setActive(registryKey, false);
+  }, [animated, done, loop, registryKey, setActive]);
 
   const handleDone = useEffectEvent(() => {
     if (id) markSeen(id);

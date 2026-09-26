@@ -10,6 +10,8 @@ import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
 import { ServiceWorkerCleanup } from "@/components/service-worker-cleanup";
 import { SiteCursor } from "@/components/site-cursor";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { locales } from "@/i18n/config";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -98,15 +100,24 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             <div className="fixed inset-0 flex flex-col p-6">
               {/* Fixed sheet inside the padded viewport; only its content scrolls */}
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                <ScrollContainer className="flex flex-col overscroll-none">
-                  <div className="mx-auto flex w-full max-w-xl flex-col gap-20 px-6 py-12">
-                    {children}
+                <ScrollContainer
+                  // overflow-x-hidden: wide content (e.g. the polaroid fan) never adds a horizontal scrollbar
+                  className="flex flex-col overflow-x-hidden overscroll-none"
+                  // Fades only as wide as the content column, not the whole window
+                  edgeClassName="mx-auto max-w-xl"
+                >
+                  {/* Header and footer are shared by every page; pages only bring their content */}
+                  <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-6 py-12 leading-relaxed">
+                    <SiteHeader />
+                    <main className="flex flex-col">{children}</main>
+                    <SiteFooter />
                   </div>
                 </ScrollContainer>
               </div>
               {/* ⌘K / Ctrl+K hint in the bottom right corner: same 4px offset to the
                   right and bottom, so it fits the 24px padding exactly (Kbd = 20px) */}
-              <CommandHint className="absolute right-4 bottom-4" />
+              {/* z-20: above the scroll fades (z-10), which it overlaps at this offset */}
+              <CommandHint className="absolute right-4 bottom-4 z-20" />
             </div>
             <IntroOverlay />
             <SiteCursor />
