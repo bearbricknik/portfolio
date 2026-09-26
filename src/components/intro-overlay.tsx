@@ -10,6 +10,8 @@ export function IntroOverlay() {
     <div
       aria-hidden
       className="intro-overlay fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+      // Purely visual: never block clicks, even if the stylesheet fails to load
+      style={{ pointerEvents: "none" }}
     >
       <svg
         className="h-10 sm:h-14"

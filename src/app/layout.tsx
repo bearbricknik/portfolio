@@ -6,6 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
+import { ServiceWorkerCleanup } from "@/components/service-worker-cleanup";
 import { SiteCursor } from "@/components/site-cursor";
 import { locales } from "@/i18n/config";
 import { siteConfig } from "@/lib/site";
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       {/* Browser extensions (e.g. ColorZilla) inject attributes into <body> before hydration */}
       <body className="overflow-hidden bg-background" suppressHydrationWarning>
+        <ServiceWorkerCleanup />
         <NextIntlClientProvider>
           <Providers>
             {/* Viewport-sized frame, independent of the body's height */}
