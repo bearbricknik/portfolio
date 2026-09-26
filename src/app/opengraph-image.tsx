@@ -4,12 +4,13 @@ import { ImageResponse } from "next/og";
 
 import { OpenGraphImage } from "@/components/og-image";
 import { siteConfig } from "@/lib/site";
-import messages from "../../messages/de.json";
+import messages from "../../messages/en.json";
 
 /*
  * Generated once at build time (static): no next-intl request APIs here, the
- * texts come straight from the default-locale messages. Crawlers send no
- * locale cookie anyway, so they always get German.
+ * texts come straight from the default-locale (English) messages. Link-preview
+ * crawlers send no locale cookie and rarely a German Accept-Language, so the
+ * page they see is English too.
  */
 export const alt = messages.Metadata.title;
 export const size = { width: siteConfig.ogImage.width, height: siteConfig.ogImage.height };
