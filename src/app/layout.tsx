@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Nothing_You_Could_Do } from "next/font/google";
+import { CommandHint } from "@/components/command-hint";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
@@ -103,6 +104,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                   </div>
                 </ScrollContainer>
               </div>
+              {/* ⌘K / Ctrl+K hint in the bottom right corner: same 4px offset to the
+                  right and bottom, so it fits the 24px padding exactly (Kbd = 20px) */}
+              <CommandHint className="absolute right-4 bottom-4" />
             </div>
             <IntroOverlay />
             <SiteCursor />

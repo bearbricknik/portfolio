@@ -6,7 +6,8 @@
   },
   "Controls": {
     "switchLocale": "Auf Deutsch wechseln",
-    "toggleTheme": "Toggle theme"
+    "toggleTheme": "Toggle theme",
+    "aboutMe": "About me"
   },
   "HomePage": {
     "name": "Dominik Huber",

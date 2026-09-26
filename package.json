@@ -13,6 +13,7 @@
     "@central-icons-react/round-filled-radius-3-stroke-1.5": "^1.2.1",
     "@central-icons-react/round-outlined-radius-3-stroke-1.5": "^1.2.1",
     "@shadcn/react": "^0.3.1",
+    "@tanstack/react-hotkeys": "^0.12.0",
     "@tanstack/react-query": "^5.103.2",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",

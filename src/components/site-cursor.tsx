@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion, type SpringOptions, useReducedMotion } from "motion/react";
 
 import {
   Cursor,
   CursorFollow,
   CursorProvider,
+  useCursor,
 } from "@/components/animate-ui/primitives/animate/cursor";
 
 const FINE_POINTER_QUERY = "(pointer: fine)";
@@ -64,6 +65,73 @@ function getLabel(element: Element) {
     : normalized;
 }
 
+// Space kept between the label and the window edge before it flips sides
+const EDGE_MARGIN = 8;
+const LABEL_GAP = 12;
+
+/**
+ * Label bubble next to the cursor. Like a tooltip's collision handling it
+ * flips to the left of the cursor when it would leave the window on the
+ * right, and above it when it would leave at the bottom.
+ */
+function CursorLabel({
+  label,
+  visible,
+  transition,
+}: {
+  label: string;
+  visible: boolean;
+  transition: SpringOptions;
+}) {
+  const { cursorPos } = useCursor();
+  const bubbleRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  // Measure the bubble (the text changes per hovered element)
+  useEffect(() => {
+    const bubble = bubbleRef.current;
+    if (!bubble) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.target.getBoundingClientRect();
+      setSize({ width, height });
+    });
+    observer.observe(bubble);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  const flipX = cursorPos.x + LABEL_GAP + size.width + EDGE_MARGIN > window.innerWidth;
+  const flipY = cursorPos.y + 2 * LABEL_GAP + size.height + EDGE_MARGIN > window.innerHeight;
+
+  return (
+    <CursorFollow
+      side={flipY ? "top" : "bottom"}
+      sideOffset={LABEL_GAP}
+      // "end": starts right of the cursor; "start": ends left of it
+      align={flipX ? "start" : "end"}
+      alignOffset={flipX ? 16 : 0}
+      transition={transition}
+    >
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            ref={bubbleRef}
+            key="cursor-label"
+            className="whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background"
+            // Grows out of the corner that points at the cursor
+            style={{ transformOrigin: `${flipY ? "bottom" : "top"} ${flipX ? "right" : "left"}` }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+          >
+            {label}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </CursorFollow>
+  );
+}
+
 export function SiteCursor() {
   const hasFinePointer = useHasFinePointer();
   const reducedMotion = useReducedMotion();
@@ -103,28 +171,11 @@ export function SiteCursor() {
           />
         </svg>
       </Cursor>
-      <CursorFollow
-        side="bottom"
-        sideOffset={12}
-        align="end"
-        alignOffset={0}
+      <CursorLabel
+        label={label}
+        visible={visible}
         transition={reducedMotion ? { stiffness: 1000, damping: 100 } : LABEL_SPRING}
-      >
-        <AnimatePresence>
-          {visible && (
-            <motion.div
-              key="cursor-label"
-              className="origin-top-left whitespace-nowrap rounded-md bg-foreground px-2 py-1 text-xs text-background"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
-            >
-              {label}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </CursorFollow>
+      />
     </CursorProvider>
   );
 }
