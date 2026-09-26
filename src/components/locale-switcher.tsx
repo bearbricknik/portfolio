@@ -21,7 +21,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       disabled={isPending}
       onClick={() => startTransition(() => setLocale(target))}
       className={cn(
-        "rounded-md px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50",
+        "inline-flex h-7 items-center justify-center rounded-md px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50",
         className,
       )}
     >

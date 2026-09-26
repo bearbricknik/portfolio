@@ -33,7 +33,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
           aria-label={t("toggleTheme")}
           onClick={() => toggleTheme(resolved === "dark" ? "light" : "dark")}
           className={cn(
-            "rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+            "inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
             className,
           )}
         >

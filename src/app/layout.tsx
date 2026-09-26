@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { Nothing_You_Could_Do } from "next/font/google";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
@@ -13,6 +14,13 @@ import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const ogLocales = { de: "de_DE", en: "en_US" } as const;
+
+// Handwriting for HandwrittenNote (`font-handwriting`); swap the font here to change it everywhere
+const handwriting = Nothing_You_Could_Do({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-nothing-you-could-do",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -77,7 +85,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     // next-themes sets the theme class on <html> before hydration
     <html
       lang={locale}
-      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${handwriting.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       {/* Browser extensions (e.g. ColorZilla) inject attributes into <body> before hydration */}
@@ -89,7 +97,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             <div className="fixed inset-0 flex flex-col p-6">
               {/* Fixed sheet inside the padded viewport; only its content scrolls */}
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-                <ScrollContainer className="flex flex-col overscroll-none">{children}</ScrollContainer>
+                <ScrollContainer className="flex flex-col overscroll-none">
+                  <div className="mx-auto flex w-full max-w-xl flex-col gap-20 px-6 py-12">
+                    {children}
+                  </div>
+                </ScrollContainer>
               </div>
             </div>
             <IntroOverlay />

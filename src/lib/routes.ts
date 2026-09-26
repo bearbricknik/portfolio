@@ -12,4 +12,7 @@ export type AppRoute = {
  * All app routes in one place. Add new pages here and they show up in
  * /sitemap.xml automatically (unless `excludeFromSitemap` is set).
  */
-export const ROUTES = [{ href: "/", changeFrequency: "monthly", priority: 1 }] satisfies AppRoute[];
+export const ROUTES = [
+  { href: "/", changeFrequency: "monthly", priority: 1 },
+  { href: "/cv", changeFrequency: "monthly", priority: 0.8 },
+] satisfies AppRoute[];
