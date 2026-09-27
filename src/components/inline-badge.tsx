@@ -17,31 +17,35 @@ export function Badge({ icon: Icon, color, children }: { icon: Icon; color: stri
   );
 }
 
-/** Badge that links to an external page; the cursor shows `cursorLabel` on hover */
+/**
+ * Badge that links somewhere; the cursor shows `cursorLabel` on hover. Opens a
+ * new tab with an ↗ arrow by default; pass `newTab={false}` for e.g. mailto links.
+ */
 export function ExternalBadge({
   href,
   icon: Icon,
   color,
   cursorLabel,
+  newTab = true,
   children,
 }: {
   href: string;
   icon: Icon;
   color: string;
   cursorLabel: string;
+  newTab?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noreferrer"
+      {...(newTab && { target: "_blank", rel: "noreferrer" })}
       data-cursor={cursorLabel}
       className={cn(badgeClassName, "transition-colors hover:bg-muted")}
     >
       <Icon className={cn("size-3.5", color)} />
       {children}
-      <IconArrowUpRight className="size-3 text-muted-foreground" />
+      {newTab && <IconArrowUpRight className="size-3 text-muted-foreground" />}
     </a>
   );
 }

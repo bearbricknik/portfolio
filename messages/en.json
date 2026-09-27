@@ -24,7 +24,8 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "email": "Email",
-    "cv": "CV"
+    "cv": "CV",
+    "locations": "Locations"
   },
   "AboutPage": {
     "title": "About me",
@@ -64,5 +65,14 @@
         "title": "The pond won"
       }
     ]
+  },
+  "LocationsPage": {
+    "title": "Locations",
+    "intro": "Originally, I'm from the south of Germany – Ulm, to be precise. After 26 years, I took the leap and started over in a new city: Cologne, in the <heart>heart</heart> of NRW, Germany. Today, NRW is still my home.\n\nThe fastest way to get in touch is to send me a simple <email>email</email>. I should reply within a few hours. Got a project in mind that would be a good fit? Then book a 15-minute call with me directly on <cal>Cal.com</cal>",
+    "map": {
+      "cologne": "Cologne",
+      "nersingen": "Nersingen"
+    },
+    "country": "Germany"
   }
 }

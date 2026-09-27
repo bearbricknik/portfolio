@@ -4,12 +4,13 @@ import {
   IconFileText,
   IconGithub,
   IconLinkedin,
+  IconMapPin,
   IconX,
 } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 
 export type Social = {
   /** Key in the `Socials` messages, used as accessible label and cursor text */
-  key: "x" | "github" | "linkedin" | "email" | "cv";
+  key: "x" | "github" | "linkedin" | "email" | "cv" | "locations";
   href: string;
   icon: ComponentType<{ className?: string }>;
 };
@@ -21,4 +22,5 @@ export const SOCIALS: Social[] = [
   { key: "linkedin", href: "https://www.linkedin.com/in/kaufland/", icon: IconLinkedin },
   { key: "email", href: "mailto:dominik.huber97@googlemail.com", icon: IconEmail1 },
   { key: "cv", href: "/cv", icon: IconFileText },
+  { key: "locations", href: "/locations", icon: IconMapPin },
 ];

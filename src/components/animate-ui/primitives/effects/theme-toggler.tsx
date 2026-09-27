@@ -108,6 +108,13 @@ function ThemeToggler({
             'dark',
             resolved === 'dark',
           );
+          // next-themes (attribute="class") also uses a `light` class; set it
+          // right away too, so theme observers (e.g. the map) switch inside the
+          // transition instead of after it, when setTheme runs
+          document.documentElement.classList.toggle(
+            'light',
+            resolved === 'light',
+          );
         });
       }).ready;
 

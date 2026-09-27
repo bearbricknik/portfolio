@@ -16,4 +16,5 @@ export const ROUTES = [
   { href: "/", changeFrequency: "monthly", priority: 1 },
   { href: "/about-me", changeFrequency: "monthly", priority: 0.8 },
   { href: "/cv", changeFrequency: "monthly", priority: 0.8 },
+  { href: "/locations", changeFrequency: "monthly", priority: 0.7 },
 ] satisfies AppRoute[];

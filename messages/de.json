@@ -24,7 +24,8 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "email": "E-Mail",
-    "cv": "Lebenslauf"
+    "cv": "Lebenslauf",
+    "locations": "Orte"
   },
   "AboutPage": {
     "title": "Über mich",
@@ -64,5 +65,14 @@
         "title": "Der Teich hat gewonnen"
       }
     ]
+  },
+  "LocationsPage": {
+    "title": "Orte",
+    "intro": "Ursprünglich komme ich aus dem Süden von Deutschland, genauer gesagt aus Ulm. Nach 26 Jahren wagte ich einen Neuanfang in einer neuen Stadt, Köln im <heart>Herzen</heart> von NRW, Deutschland. Heute bin ich weiterhin in NRW zu Hause.\n\nDer schnellste Weg, um mit mir in Kontakt zu kommen, ist, mir eine simple <email>E-Mail</email> zu schreiben. Ich sollte innerhalb weniger Stunden antworten. Du hast ein Projekt im Kopf, das gut zu mir passen würde? Dann buch dir direkt einen 15-Minuten-Termin auf <cal>Cal.com</cal>",
+    "map": {
+      "cologne": "Köln",
+      "nersingen": "Nersingen"
+    },
+    "country": "Deutschland"
   }
 }
