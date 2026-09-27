@@ -172,13 +172,15 @@
 
 /* Two masks, intersected: the vertical fade into the page, and a soft fade
    towards the left/right ends, so the edge never ends in a hard vertical line
-   (content wider than the text column, e.g. the polaroid fan, runs under it). */
+   (content wider than the text column, e.g. the polaroid fan, runs under it).
+   The side fade is a fixed 1.5rem, the column's own padding: a percentage
+   would reach into the text on narrow screens and leave its edges unblurred. */
 .scroll-edge-top {
   top: 0;
   background: linear-gradient(to bottom, var(--background) 10%, transparent);
   mask-image:
     linear-gradient(to bottom, black 30%, transparent),
-    linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    linear-gradient(to right, transparent, black 1.5rem, black calc(100% - 1.5rem), transparent);
   mask-composite: intersect;
 }
 
@@ -187,7 +189,7 @@
   background: linear-gradient(to top, var(--background) 10%, transparent);
   mask-image:
     linear-gradient(to top, black 30%, transparent),
-    linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    linear-gradient(to right, transparent, black 1.5rem, black calc(100% - 1.5rem), transparent);
   mask-composite: intersect;
 }
 

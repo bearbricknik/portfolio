@@ -139,7 +139,9 @@ export function PolaroidFan({
             key={typeof photo.src === "string" ? photo.src : photo.src.src}
             // Cards overlap; later cards sit on top of earlier ones
             // (not `first:` — the blur layer is the first <li> when enabled)
-            className={cn("relative outline-none", index > 0 && "-ml-7 sm:-ml-8")}
+            // Three sizes (phones / tablets / desktop), overlapping more when
+            // smaller, so the whole fan fits the width
+            className={cn("relative outline-none", index > 0 && "-ml-6 sm:-ml-7 md:-ml-8")}
             tabIndex={0}
             onPointerEnter={() => setActiveIndex(index)}
             onPointerLeave={() => deactivate(index)}
@@ -156,12 +158,12 @@ export function PolaroidFan({
             transition={reducedMotion ? { duration: 0 } : SPRING}
           >
             <figure className="relative rounded-lg bg-white p-1.5 pb-6 shadow-md ring-1 ring-black/5 sm:p-2 sm:pb-8">
-              <div className="relative size-20 overflow-hidden rounded-sm bg-neutral-200 sm:size-32">
+              <div className="relative size-14 overflow-hidden rounded-sm bg-neutral-200 sm:size-24 md:size-32">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(min-width: 640px) 128px, 80px"
+                  sizes="(min-width: 768px) 128px, (min-width: 640px) 96px, 56px"
                   className="object-cover"
                   placeholder={typeof photo.src === "string" ? "empty" : "blur"}
                   priority={priority}
