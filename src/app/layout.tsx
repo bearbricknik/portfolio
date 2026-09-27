@@ -6,12 +6,14 @@ import { GeistSans } from "geist/font/sans";
 import { Nothing_You_Could_Do } from "next/font/google";
 import { CommandHint } from "@/components/command-hint";
 import { IntroOverlay } from "@/components/intro-overlay";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
 import { ServiceWorkerCleanup } from "@/components/service-worker-cleanup";
 import { SiteCursor } from "@/components/site-cursor";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { locales } from "@/i18n/config";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -113,6 +115,13 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                     <SiteFooter />
                   </div>
                 </ScrollContainer>
+              </div>
+              {/* Language and theme in the top right corner, mirroring the ⌘K hint
+                  below; always visible, also on phones */}
+              {/* z-20: above the scroll fades (z-10) */}
+              <div className="absolute top-4 right-4 z-20 flex items-center gap-1">
+                <LocaleSwitcher />
+                <ThemeSwitcher />
               </div>
               {/* ⌘K / Ctrl+K hint in the bottom right corner: same 4px offset to the
                   right and bottom, so it fits the 24px padding exactly (Kbd = 20px) */}
