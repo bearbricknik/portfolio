@@ -62,7 +62,8 @@
         "alt": "Teich am Golfplatz, in dem sich Himmel und Bäume spiegeln",
         "title": "Der Teich hat gewonnen"
       }
-    ]
+    ],
+    "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus NRW – Werdegang, Golf und was mich antreibt."
   },
   "LocationsPage": {
     "title": "Orte",
@@ -71,7 +72,8 @@
       "cologne": "Köln",
       "nersingen": "Nersingen"
     },
-    "country": "Deutschland"
+    "country": "Deutschland",
+    "description": "Von Ulm nach Köln: Herkunft, heutiges Zuhause und Kontakt zu Dominik Huber per E-Mail oder Cal.com."
   },
   "Nav": {
     "label": "Hauptnavigation",
@@ -90,14 +92,17 @@
   },
   "BlogPage": {
     "title": "Blog",
-    "comingSoon": "Hier entsteht gerade mein Blog. Die ersten Beiträge folgen bald."
+    "comingSoon": "Hier entsteht gerade mein Blog. Die ersten Beiträge folgen bald.",
+    "description": "Blog von Dominik Huber über Frontend, Interfaces und Softwareentwicklung."
   },
   "TechStackPage": {
     "title": "Tech-Stack",
-    "comingSoon": "Hier entsteht gerade eine Übersicht über meinen Tech-Stack. Sie folgt bald."
+    "comingSoon": "Hier entsteht gerade eine Übersicht über meinen Tech-Stack. Sie folgt bald.",
+    "description": "Die Tools und Technologien, mit denen Dominik Huber arbeitet: Next.js, React, TypeScript und mehr."
   },
   "CvPage": {
     "title": "Lebenslauf",
-    "comingSoon": "Hier entsteht gerade mein Lebenslauf. Er folgt bald."
+    "comingSoon": "Hier entsteht gerade mein Lebenslauf. Er folgt bald.",
+    "description": "Lebenslauf von Dominik Huber, Full-Stack-Entwickler: Stationen, Projekte und Erfahrung."
   }
 }

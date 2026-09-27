@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { IconCalendar1, IconEmail1, IconMapPin } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 import { IconHeart as IconHeartFilled } from "@central-icons-react/round-filled-radius-3-stroke-1.5";
 import { useLocale, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 
 import { MapAttributionCollapsed } from "@/components/map-attribution-collapsed";
 import { MapDriveRoute } from "@/components/map-drive-route";
@@ -14,10 +13,11 @@ import { StreamingText } from "@/components/streaming-text";
 import { Map, MapControls, MapMarker, MarkerContent, MarkerLabel } from "@/components/ui/map";
 import { DRIVE_ROUTE } from "@/lib/drive-route";
 import { INTRO_TIMING } from "@/lib/intro-timing";
+import { PageJsonLd } from "@/components/page-json-ld";
+import { pageMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("LocationsPage");
-  return { title: t("title"), alternates: { canonical: "/locations" } };
+  return pageMetadata({ namespace: "LocationsPage", path: "/locations" });
 }
 
 // [longitude, latitude]
@@ -36,6 +36,21 @@ const COMPANIES = [
   { name: "DGH Grundbesitz eGbR", street: "Hubertusweg 36", city: "89278 Nersingen" },
   { name: "DH Holding GmbH", street: "Hubertusweg 36", city: "89278 Nersingen" },
 ];
+
+// Structured data: the companies on this page, with their address
+const LOCATIONS_JSON_LD = {
+  mentions: COMPANIES.map((company) => ({
+    "@type": "Organization",
+    name: company.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.street,
+      postalCode: company.city.split(" ")[0],
+      addressLocality: company.city.split(" ").slice(1).join(" "),
+      addressCountry: "DE",
+    },
+  })),
+};
 
 const EMAIL = "dominik.huber97@googlemail.com";
 const CAL_URL = "https://cal.com/dominik-huber-curt5d/15-minuten";
@@ -62,6 +77,7 @@ export default function Locations() {
     // Same spacing as the paragraphs on the other pages
     <div className="flex flex-col gap-6">
       <h1 className="sr-only">{t("title")}</h1>
+      <PageJsonLd namespace="LocationsPage" path="/locations" type="ContactPage" extra={LOCATIONS_JSON_LD} />
       <PageHeading page="locations" stream />
 
       <StreamingText

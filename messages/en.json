@@ -62,7 +62,8 @@
         "alt": "Pond on the golf course reflecting the sky and trees",
         "title": "The pond won"
       }
-    ]
+    ],
+    "description": "Who's behind the code: Dominik Huber, full-stack developer from NRW, Germany – background, golf and what drives me."
   },
   "LocationsPage": {
     "title": "Locations",
@@ -71,7 +72,8 @@
       "cologne": "Cologne",
       "nersingen": "Nersingen"
     },
-    "country": "Germany"
+    "country": "Germany",
+    "description": "From Ulm to Cologne: Dominik Huber's roots, home today and how to get in touch by email or Cal.com."
   },
   "Nav": {
     "label": "Main navigation",
@@ -90,14 +92,17 @@
   },
   "BlogPage": {
     "title": "Blog",
-    "comingSoon": "My blog is in the works. The first posts are coming soon."
+    "comingSoon": "My blog is in the works. The first posts are coming soon.",
+    "description": "Dominik Huber's blog about frontend, interfaces and software development."
   },
   "TechStackPage": {
     "title": "Tech stack",
-    "comingSoon": "An overview of my tech stack is in the works and coming soon."
+    "comingSoon": "An overview of my tech stack is in the works and coming soon.",
+    "description": "The tools and technologies Dominik Huber works with: Next.js, React, TypeScript and more."
   },
   "CvPage": {
     "title": "CV",
-    "comingSoon": "My CV is in the works and coming soon."
+    "comingSoon": "My CV is in the works and coming soon.",
+    "description": "CV of Dominik Huber, full-stack developer: roles, projects and experience."
   }
 }

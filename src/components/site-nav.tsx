@@ -83,8 +83,10 @@ function HandCircle({ delay }: { delay: number }) {
   );
 }
 
-// In the menu the badges stand on their own: squarer, with more room inside
-const menuBadgeClassName = "gap-1.5 rounded-sm px-2 py-1";
+// In the menu the badges stand on their own: squarer, with more room inside.
+// align-middle: centered on the line like the words next to them (by default
+// the icon's bottom edge acts as baseline, which lifts the badge)
+const menuBadgeClassName = "gap-1.5 rounded-sm px-2 py-1 align-middle";
 
 function NavBadge({
   target,

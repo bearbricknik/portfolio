@@ -6,6 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import { Nothing_You_Could_Do } from "next/font/google";
 import { CommandHint } from "@/components/command-hint";
 import { IntroOverlay } from "@/components/intro-overlay";
+import { JsonLd } from "@/components/json-ld";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
@@ -15,10 +16,10 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { locales } from "@/i18n/config";
+import { ogLocales } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
+import { siteGraph } from "@/lib/structured-data";
 import "./globals.css";
-
-const ogLocales = { de: "de_DE", en: "en_US" } as const;
 
 // Handwriting for HandwrittenNote (`font-handwriting`); swap the font here to change it everywhere
 const handwriting = Nothing_You_Could_Do({
@@ -85,6 +86,8 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = await getLocale();
+  const tSite = await getTranslations("Site");
+  const tMeta = await getTranslations("Metadata");
 
   return (
     // next-themes sets the theme class on <html> before hydration
@@ -96,6 +99,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       {/* Browser extensions (e.g. ColorZilla) inject attributes into <body> before hydration */}
       <body className="overflow-hidden bg-background" suppressHydrationWarning>
         <ServiceWorkerCleanup />
+        {/* The person and the site, for search engines; pages add their own page + breadcrumb */}
+        <JsonLd data={siteGraph({ locale, role: tSite("role"), description: tMeta("description") })} />
         <NextIntlClientProvider>
           <Providers>
             {/* Viewport-sized frame, independent of the body's height */}

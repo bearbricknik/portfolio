@@ -315,3 +315,10 @@
     visibility: hidden;
   }
 }
+
+/* MapLibre's own CSS sets Helvetica on the whole map (marker labels,
+   controls, attribution). Unlayered and one step more specific, so it wins
+   over that stylesheet regardless of load order: the map uses Geist too. */
+html .maplibregl-map {
+  font-family: inherit;
+}
