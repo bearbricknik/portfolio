@@ -7,7 +7,8 @@
   "Controls": {
     "switchLocale": "Auf Deutsch wechseln",
     "toggleTheme": "Toggle theme",
-    "aboutMe": "About me"
+    "aboutMe": "About me",
+    "getToKnowMe": "Get to know me"
   },
   "Site": {
     "name": "Dominik Huber",
@@ -27,7 +28,7 @@
   },
   "AboutPage": {
     "title": "About me",
-    "intro": "My name is Dominik and I'm <years>{years}</years> <muted>years</muted>, <days>{days}</days> <muted>{days, plural, one {day} other {days}}</muted> and <seconds>{seconds}</seconds> <muted>{seconds, plural, one {second} other {seconds}}</muted> young.",
+    "intro": "My name is Dominik and I'm <years>{years}</years> <muted>years</muted>, <days>{days}</days> <muted>{days, plural, one {day} other {days}}</muted> and <seconds>{seconds}</seconds> <muted>{seconds, plural, one {second} other {seconds}}</muted> young{birthday, select, yes { (today is my <cake>birthday</cake>)} other {}}.",
     "origin": "I was born in Ulm, Germany, and I'm a passionate full-stack developer.",
     "story": {
       "p1": "I probably spend more time in front of a screen than I'd like to admit – but at least it's usually for a good reason. I love writing code, turning new ideas into something real and building, step by step, a thought into something that actually works in the end. Most of the time, anyway.",
@@ -39,16 +40,16 @@
     },
     "golfPhotos": [
       {
-        "alt": "Dominik teeing off on the golf course",
-        "title": "that's me"
-      },
-      {
         "alt": "Fairway with a sand bunker, two golf carts and mountains behind",
         "title": "Bunker? We've met"
       },
       {
         "alt": "Wide fairway in the low afternoon sun",
         "title": "Golden hour on the 18th"
+      },
+      {
+        "alt": "Dominik teeing off on the golf course",
+        "title": "that's me"
       },
       {
         "alt": "Golf bag on a slope above a lake in the sun",

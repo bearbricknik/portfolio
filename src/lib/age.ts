@@ -30,3 +30,14 @@ export function getAge(now: Date) {
     seconds: elapsed % SECONDS_PER_DAY,
   };
 }
+
+const BERLIN_MONTH_DAY = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Berlin",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+/** True on 14 October (German time), the birthday */
+export function isBirthday(now: Date) {
+  return BERLIN_MONTH_DAY.format(now) === "10-14";
+}

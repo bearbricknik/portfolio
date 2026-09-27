@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import { AnimatedNumber, AnimatedNumberGroup } from "@/components/animated-number";
-import { getAge } from "@/lib/age";
+import { BirthdayBadge } from "@/components/birthday-badge";
+import { getAge, isBirthday } from "@/lib/age";
 import { cn } from "@/lib/utils";
 
 /**
@@ -26,6 +27,8 @@ export function AgeIntro({ renderedAt, className }: { renderedAt: number; classN
   }, []);
 
   const age = getAge(now);
+  // Only on 14 October (German time)
+  const birthday = isBirthday(now);
   // Always counts up, so e.g. seconds 86.399 → 0 still roll upwards
   const number = (value: number) => <AnimatedNumber value={value} trend={1} />;
 
@@ -35,6 +38,9 @@ export function AgeIntro({ renderedAt, className }: { renderedAt: number; classN
       <span className={cn("tabular-nums", className)}>
         {t.rich("intro", {
           ...age,
+          // Adds " (heute ist mein [Geburtstag])" via ICU select in the message
+          birthday: birthday ? "yes" : "no",
+          cake: (chunks) => <BirthdayBadge label={chunks} />,
           years: () => number(age.years),
           days: () => number(age.days),
           seconds: () => number(age.seconds),

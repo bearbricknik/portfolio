@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 
@@ -26,6 +27,12 @@ type PolaroidFanProps = {
   arc?: number;
   /** Load the images eagerly (e.g. when the fan is above the fold) */
   priority?: boolean;
+  /**
+   * While a photo is hovered/focused, softly blur everything around the fan
+   * (an oval backdrop blur that fades out at its edges), so the photos pop.
+   * `true` = 2px, or pass the blur strength in px.
+   */
+  blurSurroundings?: boolean | number;
   className?: string;
 };
 
@@ -92,13 +99,35 @@ export function PolaroidFan({
   seed = 1,
   arc = 3,
   priority = false,
+  blurSurroundings = false,
   className,
 }: PolaroidFanProps) {
   const reducedMotion = useReducedMotion() ?? false;
   const center = (photos.length - 1) / 2;
+  // Index of the hovered/focused card (null = none); drives the surrounding blur
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const deactivate = (index: number) =>
+    setActiveIndex((current) => (current === index ? null : current));
 
   return (
-    <ul className={cn("flex items-start justify-center py-12", className)}>
+    <ul className={cn("relative flex items-start justify-center py-12", className)}>
+      {blurSurroundings && (
+        <motion.li
+          aria-hidden
+          // Oval larger than the fan; the radial mask fades the blur out softly.
+          // Behind the cards (earlier in the DOM), in front of the page text.
+          className="pointer-events-none absolute"
+          style={{
+            inset: "-90% -25%",
+            // Only a soft blur, no tint or background color
+            backdropFilter: `blur(${blurSurroundings === true ? 2 : blurSurroundings}px)`,
+            maskImage: "radial-gradient(closest-side, black 65%, transparent)",
+          }}
+          initial={false}
+          animate={{ opacity: activeIndex === null ? 0 : 1 }}
+          transition={{ duration: reducedMotion ? 0 : 0.3, ease: "easeOut" }}
+        />
+      )}
       {photos.map((photo, index) => {
         const offset = index - center;
         // Fan shape plus a stable random tilt and a little vertical jitter
@@ -109,8 +138,13 @@ export function PolaroidFan({
           <motion.li
             key={typeof photo.src === "string" ? photo.src : photo.src.src}
             // Cards overlap; later cards sit on top of earlier ones
-            className="relative -ml-7 outline-none first:ml-0 sm:-ml-8"
+            // (not `first:` — the blur layer is the first <li> when enabled)
+            className={cn("relative outline-none", index > 0 && "-ml-7 sm:-ml-8")}
             tabIndex={0}
+            onPointerEnter={() => setActiveIndex(index)}
+            onPointerLeave={() => deactivate(index)}
+            onFocus={() => setActiveIndex(index)}
+            onBlur={() => deactivate(index)}
             initial={false}
             animate="rest"
             whileHover="focus"

@@ -28,7 +28,8 @@ const renderTime = () => Date.now();
 const STORY = ["p1", "p2", "p3", "p4", "p5", "p6"] as const;
 
 // Static imports: content-hashed URLs (cached immutably), known sizes and a blur placeholder
-const GOLF_PHOTOS = [golf1, golf2, golf3, golf4, golf5, golf6];
+// Order matches `AboutPage.golfPhotos` in the messages (the photo of me sits in the middle)
+const GOLF_PHOTOS = [golf2, golf3, golf1, golf4, golf5, golf6];
 
 export default function AboutMe() {
   const t = useTranslations("AboutPage");
@@ -65,6 +66,7 @@ export default function AboutMe() {
           {/* Golf photos right below the golf paragraph */}
           {key === "p3" && (
             <PolaroidFan
+              blurSurroundings
               photos={GOLF_PHOTOS.map((src, index) => ({
                 src,
                 ...(t.raw("golfPhotos") as { alt: string; title: string }[])[index],

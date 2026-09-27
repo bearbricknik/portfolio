@@ -12,7 +12,40 @@ export type HandwrittenArrow = "left" | "right" | "up" | "down";
 const ARROW_ROTATION: Record<HandwrittenArrow, number> = { right: 0, down: 90, left: 180, up: -90 };
 
 /** Loose, slightly wobbly hand-drawn arrow (shaft + head as separate strokes) */
-function Arrow({ direction, visible, delay }: { direction: HandwrittenArrow; visible: boolean; delay: number }) {
+/**
+ * Arrow shapes, both drawn pointing right:
+ * - sweep: short, flat curve (after the text)
+ * - hook: starts steeply downwards, then flattens out to the right (below the text)
+ */
+const ARROW_SHAPES = {
+  sweep: {
+    viewBox: "0 0 64 32",
+    className: "h-6 w-12",
+    shaft: "M3 9C12 21 30 26 57 19",
+    head: "M47 12.5C51 15 54 17 57.5 19C53.5 21 50 23.5 47.5 27",
+  },
+  hook: {
+    viewBox: "0 0 64 48",
+    className: "h-12 w-16",
+    shaft: "M5 3C6 20 16 36 55 37",
+    head: "M46 31C50 33.5 53 35.5 56.5 37C52.5 39 49 41.5 46.5 44",
+  },
+} as const;
+
+function Arrow({
+  direction,
+  shape,
+  visible,
+  delay,
+  className,
+}: {
+  direction: HandwrittenArrow;
+  shape: keyof typeof ARROW_SHAPES;
+  visible: boolean;
+  delay: number;
+  className?: string;
+}) {
+  const { viewBox, className: sizeClassName, shaft, head } = ARROW_SHAPES[shape];
   const draw = (extraDelay: number, duration: number) => ({
     initial: { pathLength: 0, opacity: 0 },
     animate: visible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 },
@@ -25,17 +58,17 @@ function Arrow({ direction, visible, delay }: { direction: HandwrittenArrow; vis
   return (
     <svg
       aria-hidden
-      viewBox="0 0 64 32"
+      viewBox={viewBox}
       fill="none"
       stroke="currentColor"
       strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-6 w-12 shrink-0"
+      className={cn("shrink-0", sizeClassName, className)}
       style={{ rotate: `${ARROW_ROTATION[direction]}deg` }}
     >
-      <motion.path d="M3 9C12 21 30 26 57 19" {...draw(0, 0.5)} />
-      <motion.path d="M47 12.5C51 15 54 17 57.5 19C53.5 21 50 23.5 47.5 27" {...draw(0.45, 0.25)} />
+      <motion.path d={shaft} {...draw(0, 0.5)} />
+      <motion.path d={head} {...draw(0.45, 0.25)} />
     </svg>
   );
 }
@@ -43,8 +76,13 @@ function Arrow({ direction, visible, delay }: { direction: HandwrittenArrow; vis
 type HandwrittenNoteProps = RevealGateOptions & {
   /** The handwritten text (any string, translatable) */
   children: React.ReactNode;
-  /** Optional hand-drawn arrow after the text, pointing in this direction */
+  /** Optional hand-drawn arrow, pointing in this direction */
   arrow?: HandwrittenArrow;
+  /**
+   * Where the arrow sits: "end" = right after the text, "below" = under the
+   * text, sweeping out to the right (like a note pointing at something next to it)
+   */
+  arrowPosition?: "end" | "below";
   /** Seconds to wait once the note may appear, e.g. to let a parent fade in first */
   delay?: number;
   /** Seconds the "writing" of the text takes */
@@ -65,6 +103,7 @@ type HandwrittenNoteProps = RevealGateOptions & {
 export function HandwrittenNote({
   children,
   arrow,
+  arrowPosition = "end",
   after,
   waitForStreams,
   delay = 0,
@@ -76,23 +115,41 @@ export function HandwrittenNote({
   const gateOpen = useRevealGate(ref, { after, waitForStreams });
   const reducedMotion = useReducedMotion();
   const visible = gateOpen || reducedMotion === true;
+  const below = arrowPosition === "below";
+  // Rotates around the start of the text, so the first letter stays in place.
+  // Below: only the text tilts, so the arrow keeps pointing at its target.
+  const tiltStyle = { rotate: `${tilt}deg`, transformOrigin: "left center" };
 
   return (
     <span
       ref={ref}
-      className={cn("inline-flex items-center gap-1 font-handwriting text-muted-foreground", className)}
-      // Rotates around the start of the text, so the first letter stays in place
-      style={{ rotate: `${tilt}deg`, transformOrigin: "left center" }}
+      className={cn(
+        "inline-flex font-handwriting text-muted-foreground",
+        below ? "flex-col items-start" : "items-center gap-1",
+        className,
+      )}
+      style={below ? undefined : tiltStyle}
     >
       <motion.span
         className="inline-block"
+        style={below ? tiltStyle : undefined}
         initial={{ clipPath: "inset(-20% 100% -20% 0)" }}
         animate={{ clipPath: visible ? "inset(-20% 0% -20% 0)" : "inset(-20% 100% -20% 0)" }}
         transition={{ duration: reducedMotion ? 0 : duration, ease: [0.45, 0, 0.55, 1], delay }}
       >
         {children}
       </motion.span>
-      {arrow && <Arrow direction={arrow} visible={visible} delay={reducedMotion ? 0 : delay + duration * 0.8} />}
+      {arrow && (
+        <Arrow
+          direction={arrow}
+          shape={below ? "hook" : "sweep"}
+          visible={visible}
+          delay={reducedMotion ? 0 : delay + duration * 0.8}
+          // Below: starts under the end of the text and reaches out past it; the
+          // tip sits ~11px above the note's bottom edge (align targets to that)
+          className={below ? "self-end translate-x-2" : undefined}
+        />
+      )}
     </span>
   );
 }

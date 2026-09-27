@@ -7,7 +7,8 @@
   "Controls": {
     "switchLocale": "Switch to English",
     "toggleTheme": "Theme wechseln",
-    "aboutMe": "Über mich"
+    "aboutMe": "Über mich",
+    "getToKnowMe": "Mehr über mich"
   },
   "Site": {
     "name": "Dominik Huber",
@@ -27,7 +28,7 @@
   },
   "AboutPage": {
     "title": "Über mich",
-    "intro": "Ich heiße Dominik und bin <years>{years}</years> <muted>Jahre</muted>, <days>{days}</days> <muted>{days, plural, one {Tag} other {Tage}}</muted> und <seconds>{seconds}</seconds> <muted>{seconds, plural, one {Sekunde} other {Sekunden}}</muted> jung.",
+    "intro": "Ich heiße Dominik und bin <years>{years}</years> <muted>Jahre</muted>, <days>{days}</days> <muted>{days, plural, one {Tag} other {Tage}}</muted> und <seconds>{seconds}</seconds> <muted>{seconds, plural, one {Sekunde} other {Sekunden}}</muted> jung{birthday, select, yes { (heute ist mein <cake>Geburtstag</cake>)} other {}}.",
     "origin": "Ich komme gebürtig aus Ulm, Deutschland, und bin passionierter Full-Stack-Entwickler.",
     "story": {
       "p1": "Ich verbringe wahrscheinlich mehr Zeit vor einem Bildschirm, als ich zugeben möchte – aber immerhin meistens aus einem guten Grund. Ich liebe es zu programmieren, neue Ideen umzusetzen und aus einem Gedanken Schritt für Schritt etwas zu bauen, das am Ende tatsächlich funktioniert. Meistens jedenfalls.",
@@ -39,16 +40,16 @@
     },
     "golfPhotos": [
       {
-        "alt": "Dominik beim Abschlag auf dem Golfplatz",
-        "title": "das bin ich"
-      },
-      {
         "alt": "Fairway mit Sandbunker, zwei Golfcarts und Bergen im Hintergrund",
         "title": "Bunker? Kennen wir uns"
       },
       {
         "alt": "Weites Fairway in der tiefstehenden Sonne",
         "title": "Golden Hour auf der 18"
+      },
+      {
+        "alt": "Dominik beim Abschlag auf dem Golfplatz",
+        "title": "das bin ich"
       },
       {
         "alt": "Golfbag am Hang über einem See in der Sonne",

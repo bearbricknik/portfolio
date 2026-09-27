@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { formatForDisplay, useHotkey } from "@tanstack/react-hotkeys";
 import { useTranslations } from "next-intl";
 
+import { HandwrittenNote } from "@/components/handwritten-note";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { cn } from "@/lib/utils";
 
@@ -43,21 +44,33 @@ export function CommandHint({ className }: { className?: string }) {
   if (!keys) return null;
 
   return (
-    <Link
-      href={TARGET}
-      aria-label={t("aboutMe")}
-      aria-keyshortcuts={HOTKEY.replace("Mod", keys[0] === "⌘" ? "Meta" : "Control")}
-      className={cn(
-        // Hidden below sm (phones), a flex box of exactly the Kbd height above
-        "hidden rounded-md opacity-60 transition-opacity sm:flex hover:opacity-100 focus-visible:opacity-100",
-        className,
-      )}
-    >
-      <KbdGroup>
-        {keys.map((key) => (
-          <Kbd key={key}>{key}</Kbd>
-        ))}
-      </KbdGroup>
-    </Link>
+    // Hidden below sm (phones); the note and the keys share one positioned box
+    <div className={cn("hidden items-end sm:flex", className)}>
+      {/* Handwritten "get to know me" with an arrow pointing at the keys */}
+      <HandwrittenNote
+        arrow="right"
+        arrowPosition="below"
+        waitForStreams
+        delay={1}
+        tilt={-4}
+        // bottom-0: the arrow tip (~11px above the note's bottom) meets the middle of the 20px keys
+        className="pointer-events-none absolute right-full bottom-0 mr-1 text-lg whitespace-nowrap"
+      >
+        {t("getToKnowMe")}
+      </HandwrittenNote>
+      <Link
+        href={TARGET}
+        aria-label={t("aboutMe")}
+        aria-keyshortcuts={HOTKEY.replace("Mod", keys[0] === "⌘" ? "Meta" : "Control")}
+        // A flex box of exactly the Kbd height
+        className="flex rounded-md opacity-60 transition-opacity hover:opacity-100 focus-visible:opacity-100"
+      >
+        <KbdGroup>
+          {keys.map((key) => (
+            <Kbd key={key}>{key}</Kbd>
+          ))}
+        </KbdGroup>
+      </Link>
+    </div>
   );
 }
