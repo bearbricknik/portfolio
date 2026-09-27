@@ -36,7 +36,7 @@ export default function AboutMe() {
 
   return (
     // Justified with hyphenation, like the bio on the home page
-    <section className="flex flex-col gap-6 text-justify hyphens-auto">
+    <section className="flex flex-col gap-6 text-left text-pretty hyphens-auto sm:text-justify">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="AboutPage" path="/about-me" type="ProfilePage" />
       <PageHeading page="about" />

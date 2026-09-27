@@ -43,7 +43,7 @@ export default function Home() {
         interval={30}
         className="flex flex-col gap-6"
         // Justified text; hyphenation (uses <html lang>) avoids wide gaps, especially in German
-        textClassName="text-justify hyphens-auto"
+        textClassName="text-left text-pretty hyphens-auto sm:text-justify"
         content={t.rich("bio", {
           uni: (chunks) => (
             <Badge icon={IconGraduateCap} color="text-indigo-500">

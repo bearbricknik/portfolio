@@ -86,7 +86,7 @@ export default function Locations() {
         notBefore={INTRO_TIMING.bodyStreamStart}
         interval={30}
         className="flex flex-col gap-6"
-        textClassName="text-justify hyphens-auto"
+        textClassName="text-left text-pretty hyphens-auto sm:text-justify"
         content={t.rich("intro", {
           heart: (chunks) => (
             <Badge icon={IconHeartFilled} color="text-red-500">

@@ -4,8 +4,11 @@ import { cn } from "@/lib/utils";
 
 type Icon = React.ComponentType<{ className?: string }>;
 
+// relative top-0.5: the icon's bottom edge acts as the badge's baseline, which
+// lifts it above the text around it; 2px down sits it visually on the line
+// without changing the line height (relative offsets don't affect layout)
 export const badgeClassName =
-  "inline-flex items-center gap-1 rounded-md border bg-muted/60 px-1.5 py-0.5 text-sm leading-none";
+  "relative top-0.5 inline-flex items-center gap-1 rounded-md border bg-muted/60 px-1.5 py-0.5 text-sm leading-none";
 
 /** Inline badge with a colored icon, e.g. for a technology */
 export function Badge({ icon: Icon, color, children }: { icon: Icon; color: string; children: React.ReactNode }) {

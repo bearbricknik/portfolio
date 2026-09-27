@@ -324,3 +324,12 @@
 html .maplibregl-map {
   font-family: inherit;
 }
+
+/* Hyphenation that reads naturally: only words of 6+ letters are split, with
+   at least 3 letters on each side (no "ei-nen", "Sü-den"). Paired with
+   `hyphens-auto` on the justified texts. */
+.hyphens-auto {
+  hyphenate-limit-chars: 6 3 3;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+}
