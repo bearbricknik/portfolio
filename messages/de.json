@@ -23,9 +23,7 @@
     "x": "X",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "E-Mail",
-    "cv": "Lebenslauf",
-    "locations": "Orte"
+    "email": "E-Mail"
   },
   "AboutPage": {
     "title": "Über mich",
@@ -74,5 +72,32 @@
       "nersingen": "Nersingen"
     },
     "country": "Deutschland"
+  },
+  "Nav": {
+    "label": "Hauptnavigation",
+    "open": "Navigation öffnen",
+    "close": "Navigation schließen",
+    "sentence": "Ich möchte gern <about>wissen, wer du bist</about> <cv>deinen Lebenslauf sehen</cv> <stack>deinen Tech-Stack entdecken</stack> <blog>deinen Blog lesen</blog> <locations>wissen, wo du zu Hause bist</locations> oder einfach <home>zurück zum Start</home>",
+    "here": "du bist gerade hier",
+    "pages": {
+      "about": "Über mich",
+      "cv": "Lebenslauf",
+      "stack": "Tech-Stack",
+      "blog": "Blog",
+      "locations": "Orte",
+      "home": "Start"
+    }
+  },
+  "BlogPage": {
+    "title": "Blog",
+    "comingSoon": "Hier entsteht gerade mein Blog. Die ersten Beiträge folgen bald."
+  },
+  "TechStackPage": {
+    "title": "Tech-Stack",
+    "comingSoon": "Hier entsteht gerade eine Übersicht über meinen Tech-Stack. Sie folgt bald."
+  },
+  "CvPage": {
+    "title": "Lebenslauf",
+    "comingSoon": "Hier entsteht gerade mein Lebenslauf. Er folgt bald."
   }
 }

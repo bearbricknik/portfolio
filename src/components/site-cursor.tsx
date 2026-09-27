@@ -29,6 +29,20 @@ const INTERACTIVE_SELECTOR = [
   "input[type='button']",
 ].join(",");
 
+/**
+ * Open overlays (dialogs, menus, dropdowns, popovers): while one is open the
+ * label stays hidden, so it never overlaps the overlay. Base UI / shadcn set
+ * these roles; add `data-cursor-overlay` to custom ones.
+ */
+const OVERLAY_SELECTOR = [
+  "[data-cursor-overlay]",
+  "[role='dialog']",
+  "[role='alertdialog']",
+  "[role='menu']",
+  "[role='listbox']",
+  "dialog[open]",
+].join(",");
+
 const MAX_LABEL_LENGTH = 40;
 
 // Soft, slightly delayed movement to match the smooth scrolling (Lenis).
@@ -138,6 +152,7 @@ export function SiteCursor() {
   // `label` keeps the last text so the bubble can animate out with it
   const [label, setLabel] = useState("");
   const [visible, setVisible] = useState(false);
+  const [overlayOpen, setOverlayOpen] = useState(false);
 
   useEffect(() => {
     if (!hasFinePointer) return;
@@ -153,6 +168,29 @@ export function SiteCursor() {
 
     document.addEventListener("pointerover", handlePointerOver, { passive: true });
     return () => document.removeEventListener("pointerover", handlePointerOver);
+  }, [hasFinePointer]);
+
+  // Watch the page for overlays opening/closing (once per frame at most)
+  useEffect(() => {
+    if (!hasFinePointer) return;
+
+    let frame = 0;
+    const check = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setOverlayOpen(document.querySelector(OVERLAY_SELECTOR) !== null));
+    };
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      attributeFilter: ["role", "open", "data-cursor-overlay"],
+    });
+    check();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, [hasFinePointer]);
 
   if (!hasFinePointer) return null;
@@ -173,7 +211,7 @@ export function SiteCursor() {
       </Cursor>
       <CursorLabel
         label={label}
-        visible={visible}
+        visible={visible && !overlayOpen}
         transition={reducedMotion ? { stiffness: 1000, damping: 100 } : LABEL_SPRING}
       />
     </CursorProvider>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { HandwrittenNote } from "@/components/handwritten-note";
@@ -39,29 +38,19 @@ export function SiteFooter() {
         </div>
         <nav aria-label={tSocials("label")} className="min-w-0">
           <ul className="flex flex-wrap items-center justify-end gap-1">
-            {SOCIALS.map(({ key, href, icon: Icon }) => {
-              const icon = <Icon className="size-4" />;
-              return (
-                <li key={key}>
-                  {href.startsWith("/") ? (
-                    // Internal page (e.g. /cv): client-side navigation
-                    <Link href={href} aria-label={tSocials(key)} className={iconLinkClassName}>
-                      {icon}
-                    </Link>
-                  ) : (
-                    <a
-                      href={href}
-                      aria-label={tSocials(key)}
-                      // mailto: opens the mail app, everything else a new tab
-                      {...(href.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
-                      className={iconLinkClassName}
-                    >
-                      {icon}
-                    </a>
-                  )}
-                </li>
-              );
-            })}
+            {SOCIALS.map(({ key, href, icon: Icon }) => (
+              <li key={key}>
+                <a
+                  href={href}
+                  aria-label={tSocials(key)}
+                  // mailto: opens the mail app, everything else a new tab
+                  {...(href.startsWith("http") && { target: "_blank", rel: "noreferrer" })}
+                  className={iconLinkClassName}
+                >
+                  <Icon className="size-4" />
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </footer>

@@ -17,4 +17,7 @@ export const ROUTES = [
   { href: "/about-me", changeFrequency: "monthly", priority: 0.8 },
   { href: "/cv", changeFrequency: "monthly", priority: 0.8 },
   { href: "/locations", changeFrequency: "monthly", priority: 0.7 },
+  // Placeholders for now: left out of the sitemap until they have content
+  { href: "/tech-stack", excludeFromSitemap: true },
+  { href: "/blog", excludeFromSitemap: true },
 ] satisfies AppRoute[];

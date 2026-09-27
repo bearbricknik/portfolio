@@ -105,8 +105,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 <ScrollContainer
                   // overflow-x-hidden: wide content (e.g. the polaroid fan) never adds a horizontal scrollbar
                   className="flex flex-col overflow-x-hidden overscroll-none"
-                  // Fades only as wide as the content column, not the whole window
-                  edgeClassName="mx-auto max-w-xl"
                 >
                   {/* Header and footer are shared by every page; pages only bring their content */}
                   <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-6 py-12 leading-relaxed">

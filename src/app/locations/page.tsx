@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { MapAttributionCollapsed } from "@/components/map-attribution-collapsed";
 import { MapDriveRoute } from "@/components/map-drive-route";
 import { MapFitBounds } from "@/components/map-fit-bounds";
+import { PageHeading } from "@/components/page-heading";
 import { Badge, ExternalBadge } from "@/components/inline-badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StreamingText } from "@/components/streaming-text";
@@ -61,11 +62,12 @@ export default function Locations() {
     // Same spacing as the paragraphs on the other pages
     <div className="flex flex-col gap-6">
       <h1 className="sr-only">{t("title")}</h1>
+      <PageHeading page="locations" stream />
 
       <StreamingText
         key={locale}
         id={`locations-intro-${locale}`}
-        notBefore={INTRO_TIMING.streamStart}
+        notBefore={INTRO_TIMING.bodyStreamStart}
         interval={30}
         className="flex flex-col gap-6"
         textClassName="text-justify hyphens-auto"

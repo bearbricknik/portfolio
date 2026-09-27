@@ -23,9 +23,7 @@
     "x": "X",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "Email",
-    "cv": "CV",
-    "locations": "Locations"
+    "email": "Email"
   },
   "AboutPage": {
     "title": "About me",
@@ -74,5 +72,32 @@
       "nersingen": "Nersingen"
     },
     "country": "Germany"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "open": "Open navigation",
+    "close": "Close navigation",
+    "sentence": "I'd like to <about>know who you are</about> <cv>see your CV</cv> <stack>explore your tech stack</stack> <blog>read your blog</blog> <locations>find out where you're based</locations> or just <home>go back to the start</home>",
+    "here": "you are here",
+    "pages": {
+      "about": "About me",
+      "cv": "CV",
+      "stack": "Tech stack",
+      "blog": "Blog",
+      "locations": "Locations",
+      "home": "Home"
+    }
+  },
+  "BlogPage": {
+    "title": "Blog",
+    "comingSoon": "My blog is in the works. The first posts are coming soon."
+  },
+  "TechStackPage": {
+    "title": "Tech stack",
+    "comingSoon": "An overview of my tech stack is in the works and coming soon."
+  },
+  "CvPage": {
+    "title": "CV",
+    "comingSoon": "My CV is in the works and coming soon."
   }
 }

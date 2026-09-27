@@ -170,16 +170,25 @@
   transition: opacity 200ms ease-out;
 }
 
+/* Two masks, intersected: the vertical fade into the page, and a soft fade
+   towards the left/right ends, so the edge never ends in a hard vertical line
+   (content wider than the text column, e.g. the polaroid fan, runs under it). */
 .scroll-edge-top {
   top: 0;
   background: linear-gradient(to bottom, var(--background) 10%, transparent);
-  mask-image: linear-gradient(to bottom, black 30%, transparent);
+  mask-image:
+    linear-gradient(to bottom, black 30%, transparent),
+    linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-composite: intersect;
 }
 
 .scroll-edge-bottom {
   bottom: 0;
   background: linear-gradient(to top, var(--background) 10%, transparent);
-  mask-image: linear-gradient(to top, black 30%, transparent);
+  mask-image:
+    linear-gradient(to top, black 30%, transparent),
+    linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-composite: intersect;
 }
 
 [data-overflow-top] > .scroll-edge-top,

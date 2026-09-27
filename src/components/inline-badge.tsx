@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 type Icon = React.ComponentType<{ className?: string }>;
 
-const badgeClassName =
+export const badgeClassName =
   "inline-flex items-center gap-1 rounded-md border bg-muted/60 px-1.5 py-0.5 text-sm leading-none";
 
 /** Inline badge with a colored icon, e.g. for a technology */
