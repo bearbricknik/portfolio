@@ -5,9 +5,8 @@ import { PageHeading } from "@/components/page-heading";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
-// Placeholder page: not indexed until it has content
 export async function generateMetadata(): Promise<Metadata> {
-  return pageMetadata({ namespace: "TechStackPage", path: "/tech-stack", index: false });
+  return pageMetadata({ namespace: "TechStackPage", path: "/tech-stack" });
 }
 
 export default async function TechStack() {
