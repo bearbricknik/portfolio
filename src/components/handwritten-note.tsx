@@ -8,6 +8,11 @@ import { cn } from "@/lib/utils";
 
 export type HandwrittenArrow = "left" | "right" | "up" | "down";
 
+// Hiding (e.g. while a new stream runs after a language switch) is not the
+// drawing in reverse: the whole note fades out quickly, then text and arrow
+// reset invisibly, ready to be written again
+const HIDE_FADE = 0.25;
+
 // Arrow drawn pointing right; other directions rotate it
 const ARROW_ROTATION: Record<HandwrittenArrow, number> = { right: 0, down: 90, left: 180, up: -90 };
 
@@ -48,11 +53,17 @@ function Arrow({
   const { viewBox, className: sizeClassName, shaft, head } = ARROW_SHAPES[shape];
   const draw = (extraDelay: number, duration: number) => ({
     initial: { pathLength: 0, opacity: 0 },
-    animate: visible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 },
-    transition: {
-      pathLength: { duration, ease: "easeInOut" as const, delay: delay + extraDelay },
-      opacity: { duration: 0.01, delay: delay + extraDelay },
-    },
+    animate: visible
+      ? {
+          pathLength: 1,
+          opacity: 1,
+          transition: {
+            pathLength: { duration, ease: "easeInOut" as const, delay: delay + extraDelay },
+            opacity: { duration: 0.01, delay: delay + extraDelay },
+          },
+        }
+      : // Reset only once the note has faded out (see HIDE_FADE)
+        { pathLength: 0, opacity: 0, transition: { duration: 0, delay: HIDE_FADE } },
   });
 
   return (
@@ -83,6 +94,8 @@ type HandwrittenNoteProps = RevealGateOptions & {
    * text, sweeping out to the right (like a note pointing at something next to it)
    */
   arrowPosition?: "end" | "below";
+  /** Extra classes for the arrow, e.g. a smaller size */
+  arrowClassName?: string;
   /** Seconds to wait once the note may appear, e.g. to let a parent fade in first */
   delay?: number;
   /** Seconds the "writing" of the text takes */
@@ -104,6 +117,7 @@ export function HandwrittenNote({
   children,
   arrow,
   arrowPosition = "end",
+  arrowClassName,
   after,
   waitForStreams,
   delay = 0,
@@ -121,7 +135,7 @@ export function HandwrittenNote({
   const tiltStyle = { rotate: `${tilt}deg`, transformOrigin: "left center" };
 
   return (
-    <span
+    <motion.span
       ref={ref}
       className={cn(
         "inline-flex font-handwriting text-muted-foreground",
@@ -129,13 +143,22 @@ export function HandwrittenNote({
         className,
       )}
       style={below ? undefined : tiltStyle}
+      // Shown right away (the writing reveals it); faded out as a whole when hidden
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: visible || reducedMotion ? 0 : HIDE_FADE, ease: "easeOut" }}
     >
       <motion.span
         className="inline-block"
         style={below ? tiltStyle : undefined}
         initial={{ clipPath: "inset(-20% 100% -20% 0)" }}
-        animate={{ clipPath: visible ? "inset(-20% 0% -20% 0)" : "inset(-20% 100% -20% 0)" }}
-        transition={{ duration: reducedMotion ? 0 : duration, ease: [0.45, 0, 0.55, 1], delay }}
+        animate={
+          visible
+            ? {
+                clipPath: "inset(-20% 0% -20% 0)",
+                transition: { duration: reducedMotion ? 0 : duration, ease: [0.45, 0, 0.55, 1], delay },
+              }
+            : { clipPath: "inset(-20% 100% -20% 0)", transition: { duration: 0, delay: HIDE_FADE } }
+        }
       >
         {children}
       </motion.span>
@@ -147,9 +170,9 @@ export function HandwrittenNote({
           delay={reducedMotion ? 0 : delay + duration * 0.8}
           // Below: starts under the end of the text and reaches out past it; the
           // tip sits ~11px above the note's bottom edge (align targets to that)
-          className={below ? "self-end translate-x-2" : undefined}
+          className={cn(below && "self-end translate-x-2", arrowClassName)}
         />
       )}
-    </span>
+    </motion.span>
   );
 }
