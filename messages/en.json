@@ -97,8 +97,111 @@
   },
   "TechStackPage": {
     "title": "Tech stack",
-    "comingSoon": "An overview of my tech stack is in the works and coming soon.",
-    "description": "The tools and technologies Dominik Huber works with: Next.js, React, TypeScript and more."
+    "description": "The tools and technologies Dominik Huber works with: Next.js, React, TypeScript and more.",
+    "intro": "The tools I work with and the projects they're part of. It started with browser extensions in plain JavaScript; today it's platforms like <strong>ProfitPath</strong>, built with Next.js and TypeScript. Here you can see how well I know each tool and where I've used it.",
+    "stats": {
+      "tools": "{count, plural, one {tool} other {tools}}",
+      "projects": "{count, plural, one {project} other {projects}}",
+      "professional": "at professional level"
+    },
+    "sections": {
+      "tools": "Tools"
+    },
+    "groups": {
+      "interface": "Interface",
+      "languages": "Languages",
+      "backend": "Backend & APIs",
+      "databases": "Databases",
+      "services": "Services"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "professional": "Professional"
+    },
+    "tools": {
+      "nextjs": {
+        "name": "Next.js",
+        "summary": "My default for web apps",
+        "description": "Server rendering, static pages, routing, data fetching and image optimization in one. ProfitPath is built on it, and so is this site."
+      },
+      "react": {
+        "name": "React",
+        "summary": "Interfaces from components",
+        "description": "The library for interfaces, in almost everything I build: web apps, extensions and, with React Native, mobile apps too."
+      },
+      "reactNative": {
+        "name": "React Native & Expo",
+        "summary": "Native apps with React",
+        "description": "We built the NexosSolutions app for Android and iOS with it, from one codebase for both platforms."
+      },
+      "chromeExtensions": {
+        "name": "Chrome extensions & Webpack",
+        "summary": "Tools right in the browser",
+        "description": "Extensions built with React and bundled with Webpack: automated purchasing software, scrapers and small helpers that work where you already are."
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "summary": "Type safety, almost everywhere",
+        "description": "Part of almost all my projects. Types make interfaces unambiguous, and many bugs show up while writing instead of in front of users."
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "summary": "Where it all started",
+        "description": "NexosSolutions was a browser extension in plain JavaScript that automated selecting, buying and ordering limited items through web requests."
+      },
+      "python": {
+        "name": "Python",
+        "summary": "Scraping and data analysis",
+        "description": "A university in Munich hired me for a project that collects data from the web for research and teaching."
+      },
+      "go": {
+        "name": "Go",
+        "summary": "Fast backends",
+        "description": "Extremely fast and efficient. In some projects a Go backend delivered the data to the frontend and handled the API requests."
+      },
+      "nodejs": {
+        "name": "Node.js & Express",
+        "summary": "APIs in JavaScript",
+        "description": "The backend behind NexosSolutions: the API that supplied the extension and the app with data."
+      },
+      "orpc": {
+        "name": "oRPC",
+        "summary": "End-to-end type-safe APIs",
+        "description": "Makes type-safe APIs almost effortless and fits right in with Next.js Server Actions and TanStack Query, which is why we use it in our projects."
+      },
+      "tanstack": {
+        "name": "TanStack",
+        "summary": "Fetching and showing data",
+        "description": "Developer experience first: Query fetches the data, Table shows it in ProfitPath's large tables. This site uses TanStack Query as well."
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "summary": "Relational data",
+        "description": "An open-source database with over 30 years of development, known for its reliability, feature set and performance."
+      },
+      "mongodb": {
+        "name": "MongoDB",
+        "summary": "Documents instead of tables",
+        "description": "NoSQL with JSON-like documents. At NexosSolutions it held the user and product data of the extension and the app."
+      },
+      "supabase": {
+        "name": "Supabase",
+        "summary": "Sign-in and subscriptions",
+        "description": "An open-source platform built on PostgreSQL. At ProfitPath, Supabase runs sign-in and keeps subscriptions in sync."
+      },
+      "stripe": {
+        "name": "Stripe",
+        "summary": "Online payments",
+        "description": "At ProfitPath, Stripe handles the payments and enables flexible payment options."
+      },
+      "betterAuth": {
+        "name": "Better Auth",
+        "summary": "Sign-in, open source",
+        "description": "Probably the most comprehensive open-source authentication system for web apps."
+      }
+    }
   },
   "CvPage": {
     "title": "CV",

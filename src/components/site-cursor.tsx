@@ -15,7 +15,11 @@ const FINE_POINTER_QUERY = "(pointer: fine)";
 /**
  * Elements that show the label bubble. Add `data-cursor="Text"` to any element
  * (e.g. an image that opens a dialog) to make it interactive and set its label.
+ * `data-cursor="pointer"` instead shows no label and turns the arrow into a
+ * pointing hand, for clickable areas whose text makes no good label (e.g. a
+ * whole row that opens).
  */
+const POINTER_VALUE = "pointer";
 const INTERACTIVE_SELECTOR = [
   "[data-cursor]",
   "a[href]",
@@ -49,6 +53,8 @@ const MAX_LABEL_LENGTH = 40;
 // The label trails a bit more than the arrow, so it follows behind it.
 const CURSOR_SPRING: SpringOptions = { stiffness: 350, damping: 32, mass: 0.5 };
 const LABEL_SPRING: SpringOptions = { stiffness: 220, damping: 28, mass: 0.6 };
+// Arrow ⇄ hand cross-fade
+const SHAPE_TRANSITION = { duration: 0.15, ease: "easeOut" } as const;
 
 function subscribe(onChange: () => void) {
   const mql = window.matchMedia(FINE_POINTER_QUERY);
@@ -152,6 +158,7 @@ export function SiteCursor() {
   // `label` keeps the last text so the bubble can animate out with it
   const [label, setLabel] = useState("");
   const [visible, setVisible] = useState(false);
+  const [pointer, setPointer] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
 
   useEffect(() => {
@@ -160,8 +167,10 @@ export function SiteCursor() {
     const handlePointerOver = (event: PointerEvent) => {
       const target = event.target instanceof Element ? event.target : null;
       const interactive = target?.closest(INTERACTIVE_SELECTOR);
-      const text = interactive ? getLabel(interactive) : "";
+      const isPointer = interactive?.getAttribute("data-cursor") === POINTER_VALUE;
+      const text = interactive && !isPointer ? getLabel(interactive) : "";
 
+      setPointer(isPointer);
       if (text) setLabel(text);
       setVisible(Boolean(text));
     };
@@ -198,16 +207,46 @@ export function SiteCursor() {
   return (
     <CursorProvider global>
       <Cursor smoothing={reducedMotion ? undefined : CURSOR_SPRING}>
-        <svg
-          className="size-6 text-foreground"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 40 40"
-        >
-          <path
-            fill="currentColor"
-            d="M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z"
-          />
-        </svg>
+        {/* Arrow and hand share one box and cross-fade, so the size never jumps */}
+        <span className="relative block size-6">
+          <motion.svg
+            className="absolute inset-0 size-6 text-foreground"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 40 40"
+            animate={{ opacity: pointer ? 0 : 1, scale: pointer ? 0.85 : 1 }}
+            transition={SHAPE_TRANSITION}
+          >
+            <path
+              fill="currentColor"
+              d="M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z"
+            />
+          </motion.svg>
+          <motion.svg
+            className="absolute inset-0 size-6 text-foreground"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            initial={false}
+            animate={{ opacity: pointer ? 1 : 0, scale: pointer ? 1 : 0.85 }}
+            transition={SHAPE_TRANSITION}
+          >
+            {/* Pointing hand: filled like the arrow, with a thin outline in the
+                background color so it reads on light and dark content */}
+            <path
+              fill="currentColor"
+              stroke="var(--background)"
+              strokeWidth="1.2"
+              strokeLinejoin="round"
+              d="M13 3c1.1 0 2 .9 2 2v8h.2c.2-1.1 1.1-2 2.3-2s2.1.9 2.3 2h.2c.2-1 1.1-1.7 2.2-1.7 1.2 0 2.1.9 2.2 2.1.3-.2.7-.3 1.1-.3 1.4 0 2.5 1.1 2.5 2.5v4.9c0 5.2-3.7 9-9 9h-1.4c-2.7 0-5-1.2-6.6-3.3l-5.4-7c-.8-1-.6-2.4.4-3.2 1-.8 2.5-.6 3.3.4l1.7 2V5c0-1.1.9-2 2-2Z"
+            />
+            <path
+              fill="none"
+              stroke="var(--background)"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              d="M15 13v4.5M19.8 13v4.5M24.4 13.4v4"
+            />
+          </motion.svg>
+        </span>
       </Cursor>
       <CursorLabel
         label={label}

@@ -97,8 +97,111 @@
   },
   "TechStackPage": {
     "title": "Tech-Stack",
-    "comingSoon": "Hier entsteht gerade eine Übersicht über meinen Tech-Stack. Sie folgt bald.",
-    "description": "Die Tools und Technologien, mit denen Dominik Huber arbeitet: Next.js, React, TypeScript und mehr."
+    "description": "Die Tools und Technologien, mit denen Dominik Huber arbeitet: Next.js, React, TypeScript und mehr.",
+    "intro": "Die Werkzeuge, mit denen ich arbeite, und die Projekte, in denen sie stecken. Angefangen mit Browser-Extensions in reinem JavaScript, heute Plattformen wie <strong>ProfitPath</strong> mit Next.js und TypeScript. Hier siehst du, was ich wie gut beherrsche und wo ich es eingesetzt habe.",
+    "stats": {
+      "tools": "{count, plural, one {Werkzeug} other {Werkzeuge}}",
+      "projects": "{count, plural, one {Projekt} other {Projekte}}",
+      "professional": "auf Profi-Niveau"
+    },
+    "sections": {
+      "tools": "Werkzeuge"
+    },
+    "groups": {
+      "interface": "Oberfläche",
+      "languages": "Sprachen",
+      "backend": "Backend & APIs",
+      "databases": "Datenbanken",
+      "services": "Dienste"
+    },
+    "levels": {
+      "beginner": "Einsteiger",
+      "basic": "Grundlagen",
+      "intermediate": "Fortgeschritten",
+      "professional": "Profi"
+    },
+    "tools": {
+      "nextjs": {
+        "name": "Next.js",
+        "summary": "Mein Standard für Web-Apps",
+        "description": "Server-Rendering, statische Seiten, Routing, Data-Fetching und Bildoptimierung aus einem Guss. Auf dieser Basis ist ProfitPath entstanden, und auch diese Seite läuft damit."
+      },
+      "react": {
+        "name": "React",
+        "summary": "Oberflächen aus Komponenten",
+        "description": "Die Bibliothek für Oberflächen, in fast allem, was ich baue: Web-Apps, Extensions und mit React Native auch mobile Apps."
+      },
+      "reactNative": {
+        "name": "React Native & Expo",
+        "summary": "Native Apps mit React",
+        "description": "Damit haben wir die NexosSolutions-App für Android und iOS gebaut, aus einer Codebasis für beide Plattformen."
+      },
+      "chromeExtensions": {
+        "name": "Chrome-Extensions & Webpack",
+        "summary": "Werkzeuge direkt im Browser",
+        "description": "Extensions mit React, gebündelt mit Webpack: automatisierte Kaufsoftware, Scraper und kleine Helfer, die dort arbeiten, wo man ohnehin ist."
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "summary": "Typsicherheit, fast überall",
+        "description": "Steckt in fast allen meinen Projekten. Typen machen Schnittstellen eindeutig, und viele Fehler fallen schon beim Schreiben auf."
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "summary": "Wo alles angefangen hat",
+        "description": "NexosSolutions war eine Browser-Extension in reinem JavaScript, die Auswahl, Kauf und Bestellung limitierter Artikel über Web-Requests automatisiert hat."
+      },
+      "python": {
+        "name": "Python",
+        "summary": "Scraping und Datenanalyse",
+        "description": "Eine Münchner Universität hat mich für ein Projekt engagiert, das Daten aus dem Web für Forschung und Lehre sammelt."
+      },
+      "go": {
+        "name": "Go",
+        "summary": "Schnelle Backends",
+        "description": "Extrem schnell und effizient. In einzelnen Projekten hat ein Go-Backend die Daten ans Frontend geliefert und die API-Requests bedient."
+      },
+      "nodejs": {
+        "name": "Node.js & Express",
+        "summary": "APIs in JavaScript",
+        "description": "Das Backend hinter NexosSolutions: die API, die Extension und App mit Daten versorgt hat."
+      },
+      "orpc": {
+        "name": "oRPC",
+        "summary": "Typsichere APIs von Ende zu Ende",
+        "description": "Macht typsichere APIs fast mühelos und passt nahtlos zu Next.js Server Actions und TanStack Query. Deshalb setzen wir es in unseren Projekten ein."
+      },
+      "tanstack": {
+        "name": "TanStack",
+        "summary": "Daten holen und zeigen",
+        "description": "Developer Experience zuerst: Query holt die Daten, Table zeigt sie in den großen Tabellen von ProfitPath. Auch diese Seite nutzt TanStack Query."
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "summary": "Relationale Daten",
+        "description": "Open-Source-Datenbank mit über 30 Jahren Entwicklung, bekannt für Zuverlässigkeit, Funktionsumfang und Performance."
+      },
+      "mongodb": {
+        "name": "MongoDB",
+        "summary": "Dokumente statt Tabellen",
+        "description": "NoSQL mit JSON-ähnlichen Dokumenten. Bei NexosSolutions lagen darin Nutzer- und Produktdaten von Extension und App."
+      },
+      "supabase": {
+        "name": "Supabase",
+        "summary": "Anmeldung und Abos",
+        "description": "Open-Source-Plattform auf Basis von PostgreSQL. Bei ProfitPath steuert Supabase die Anmeldung und die Synchronisierung der Abos."
+      },
+      "stripe": {
+        "name": "Stripe",
+        "summary": "Online bezahlen",
+        "description": "Bei ProfitPath wickelt Stripe die Zahlungen ab und ermöglicht flexible Bezahloptionen."
+      },
+      "betterAuth": {
+        "name": "Better Auth",
+        "summary": "Anmeldung, Open Source",
+        "description": "Das wohl umfassendste Open-Source-System für Authentifizierung in Web-Apps."
+      }
+    }
   },
   "CvPage": {
     "title": "Lebenslauf",

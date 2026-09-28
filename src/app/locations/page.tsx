@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { IconCalendar1, IconEmail1, IconMapPin } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 import { IconHeart as IconHeartFilled } from "@central-icons-react/round-filled-radius-3-stroke-1.5";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 import { MapAttributionCollapsed } from "@/components/map-attribution-collapsed";
 import { MapDriveRoute } from "@/components/map-drive-route";
 import { MapFitBounds } from "@/components/map-fit-bounds";
 import { PageHeading } from "@/components/page-heading";
+import { PageIntro } from "@/components/page-intro";
 import { Badge, ExternalBadge } from "@/components/inline-badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { StreamingText } from "@/components/streaming-text";
 import { Map, MapControls, MapMarker, MarkerContent, MarkerLabel } from "@/components/ui/map";
 import { DRIVE_ROUTE } from "@/lib/drive-route";
 import { INTRO_TIMING } from "@/lib/intro-timing";
@@ -71,7 +71,6 @@ function Marker({ position, label }: { position: [number, number]; label: string
 
 export default function Locations() {
   const t = useTranslations("LocationsPage");
-  const locale = useLocale();
 
   return (
     // Same spacing as the paragraphs on the other pages
@@ -80,13 +79,10 @@ export default function Locations() {
       <PageJsonLd namespace="LocationsPage" path="/locations" type="ContactPage" extra={LOCATIONS_JSON_LD} />
       <PageHeading page="locations" stream />
 
-      <StreamingText
-        key={locale}
-        id={`locations-intro-${locale}`}
+      <PageIntro
+        id="locations-intro"
+        // Right after the streamed heading
         notBefore={INTRO_TIMING.bodyStreamStart}
-        interval={30}
-        className="flex flex-col gap-6"
-        textClassName="text-left text-pretty hyphens-auto sm:text-justify"
         content={t.rich("intro", {
           heart: (chunks) => (
             <Badge icon={IconHeartFilled} color="text-red-500">
