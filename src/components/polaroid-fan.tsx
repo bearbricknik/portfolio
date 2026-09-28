@@ -74,18 +74,22 @@ export function PolaroidFan({
     setActiveIndex((current) => (current === index ? null : current));
 
   return (
-    <ul className={cn("relative flex items-start justify-center py-12", className)}>
+    // z-10: its own layer above the page text, so the blur also covers
+    // positioned inline elements (badges) that come after it in the DOM
+    <ul className={cn("relative z-10 flex items-start justify-center py-12", className)}>
       {blurSurroundings && (
         <motion.li
           aria-hidden
-          // Oval larger than the fan; the radial mask fades the blur out softly.
-          // Behind the cards (earlier in the DOM), in front of the page text.
+          // Wide oval around the fan, reaching well past the text column on both
+          // sides; the radial mask keeps most of it fully blurred and only fades
+          // out at the edges. Behind the cards (earlier in the DOM), in front of
+          // the page text.
           className="pointer-events-none absolute"
           style={{
-            inset: "-90% -25%",
+            inset: "-90% -45%",
             // Only a soft blur, no tint or background color
             backdropFilter: `blur(${blurSurroundings === true ? 2 : blurSurroundings}px)`,
-            maskImage: "radial-gradient(closest-side, black 65%, transparent)",
+            maskImage: "radial-gradient(closest-side, black 78%, transparent)",
           }}
           initial={false}
           animate={{ opacity: activeIndex === null ? 0 : 1 }}

@@ -46,7 +46,7 @@ export const TOOLS = [
   { key: "typescript", group: "languages", level: "intermediate", mark: "TS", color: "text-blue-500" },
   { key: "javascript", group: "languages", level: "professional", mark: "JS", color: "text-yellow-500" },
   { key: "python", group: "languages", level: "basic", mark: "Py", color: "text-sky-500" },
-  { key: "go", group: "languages", level: "basic", mark: "Go", color: "text-teal-500" },
+  { key: "go", group: "languages", level: "intermediate", mark: "Go", color: "text-teal-500" },
   { key: "nodejs", group: "backend", level: "professional", mark: "No", color: "text-green-500" },
   { key: "orpc", group: "backend", level: "beginner", mark: "oR", color: "text-pink-500" },
   { key: "tanstack", group: "backend", level: "intermediate", mark: "TQ", color: "text-orange-500" },

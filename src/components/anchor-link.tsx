@@ -24,8 +24,15 @@ type AnchorLinkProps = {
 const PULSE_DELAY = 450;
 
 /**
+ * Fired on the target element once the jump has arrived, so the target can
+ * react, e.g. a collapsed row opening itself (listen with addEventListener)
+ */
+export const ANCHOR_ARRIVE_EVENT = "anchor-arrive";
+
+/**
  * A small chip that jumps to another element on the same page: it scrolls
- * there smoothly and lets the target light up once (`.anchor-pulse`).
+ * there smoothly, lets the target light up once (`.anchor-pulse`) and fires
+ * `ANCHOR_ARRIVE_EVENT` on it.
  * Still a real link (#id), so it works without JavaScript and can be opened
  * like any other.
  */
@@ -44,7 +51,13 @@ export function AnchorLink({ targetId, leading, accent = "text-violet-500", chil
         target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
         // Restart the pulse, even if the same target was hit just before
         target.classList.remove("anchor-pulse");
-        window.setTimeout(() => target.classList.add("anchor-pulse"), reducedMotion ? 0 : PULSE_DELAY);
+        window.setTimeout(
+          () => {
+            target.classList.add("anchor-pulse");
+            target.dispatchEvent(new CustomEvent(ANCHOR_ARRIVE_EVENT));
+          },
+          reducedMotion ? 0 : PULSE_DELAY,
+        );
         target.addEventListener("animationend", () => target.classList.remove("anchor-pulse"), { once: true });
       }}
       className={cn(

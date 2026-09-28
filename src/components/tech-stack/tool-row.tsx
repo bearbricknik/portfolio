@@ -1,10 +1,11 @@
 "use client";
 
-import { type ReactNode, useId, useState } from "react";
+import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 import { IconPlusLarge } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { SkillMeter } from "@/components/tech-stack/skill-meter";
+import { ANCHOR_ARRIVE_EVENT } from "@/components/anchor-link";
 import { LetterMark } from "@/components/letter-mark";
 
 type ToolRowProps = {
@@ -25,15 +26,27 @@ const EASE = [0.23, 1, 0.32, 1] as const;
 
 /**
  * One tool: mark, name, summary and skill level in a row that opens to show
- * the full description. Rendered inside a ToolGroup, which reveals the rows.
+ * the full description, on click or when a link jumps to it. Rendered inside
+ * a ToolGroup, which reveals the rows.
  */
 export function ToolRow({ id, name, summary, mark, skill, description, footer }: ToolRowProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const ref = useRef<HTMLLIElement>(null);
+
+  // Opens when a link jumps here (e.g. from a project); an open row stays open
+  useEffect(() => {
+    const row = ref.current;
+    if (!row) return;
+    const openRow = () => setOpen(true);
+    row.addEventListener(ANCHOR_ARRIVE_EVENT, openRow);
+    return () => row.removeEventListener(ANCHOR_ARRIVE_EVENT, openRow);
+  }, []);
   const reducedMotion = useReducedMotion();
 
   return (
     <motion.li
+      ref={ref}
       id={id}
       className="border-b"
       variants={{
