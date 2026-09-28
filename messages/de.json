@@ -106,7 +106,8 @@
       "professional": "auf Profi-Niveau"
     },
     "sections": {
-      "tools": "Werkzeuge"
+      "tools": "Werkzeuge",
+      "projects": "Projekte"
     },
     "groups": {
       "interface": "Oberfläche",
@@ -202,6 +203,47 @@
         "summary": "Anmeldung, Open Source",
         "description": "Das wohl umfassendste Open-Source-System für Authentifizierung in Web-Apps."
       }
+    },
+    "usedIn": "Eingesetzt in",
+    "more": "Mehr zu {project}",
+    "projects": {
+      "profitpath": {
+        "title": "ProfitPath",
+        "period": "2023 – heute",
+        "description": "Plattform für Amazon-Seller. Findet profitable Produkte für Online-Arbitrage: Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten."
+      },
+      "profitgo": {
+        "title": "ProfitGo",
+        "period": "2025",
+        "description": "Produkt-Analyse unterwegs. Das zweite Produkt der ProfitPath-Familie: Produkte analysieren, sobald man eine Website besucht oder einen Barcode scannt."
+      },
+      "nexossolutions": {
+        "title": "NexosSolutions",
+        "period": "2022",
+        "description": "Automatisierte Kaufsoftware. Browser-Extension in reinem JavaScript, HTML und CSS, dazu eine App für Android und iOS und eine eigene API mit Datenbank dahinter."
+      },
+      "nexosproxies": {
+        "title": "NexosProxies",
+        "period": "2021",
+        "description": "Proxy-Netzwerk als Service. Ein eigenes IP-Proxy-Netzwerk, erst gegen die eigenen Kosten, dann als Service für andere in derselben Lage."
+      },
+      "research": {
+        "title": "Forschungsprojekt",
+        "period": "Auftrag",
+        "description": "Web-Scraping für eine Münchner Universität. Daten aus dem Web gesammelt und aufbereitet, für Forschung und Lehre."
+      },
+      "portfolio": {
+        "title": "Diese Seite",
+        "period": "2026",
+        "description": "huberdominik.com, mein Portfolio: zweisprachig ohne Sprach-URLs, Text, der hereinstreamt, eine Karte mit fahrendem Auto und eine Navigation als Satz."
+      }
+    },
+    "tags": {
+      "chromeExtension": "Chrome-Extension",
+      "ios": "iOS",
+      "android": "Android",
+      "proxyServers": "Proxy-Server",
+      "networking": "Netzwerke"
     }
   },
   "CvPage": {

@@ -59,10 +59,18 @@ export const TOOLS = [
 
 export type ToolKey = (typeof TOOLS)[number]["key"];
 
+/** Plain tags on projects (platforms etc.); names in `TechStackPage.tags` */
+export const PROJECT_TAGS = ["chromeExtension", "ios", "android", "proxyServers", "networking"] as const;
+export type ProjectTag = (typeof PROJECT_TAGS)[number];
+
 type ProjectDefinition = {
   key: string;
+  /** Two letters for the project's mark in links, e.g. "PP" */
+  mark: string;
   /** Tools used in the project; each links to the tool (and back) */
   tools: readonly ToolKey[];
+  /** Plain tags, e.g. platforms, for projects without tools to link */
+  tags?: readonly ProjectTag[];
   image?: StaticImageData;
   /** Has a detail modal: shows the round "more" button */
   hasDetails?: boolean;
@@ -72,23 +80,53 @@ type ProjectDefinition = {
 export const PROJECTS = [
   {
     key: "profitpath",
+    mark: "PP",
     tools: ["nextjs", "react", "typescript", "tanstack", "supabase", "stripe"],
     image: profitPathImage,
     hasDetails: true,
   },
-  { key: "profitgo", tools: [], image: profitGoImage, hasDetails: true },
+  {
+    key: "profitgo",
+    mark: "PG",
+    tools: [],
+    tags: ["chromeExtension", "ios", "android"],
+    image: profitGoImage,
+    hasDetails: true,
+  },
   {
     key: "nexossolutions",
+    mark: "NS",
     tools: ["javascript", "reactNative", "nodejs", "mongodb"],
     image: nexosSolutionsImage,
     hasDetails: true,
   },
-  { key: "nexosproxies", tools: [], image: nexosProxiesImage, hasDetails: true },
-  { key: "research", tools: ["python"] },
-  { key: "portfolio", tools: ["nextjs", "react", "typescript", "tanstack"] },
+  {
+    key: "nexosproxies",
+    mark: "NP",
+    tools: [],
+    tags: ["proxyServers", "networking"],
+    image: nexosProxiesImage,
+    hasDetails: true,
+  },
+  { key: "research", mark: "Rs", tools: ["python"] },
+  { key: "portfolio", mark: "HD", tools: ["nextjs", "react", "typescript", "tanstack"] },
 ] as const satisfies readonly ProjectDefinition[];
 
 export type ProjectKey = (typeof PROJECTS)[number]["key"];
+
+export type Tool = (typeof TOOLS)[number];
+export type Project = (typeof PROJECTS)[number];
+
+/** Anchor ids, so tools and projects can link to each other */
+export const toolAnchor = (key: ToolKey) => `tool-${key}`;
+export const projectAnchor = (key: ProjectKey) => `project-${key}`;
+
+/** Looks up a tool by key (every key in PROJECTS is checked against TOOLS by the types) */
+export const toolByKey = (key: ToolKey): Tool => TOOLS.find((tool) => tool.key === key)!;
+
+/** The projects that use a tool, in project order */
+export const projectsUsingTool = (key: ToolKey): Project[] =>
+  PROJECTS.filter((project) => (project.tools as readonly ToolKey[]).includes(key));
 
 /** The numbers at the top of the page, always in sync with the lists above */
 export const TECH_STACK_STATS = {

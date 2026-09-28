@@ -47,6 +47,7 @@ function seededRandom(seed: number) {
 // Overlap between neighbouring cards per size; more when the cards are smaller
 const OVERLAP: Record<PolaroidSize, string> = {
   lg: "-ml-6 sm:-ml-7 md:-ml-8",
+  md: "-ml-5 sm:-ml-6",
   sm: "-ml-4 sm:-ml-5",
 };
 

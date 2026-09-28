@@ -20,7 +20,7 @@ const EASE = [0.23, 1, 0.32, 1] as const;
 
 /**
  * Section title with an optional count and a hairline filling the rest of the
- * row. Once in view, the title fades in and the line draws itself to the right.
+ * row. Fades in once in view (and after the page's streaming text).
  */
 export function SectionHeading({
   children,
@@ -36,33 +36,23 @@ export function SectionHeading({
   const reducedMotion = useReducedMotion();
 
   return (
+    // Title, count and line fade in together
     <motion.div
       ref={ref}
       id={id}
       className={cn("flex items-center gap-3", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
+      variants={{
+        hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
+        shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
+      }}
     >
-      <motion.div
-        className="flex items-baseline gap-3"
-        variants={{
-          hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
-          shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
-        }}
-      >
+      <div className="flex items-baseline gap-3">
         <Tag className="font-medium">{children}</Tag>
         {count !== undefined && <span className="text-xs text-muted-foreground tabular-nums">{count}</span>}
-      </motion.div>
-      <motion.span
-        aria-hidden
-        className="h-px flex-1 origin-left bg-border"
-        variants={{
-          hidden: reducedMotion ? { opacity: 0 } : { scaleX: 0 },
-          shown: reducedMotion
-            ? { opacity: 1 }
-            : { scaleX: 1, transition: { duration: 0.8, ease: EASE, delay: 0.1 } },
-        }}
-      />
+      </div>
+      <span aria-hidden className="h-px flex-1 bg-border" />
     </motion.div>
   );
 }

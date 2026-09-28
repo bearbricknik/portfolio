@@ -11,6 +11,8 @@ export type PolaroidPhoto = {
   alt: string;
   /** Optional title, written in above the photo while it's focused (needs a PolaroidFan around it) */
   title?: string;
+  /** Optional handwritten caption in the frame's wide bottom edge */
+  caption?: string;
   /**
    * `square` for photos (default), `landscape` (16:10) for screenshots,
    * banners and logos, which a square crop would cut too much
@@ -18,12 +20,12 @@ export type PolaroidPhoto = {
   aspect?: "square" | "landscape";
 };
 
-export type PolaroidSize = "sm" | "lg";
+export type PolaroidSize = "sm" | "md" | "lg";
 
 /**
  * Photo sizes per size × aspect. `lg` is the fan on /about-me (grows over three
- * breakpoints), `sm` fits next to text, e.g. in a CV station. `sizes` tells
- * next/image which width to load at each breakpoint.
+ * breakpoints), `md` sits next to a text block (e.g. a project), `sm` fits
+ * inline with text. `sizes` tells next/image which width to load at each breakpoint.
  */
 const PHOTO = {
   lg: {
@@ -35,6 +37,10 @@ const PHOTO = {
       className: "aspect-16/10 w-24 sm:w-40 md:w-52",
       sizes: "(min-width: 768px) 208px, (min-width: 640px) 160px, 96px",
     },
+  },
+  md: {
+    square: { className: "size-28 sm:size-32", sizes: "(min-width: 640px) 128px, 112px" },
+    landscape: { className: "aspect-16/10 w-52 sm:w-46", sizes: "(min-width: 640px) 184px, 208px" },
   },
   sm: {
     square: { className: "size-20 sm:size-24", sizes: "(min-width: 640px) 96px, 80px" },
@@ -116,6 +122,11 @@ export function Polaroid({ photo, size = "lg", priority = false, reducedMotion =
           priority={priority}
         />
       </div>
+      {photo.caption && (
+        <span className="pointer-events-none absolute inset-x-0 bottom-1 text-center font-handwriting text-xs text-neutral-500">
+          {photo.caption}
+        </span>
+      )}
       {photo.title && <PolaroidTitle text={photo.title} reducedMotion={reducedMotion} />}
     </figure>
   );

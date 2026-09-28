@@ -333,3 +333,16 @@ html .maplibregl-map {
   -webkit-hyphenate-limit-before: 3;
   -webkit-hyphenate-limit-after: 3;
 }
+
+/* A jump target lighting up once (AnchorLink): a soft violet wash that fades */
+.anchor-pulse {
+  animation: anchor-pulse 1.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes anchor-pulse {
+  from {
+    background-color: color-mix(in oklab, var(--color-violet-500) 14%, transparent);
+  }
+  to {
+    background-color: transparent;
+  }
+}

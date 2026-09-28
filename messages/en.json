@@ -106,7 +106,8 @@
       "professional": "at professional level"
     },
     "sections": {
-      "tools": "Tools"
+      "tools": "Tools",
+      "projects": "Projects"
     },
     "groups": {
       "interface": "Interface",
@@ -202,6 +203,47 @@
         "summary": "Sign-in, open source",
         "description": "Probably the most comprehensive open-source authentication system for web apps."
       }
+    },
+    "usedIn": "Used in",
+    "more": "More about {project}",
+    "projects": {
+      "profitpath": {
+        "title": "ProfitPath",
+        "period": "2023 – today",
+        "description": "A platform for Amazon sellers. Finds profitable products for online arbitrage: supplier search, wholesale scanning, competitor analysis and automatic profit calculation, updated daily from the data of over 1,000 companies and suppliers."
+      },
+      "profitgo": {
+        "title": "ProfitGo",
+        "period": "2025",
+        "description": "Product analysis on the go. The second product of the ProfitPath family: analyze products as soon as you visit a website or scan a barcode."
+      },
+      "nexossolutions": {
+        "title": "NexosSolutions",
+        "period": "2022",
+        "description": "Automated purchasing software. A browser extension in plain JavaScript, HTML and CSS, plus an app for Android and iOS and its own API with a database behind it."
+      },
+      "nexosproxies": {
+        "title": "NexosProxies",
+        "period": "2021",
+        "description": "A proxy network as a service. My own IP proxy network, first to cut my own costs, then as a service for others in the same situation."
+      },
+      "research": {
+        "title": "Research project",
+        "period": "Commission",
+        "description": "Web scraping for a university in Munich. Data collected from the web and prepared for research and teaching."
+      },
+      "portfolio": {
+        "title": "This site",
+        "period": "2026",
+        "description": "huberdominik.com, my portfolio: bilingual without language URLs, text that streams in, a map with a driving car and a navigation written as a sentence."
+      }
+    },
+    "tags": {
+      "chromeExtension": "Chrome extension",
+      "ios": "iOS",
+      "android": "Android",
+      "proxyServers": "Proxy servers",
+      "networking": "Networking"
     }
   },
   "CvPage": {

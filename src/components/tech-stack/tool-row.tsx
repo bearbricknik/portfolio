@@ -5,7 +5,7 @@ import { IconPlusLarge } from "@central-icons-react/round-outlined-radius-3-stro
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { SkillMeter } from "@/components/tech-stack/skill-meter";
-import { ToolMark } from "@/components/tech-stack/tool-mark";
+import { LetterMark } from "@/components/letter-mark";
 
 type ToolRowProps = {
   /** Anchor id, e.g. for links from a project to this tool */
@@ -51,7 +51,7 @@ export function ToolRow({ id, name, summary, mark, skill, description, footer }:
         // The mark sits on the name's line; skill and toggle center on the whole row
         className="group grid w-full cursor-pointer grid-cols-[auto_1fr_auto_auto] items-start gap-x-3.5 py-3 text-left"
       >
-        <ToolMark label={mark.label} color={mark.color} className="mt-0.5" />
+        <LetterMark label={mark.label} color={mark.color} className="mt-0.5" />
         <span className="min-w-0">
           <span className="block leading-6.5 font-medium">{name}</span>
           <span className="block text-sm leading-snug text-muted-foreground">{summary}</span>
