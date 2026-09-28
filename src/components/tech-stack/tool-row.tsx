@@ -61,18 +61,25 @@ export function ToolRow({ id, name, summary, mark, skill, description, footer }:
         onClick={() => setOpen((value) => !value)}
         // The row's text makes no good cursor label: show the pointing hand instead
         data-cursor="pointer"
-        // The mark sits on the name's line; skill and toggle center on the whole row
-        className="group grid w-full cursor-pointer grid-cols-[auto_1fr_auto_auto] items-start gap-x-3.5 py-3 text-left"
+        // The mark sits on the name's line; skill and toggle center on the whole row.
+        // Phones: name and summary get the full width, the skill moves below them
+        // and the toggle centers on both lines (explicit grid placement)
+        className="group grid w-full cursor-pointer grid-cols-[auto_1fr_auto] items-start gap-x-3.5 py-3 text-left sm:grid-cols-[auto_1fr_auto_auto]"
       >
-        <LetterMark label={mark.label} color={mark.color} className="mt-0.5" />
-        <span className="min-w-0">
+        <LetterMark label={mark.label} color={mark.color} className="col-start-1 row-start-1 mt-0.5" />
+        <span className="col-start-2 row-start-1 min-w-0">
           <span className="block leading-6.5 font-medium">{name}</span>
           <span className="block text-sm leading-snug text-muted-foreground">{summary}</span>
         </span>
-        <SkillMeter value={skill.value} max={skill.max} label={skill.label} className="self-center" />
+        <SkillMeter
+          value={skill.value}
+          max={skill.max}
+          label={skill.label}
+          className="col-start-2 row-start-2 mt-2 justify-self-start sm:col-start-3 sm:row-start-1 sm:mt-0 sm:self-center"
+        />
         <IconPlusLarge
           aria-hidden
-          className="size-4 self-center text-muted-foreground transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-aria-expanded:rotate-45 group-aria-expanded:text-foreground"
+          className="col-start-3 row-span-2 row-start-1 size-4 self-center text-muted-foreground transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-aria-expanded:rotate-45 group-aria-expanded:text-foreground sm:col-start-4 sm:row-span-1"
         />
       </button>
 
