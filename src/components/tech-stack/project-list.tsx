@@ -39,6 +39,7 @@ export function ProjectList({ projects }: { projects: ProjectListItem[] }) {
             <AnchorLink
               key={tool.key}
               targetId={toolAnchor(tool.key)}
+              accent={tool.color}
               leading={<LetterMark label={tool.mark} color={tool.color} size="sm" />}
             >
               {tool.name}

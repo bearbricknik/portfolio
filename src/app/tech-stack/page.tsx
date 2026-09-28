@@ -81,6 +81,7 @@ export default function TechStack() {
                           <AnchorLink
                             key={project.key}
                             targetId={projectAnchor(project.key)}
+                            accent={PROJECT_MARK_COLOR}
                             leading={<LetterMark label={project.mark} color={PROJECT_MARK_COLOR} size="sm" />}
                           >
                             {t(`projects.${project.key}.title`)}

@@ -233,9 +233,9 @@
         "description": "Web scraping for a university in Munich. Data collected from the web and prepared for research and teaching."
       },
       "portfolio": {
-        "title": "This site",
+        "title": "huberdominik.com",
         "period": "2026",
-        "description": "huberdominik.com, my portfolio: bilingual without language URLs, text that streams in, a map with a driving car and a navigation written as a sentence."
+        "description": "My portfolio, the site you're on right now: bilingual without language URLs, text that streams in, a map with a driving car and a navigation written as a sentence."
       }
     },
     "tags": {

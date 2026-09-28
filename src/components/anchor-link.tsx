@@ -11,6 +11,11 @@ type AnchorLinkProps = {
   targetId: string;
   /** Small mark in front of the label, e.g. a LetterMark */
   leading?: ReactNode;
+  /**
+   * Text color class of the chip's accent (usually the mark's color): the
+   * border, fill and arrow take it on hover
+   */
+  accent?: string;
   children: ReactNode;
   className?: string;
 };
@@ -24,7 +29,7 @@ const PULSE_DELAY = 450;
  * Still a real link (#id), so it works without JavaScript and can be opened
  * like any other.
  */
-export function AnchorLink({ targetId, leading, children, className }: AnchorLinkProps) {
+export function AnchorLink({ targetId, leading, accent = "text-violet-500", children, className }: AnchorLinkProps) {
   const reducedMotion = useReducedMotion();
 
   return (
@@ -43,16 +48,18 @@ export function AnchorLink({ targetId, leading, children, className }: AnchorLin
         target.addEventListener("animationend", () => target.classList.remove("anchor-pulse"), { once: true });
       }}
       className={cn(
+        // The accent is the chip's currentColor; the label keeps the normal text color
         "group/link inline-flex items-center gap-1 rounded-md border bg-muted/40 py-[3px] pr-1.5 pl-[3px] text-xs leading-none",
-        "transition-colors hover:border-violet-500/45 hover:bg-violet-500/10",
+        "transition-colors hover:border-current/45 hover:bg-current/10",
+        accent,
         className,
       )}
     >
       {leading}
-      {children}
+      <span className="text-foreground">{children}</span>
       <IconArrowRight
         aria-hidden
-        className="size-2.5 text-muted-foreground transition-[translate,color] duration-300 group-hover/link:translate-x-0.5 group-hover/link:text-violet-500"
+        className="size-2.5 text-muted-foreground transition-[translate,color] duration-300 group-hover/link:translate-x-0.5 group-hover/link:text-inherit"
       />
     </a>
   );
