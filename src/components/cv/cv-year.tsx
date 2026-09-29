@@ -36,8 +36,9 @@ export function CvYear({ year, until, children }: CvYearProps) {
         shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
       }}
     >
-      {/* pt-0.5: on the first line of the entry next to it */}
-      <span className="sticky top-6 flex flex-col self-start pt-0.5 whitespace-nowrap text-sm leading-6 text-muted-foreground">
+      {/* pt-0.5: on the first line of the entry next to it. top-22: sticks below
+          the 5rem blurred top edge of the scroll area (only while it's stuck) */}
+      <span className="sticky top-22 flex flex-col self-start pt-0.5 whitespace-nowrap text-sm leading-6 text-muted-foreground">
         {/* A span reads "2017 –" with its end on the next line, same size and color */}
         <span>
           {year}
