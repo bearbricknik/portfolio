@@ -5,6 +5,56 @@ import Lenis from "lenis";
 
 import { cn } from "@/lib/utils";
 
+// The page's scroller (one per page, in the root layout), for scrolling from outside
+let activeLenis: Lenis | null = null;
+const readyListeners = new Set<() => void>();
+
+/** Resolves once the page's smooth scroller is set up (right away if it is) */
+export function whenScrollReady() {
+  return new Promise<void>((resolve) => {
+    if (activeLenis) resolve();
+    else readyListeners.add(resolve);
+  });
+}
+
+// Longest a smooth jump takes (Lenis, lerp 0.08) before the target counts as reached
+const ARRIVE_FALLBACK = 1500;
+
+/** Puts the page back at the top, without animation */
+export function resetScroll() {
+  activeLenis?.scrollTo(0, { immediate: true, force: true });
+}
+
+/**
+ * Scrolls the page so the element sits in the middle of the view, with the
+ * same easing as the wheel (Lenis); `onArrive` runs once it's there
+ */
+export function scrollToCenter(element: HTMLElement, { immediate = false, onArrive }: { immediate?: boolean; onArrive?: () => void } = {}) {
+  const lenis = activeLenis;
+  if (!lenis) {
+    element.scrollIntoView({ behavior: immediate ? "auto" : "smooth", block: "center" });
+    onArrive?.();
+    return;
+  }
+  // Once: Lenis may drop onComplete when something interrupts the glide (e.g.
+  // content revealing on the way), so a fallback arrives after it at the latest
+  let arrived = false;
+  const arrive = () => {
+    if (arrived) return;
+    arrived = true;
+    window.clearTimeout(fallback);
+    onArrive?.();
+  };
+  const fallback = window.setTimeout(arrive, ARRIVE_FALLBACK);
+  const viewport = (lenis.options.wrapper as HTMLElement).clientHeight;
+  lenis.scrollTo(element, {
+    // Negative: stop this far before the element's top, which centers it
+    offset: -Math.max(0, (viewport - element.offsetHeight) / 2),
+    immediate,
+    onComplete: arrive,
+  });
+}
+
 /**
  * Scrollable area with smooth, eased scrolling (Lenis) and a blurred edge at the
  * top/bottom whenever content is hidden there. Edge state is written to data
@@ -35,6 +85,9 @@ export function ScrollContainer({
 
     // Lower lerp = slower, softer scrolling. Disabled automatically for prefers-reduced-motion.
     const lenis = new Lenis({ wrapper: scroller, content, lerp: 0.08, autoRaf: true });
+    activeLenis = lenis;
+    readyListeners.forEach((resolve) => resolve());
+    readyListeners.clear();
 
     const update = () => {
       const { scrollTop, scrollHeight, clientHeight } = scroller;
@@ -52,6 +105,7 @@ export function ScrollContainer({
       observer.disconnect();
       scroller.removeEventListener("scroll", update);
       lenis.destroy();
+      if (activeLenis === lenis) activeLenis = null;
     };
   }, []);
 

@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 
-import { AnchorLink } from "@/components/anchor-link";
-import { LetterMark } from "@/components/letter-mark";
 import { ProjectCard, type ProjectCardProps } from "@/components/project-card";
-import { projectAnchor, type ProjectKey, toolAnchor, type ToolKey } from "@/lib/tech-stack";
+import { ToolLink } from "@/components/tech-stack/tech-links";
+import { projectAnchor, type ProjectKey, type ToolKey } from "@/lib/tech-stack";
 
 export type ProjectListItem = Omit<ProjectCardProps, "id" | "links" | "onMore" | "tilt" | "priority"> & {
   key: ProjectKey;
   /** Tools used in the project, rendered as links to their rows */
-  tools: { key: ToolKey; name: string; mark: string; color: string }[];
+  tools: { key: ToolKey; name: string }[];
   /** Has more to show: renders the round button */
   hasDetails: boolean;
 };
@@ -36,14 +35,9 @@ export function ProjectList({ projects }: { projects: ProjectListItem[] }) {
           priority={index === 0}
           onMore={hasDetails ? () => setDetailsFor(key) : undefined}
           links={tools.map((tool) => (
-            <AnchorLink
-              key={tool.key}
-              targetId={toolAnchor(tool.key)}
-              accent={tool.color}
-              leading={<LetterMark label={tool.mark} color={tool.color} size="sm" />}
-            >
+            <ToolLink key={tool.key} tool={tool.key}>
               {tool.name}
-            </AnchorLink>
+            </ToolLink>
           ))}
         />
       ))}

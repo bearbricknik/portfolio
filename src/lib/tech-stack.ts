@@ -4,6 +4,8 @@ import nexosProxiesImage from "@/assets/cv/nexosproxies.png";
 import nexosSolutionsImage from "@/assets/cv/nexossolutions.jpeg";
 import profitGoImage from "@/assets/cv/profitgo.png";
 import profitPathImage from "@/assets/cv/profitpath.png";
+import type { Locale } from "@/i18n/config";
+import { OG_IMAGES } from "@/lib/og-images";
 
 /*
  * TECH STACK — the single source for /tech-stack.
@@ -117,9 +119,26 @@ export type ProjectKey = (typeof PROJECTS)[number]["key"];
 export type Tool = (typeof TOOLS)[number];
 export type Project = (typeof PROJECTS)[number];
 
+/** Projects are marked in the tech stack page's color (violet, like its heading icon) */
+export const PROJECT_MARK_COLOR = "text-violet-500";
+
 /** Anchor ids, so tools and projects can link to each other */
 export const toolAnchor = (key: ToolKey) => `tool-${key}`;
 export const projectAnchor = (key: ProjectKey) => `project-${key}`;
+
+/**
+ * A project's picture in the visitor's language ("og": the site's Open Graph
+ * image, whose content sits on the left, so that side stays when cropped)
+ */
+export function projectImage(project: Project, locale: Locale) {
+  if (!("image" in project)) return undefined;
+  return project.image === "og"
+    ? { src: OG_IMAGES[locale], focus: "left" as const }
+    : { src: project.image, focus: undefined };
+}
+
+/** Looks up a project by key */
+export const projectByKey = (key: ProjectKey): Project => PROJECTS.find((project) => project.key === key)!;
 
 /** Looks up a tool by key (every key in PROJECTS is checked against TOOLS by the types) */
 export const toolByKey = (key: ToolKey): Tool => TOOLS.find((tool) => tool.key === key)!;

@@ -243,7 +243,88 @@
   },
   "CvPage": {
     "title": "Lebenslauf",
-    "comingSoon": "Hier entsteht gerade mein Lebenslauf. Er folgt bald.",
-    "description": "Lebenslauf von Dominik Huber, Full-Stack-Entwickler: Stationen, Projekte und Erfahrung."
+    "description": "Lebenslauf von Dominik Huber, Full-Stack-Entwickler: Stationen, Projekte und Erfahrung.",
+    "intro": "Mein Lebenslauf, gelesen wie ein <strong>git log</strong>: der neueste Commit oben, der Initial Commit von 1997 ganz unten. Dazwischen ein Branch-Wechsel von Fahrzeug- und Motorentechnik zu Software, ein paar Gründungen als eigene Forks und heute der Main-Branch <strong>ProfitPath</strong>. Läuft seit 1997 und ist noch lange nicht fertig.",
+    "today": "heute",
+    "hasPhoto": "mit Foto",
+    "entries": {
+      "portfolio": {
+        "title": "huberdominik.com",
+        "description": "Mein Portfolio, also die Seite, auf der du gerade bist: zweisprachig ohne Sprach-URLs, Text, der hereinstreamt, eine Karte mit fahrendem Auto und eine Navigation als Satz."
+      },
+      "stillBuilding": {
+        "title": "ProfitPath, noch lange nicht fertig",
+        "description": "Aus dem Nebenprojekt ist meine digitale Obsession geworden: neue Features, behobene Bugs und jeden Tag ein Stück besser."
+      },
+      "profitgo": {
+        "title": "Launch von ProfitGo",
+        "description": "Das zweite Produkt der ProfitPath-Familie: Chrome-Extension sowie App für iOS und Android, die Produkte beim Besuch einer Website oder per Barcode analysiert."
+      },
+      "profitpath": {
+        "title": "UI/UX-Entwickler bei ProfitPath",
+        "description": "Ein Tool, mit dem Amazon-Seller profitable Produkte finden, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten."
+      },
+      "fourbyte": {
+        "title": "FourByte GmbH mitgegründet",
+        "description": "Zu viert gegründet, spezialisiert auf Softwareentwicklung. Unter ihrem Dach ist ProfitPath entstanden."
+      },
+      "nexossolutions": {
+        "title": "NexosSolutions",
+        "description": "Eine eigene Browser-Extension in reinem JavaScript, HTML und CSS, gebaut mit meinem Team, um Kosten zu senken."
+      },
+      "nexosproxies": {
+        "title": "NexosProxies",
+        "description": "Ein eigenes IP-Proxy-Netzwerk, erst für mich, dann als Service für andere in derselben Lage."
+      },
+      "bachelor": {
+        "title": "Bachelor of Science",
+        "description": "Abschluss in Fahrzeug- und Motorentechnik an der Universität Stuttgart."
+      },
+      "firstCode": {
+        "title": "Einstieg ins Programmieren",
+        "description": "Server, Captchas und Proxies wurden zu teuer. Also habe ich gelernt, meine eigene Software zu bauen."
+      },
+      "thesis": {
+        "title": "Bachelorarbeit am FKFS Stuttgart",
+        "description": "Komforttests automatisierter Fahrfunktionen im Fahrsimulator, ausgewertet über eine Probandenstudie.",
+        "caption": "Fahrsimulator"
+      },
+      "firstCompany": {
+        "title": "Erstes eigenes Unternehmen",
+        "description": "Noch im Studium: limitierte Artikel automatisiert gekauft und auf anderen Marktplätzen weiterverkauft."
+      },
+      "hidria": {
+        "title": "Grundpraktikum bei Hidria Bausch",
+        "description": "Schweißen, Drehen, Fräsen, Schleifen und der Umgang mit Stahl, Aluminium und Legierungen."
+      },
+      "studies": {
+        "title": "Studium in Stuttgart",
+        "description": "Fahrzeug- und Motorentechnik an der Universität Stuttgart, mit Grundpraktikum, Bachelorarbeit am FKFS und dem Bachelor of Science als Abschluss."
+      },
+      "newZealand": {
+        "title": "Work & Travel in Neuseeland",
+        "description": "Vier Monate durch das ganze Land. Danach war klar: Es geht in den Automobilsektor."
+      },
+      "wieland": {
+        "title": "Praktikum bei Wieland-Werke",
+        "description": "Halbzeuge aus Kupfer und Kupferlegierungen für die Automobilindustrie, ein erstes Gefühl für die Branche."
+      },
+      "abitur": {
+        "title": "Abitur",
+        "description": "Am Gymnasium in meiner Heimatstadt."
+      },
+      "reisacher": {
+        "title": "Schülerpraktikum bei Reisacher",
+        "description": "Der Automobilsektor und Teamarbeit, zum ersten Mal von innen."
+      },
+      "school": {
+        "title": "Gymnasium",
+        "description": "Das Gymnasium in meiner Heimatstadt, bis zum Abitur."
+      },
+      "born": {
+        "title": "pnpm install -g dominik",
+        "description": "Geboren am 14. Oktober 1997."
+      }
+    }
   }
 }

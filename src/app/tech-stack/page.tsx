@@ -1,38 +1,33 @@
 import type { Metadata } from "next";
 import { useLocale, useTranslations } from "next-intl";
 
-import { AnchorLink } from "@/components/anchor-link";
-import { LetterMark } from "@/components/letter-mark";
+import { AnchorArrival } from "@/components/anchor-link";
 import { PageHeading } from "@/components/page-heading";
 import { PageIntro } from "@/components/page-intro";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { SectionHeading } from "@/components/section-heading";
 import { StatTiles } from "@/components/stat-tiles";
 import { ProjectList } from "@/components/tech-stack/project-list";
+import { ProjectLink } from "@/components/tech-stack/tech-links";
 import { ToolGroup } from "@/components/tech-stack/tool-group";
 import { ToolRow } from "@/components/tech-stack/tool-row";
 import type { Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/metadata";
-import { OG_IMAGES } from "@/lib/og-images";
 import {
   PROJECTS,
-  projectAnchor,
+  projectImage,
   projectsUsingTool,
   SKILL_LEVEL_MAX,
   SKILL_LEVEL_STEPS,
   TECH_STACK_STATS,
   TOOL_GROUPS,
   toolAnchor,
-  toolByKey,
   TOOLS,
 } from "@/lib/tech-stack";
 
 export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ namespace: "TechStackPage", path: "/tech-stack" });
 }
-
-// Projects are marked in the page's own color (violet, like its heading icon)
-const PROJECT_MARK_COLOR = "text-violet-500";
 
 export default function TechStack() {
   const t = useTranslations("TechStackPage");
@@ -42,6 +37,8 @@ export default function TechStack() {
     <section className="flex flex-col gap-6">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="TechStackPage" path="/tech-stack" />
+      {/* Opened from a link on another page (e.g. a tool on /cv): jump to it */}
+      <AnchorArrival />
       <PageHeading page="stack" />
       <PageIntro
         id="tech-stack-intro"
@@ -81,14 +78,9 @@ export default function TechStack() {
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span className="mr-0.5 text-[13px] text-muted-foreground/70">{t("usedIn")}</span>
                         {usedIn.map((project) => (
-                          <AnchorLink
-                            key={project.key}
-                            targetId={projectAnchor(project.key)}
-                            accent={PROJECT_MARK_COLOR}
-                            leading={<LetterMark label={project.mark} color={PROJECT_MARK_COLOR} size="sm" />}
-                          >
+                          <ProjectLink key={project.key} project={project.key} mark={project.mark}>
                             {t(`projects.${project.key}.title`)}
-                          </AnchorLink>
+                          </ProjectLink>
                         ))}
                       </div>
                     )
@@ -107,23 +99,15 @@ export default function TechStack() {
         <ProjectList
           projects={PROJECTS.map((project) => {
             const title = t(`projects.${project.key}.title`);
+            const image = projectImage(project, locale);
             return {
               key: project.key,
               title,
               period: t(`projects.${project.key}.period`),
               description: t(`projects.${project.key}.description`),
-              image:
-                "image" in project
-                  ? project.image === "og"
-                    ? // The OG image's content sits on the left: keep that side when cropped
-                      { src: OG_IMAGES[locale], alt: title, focus: "left" as const }
-                    : { src: project.image, alt: title }
-                  : undefined,
+              image: image && { ...image, alt: title },
               tags: "tags" in project ? project.tags.map((tag) => t(`tags.${tag}`)) : undefined,
-              tools: project.tools.map((key) => {
-                const tool = toolByKey(key);
-                return { key, name: t(`tools.${key}.name`), mark: tool.mark, color: tool.color };
-              }),
+              tools: project.tools.map((key) => ({ key, name: t(`tools.${key}.name`) })),
               hasDetails: "hasDetails" in project && project.hasDetails,
               moreLabel: t("more", { project: title }),
             };

@@ -84,7 +84,7 @@
     "here": "you are here",
     "pages": {
       "about": "About me",
-      "cv": "CV",
+      "cv": "Curriculum Vitae",
       "stack": "Tech stack",
       "blog": "Blog",
       "locations": "Locations",
@@ -242,8 +242,89 @@
     }
   },
   "CvPage": {
-    "title": "CV",
-    "comingSoon": "My CV is in the works and coming soon.",
-    "description": "CV of Dominik Huber, full-stack developer: roles, projects and experience."
+    "title": "Curriculum Vitae",
+    "description": "CV of Dominik Huber, full-stack developer: roles, projects and experience.",
+    "intro": "My CV, read like a <strong>git log</strong>: the latest commit on top, the initial commit from 1997 at the very bottom. In between, a branch switch from automotive and engine technology to software, a few companies founded as forks of their own and today the main branch <strong>ProfitPath</strong>. Running since 1997 and far from finished.",
+    "today": "today",
+    "hasPhoto": "with photo",
+    "entries": {
+      "portfolio": {
+        "title": "huberdominik.com",
+        "description": "My portfolio, the site you're on right now: bilingual without language URLs, text that streams in, a map with a driving car and a navigation that's a sentence."
+      },
+      "stillBuilding": {
+        "title": "ProfitPath, far from finished",
+        "description": "What started as a side project has become my digital obsession: new features, fixed bugs and a little better every day."
+      },
+      "profitgo": {
+        "title": "Launch of ProfitGo",
+        "description": "The second product of the ProfitPath family: a Chrome extension and an app for iOS and Android that analyzes products when you visit a website or scan a barcode."
+      },
+      "profitpath": {
+        "title": "UI/UX developer at ProfitPath",
+        "description": "A tool that helps Amazon sellers find profitable products, updated daily from the data of more than 1,000 companies and suppliers."
+      },
+      "fourbyte": {
+        "title": "Co-founded FourByte GmbH",
+        "description": "Founded by four of us, specialized in software development. ProfitPath was built under its roof."
+      },
+      "nexossolutions": {
+        "title": "NexosSolutions",
+        "description": "My own browser extension in plain JavaScript, HTML and CSS, built with my team to cut costs."
+      },
+      "nexosproxies": {
+        "title": "NexosProxies",
+        "description": "My own IP proxy network, first for myself, then as a service for others in the same situation."
+      },
+      "bachelor": {
+        "title": "Bachelor of Science",
+        "description": "Graduated in automotive and engine technology from the University of Stuttgart."
+      },
+      "firstCode": {
+        "title": "Started coding",
+        "description": "Servers, captchas and proxies got too expensive. So I learned to build my own software."
+      },
+      "thesis": {
+        "title": "Bachelor thesis at FKFS Stuttgart",
+        "description": "Comfort tests of automated driving functions in a driving simulator, evaluated in a study with test subjects.",
+        "caption": "Driving simulator"
+      },
+      "firstCompany": {
+        "title": "My first company",
+        "description": "Still at university: bought limited items automatically and resold them on other marketplaces."
+      },
+      "hidria": {
+        "title": "Technical internship at Hidria Bausch",
+        "description": "Welding, turning, milling, grinding and working with steel, aluminum and alloys."
+      },
+      "studies": {
+        "title": "Studies in Stuttgart",
+        "description": "Automotive and engine technology at the University of Stuttgart, with a technical internship, the bachelor thesis at FKFS and the Bachelor of Science to finish."
+      },
+      "newZealand": {
+        "title": "Work & travel in New Zealand",
+        "description": "Four months all across the country. After that it was clear: I'm going into the automotive sector."
+      },
+      "wieland": {
+        "title": "Internship at Wieland-Werke",
+        "description": "Semi-finished products made of copper and copper alloys for the automotive industry, a first feel for the industry."
+      },
+      "abitur": {
+        "title": "Abitur",
+        "description": "At the high school in my hometown."
+      },
+      "reisacher": {
+        "title": "School internship at Reisacher",
+        "description": "The automotive sector and teamwork, seen from the inside for the first time."
+      },
+      "school": {
+        "title": "High school",
+        "description": "The high school in my hometown, up to the Abitur."
+      },
+      "born": {
+        "title": "pnpm install -g dominik",
+        "description": "Born on October 14, 1997."
+      }
+    }
   }
 }

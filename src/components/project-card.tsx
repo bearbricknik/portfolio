@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { Polaroid } from "@/components/polaroid";
 import { useRevealGate } from "@/components/scroll-reveal";
+import { Tag } from "@/components/tag";
 import { cn } from "@/lib/utils";
 
 export type ProjectCardProps = {
@@ -112,9 +113,7 @@ export function ProjectCard({
           <div className="mt-3 flex flex-wrap items-center gap-1.5">
             {links}
             {tags?.map((tag) => (
-              <span key={tag} className="rounded-md border border-dashed px-2 py-1 text-xs leading-none text-muted-foreground">
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
         )}

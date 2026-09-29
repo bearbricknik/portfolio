@@ -30,6 +30,19 @@ export const useStreamingStore = create<StreamingStore>()((set) => ({
     }),
 }));
 
+const isIdle = (state: StreamingStore) => Object.keys(state.active).length === 0;
+
+/** Resolves once no StreamingText on the page is animating (outside React) */
+export function whenStreamsIdle() {
+  return new Promise<void>((resolve) => {
+    if (isIdle(useStreamingStore.getState())) return resolve();
+    const unsubscribe = useStreamingStore.subscribe((state) => {
+      if (!isIdle(state)) return;
+      unsubscribe();
+      resolve();
+    });
+  });
+}
+
 /** True while no StreamingText on the page is animating */
-export const useStreamsIdle = () =>
-  useStreamingStore((state) => Object.keys(state.active).length === 0);
+export const useStreamsIdle = () => useStreamingStore(isIdle);
