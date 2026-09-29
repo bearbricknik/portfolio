@@ -40,7 +40,8 @@ export function SectionHeading({
     <motion.div
       ref={ref}
       id={id}
-      className={cn("flex items-center gap-3", className)}
+      // Title and count share the baseline; the line sits in the middle of the row
+      className={cn("flex items-baseline gap-2", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
       variants={{
@@ -48,11 +49,9 @@ export function SectionHeading({
         shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
       }}
     >
-      <div className="flex items-baseline gap-3">
-        <Tag className="font-medium">{children}</Tag>
-        {count !== undefined && <span className="text-xs text-muted-foreground tabular-nums">{count}</span>}
-      </div>
-      <span aria-hidden className="h-px flex-1 bg-border" />
+      <Tag className="font-medium">{children}</Tag>
+      {count !== undefined && <span className="text-sm text-muted-foreground">{count}</span>}
+      <span aria-hidden className="h-px flex-1 self-center bg-border" />
     </motion.div>
   );
 }

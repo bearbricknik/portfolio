@@ -17,6 +17,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { locales } from "@/i18n/config";
 import { ogLocales } from "@/lib/metadata";
+import { ogImageMetadata } from "@/lib/og-images";
 import { siteConfig } from "@/lib/site";
 import { siteGraph } from "@/lib/structured-data";
 import "./globals.css";
@@ -36,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = t("description");
 
   return {
-    // Resolves relative URLs (opengraph-image, canonical, …) to absolute ones
+    // Resolves relative URLs (og:image, canonical, …) to absolute ones
     metadataBase: new URL(siteConfig.url),
     title: {
       default: title,
@@ -55,7 +56,6 @@ export async function generateMetadata(): Promise<Metadata> {
       follow: true,
       googleBot: { index: true, follow: true, "max-image-preview": "large" },
     },
-    // The og:image / twitter:image tags come from app/opengraph-image.tsx automatically
     openGraph: {
       type: "website",
       url: "/",
@@ -65,11 +65,14 @@ export async function generateMetadata(): Promise<Metadata> {
       // Language comes from a cookie, not the URL: both locales share one URL
       locale: ogLocales[locale],
       alternateLocale: locales.filter((other) => other !== locale).map((other) => ogLocales[other]),
+      // Static preview image in the visitor's language (lib/og-images.ts)
+      images: [ogImageMetadata(locale, title)],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [ogImageMetadata(locale, title)],
     },
   };
 }

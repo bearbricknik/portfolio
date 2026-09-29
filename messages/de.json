@@ -209,12 +209,12 @@
     "projects": {
       "profitpath": {
         "title": "ProfitPath",
-        "period": "2023 – heute",
+        "period": "2026",
         "description": "Plattform für Amazon-Seller. Findet profitable Produkte für Online-Arbitrage: Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten."
       },
       "profitgo": {
         "title": "ProfitGo",
-        "period": "2025",
+        "period": "2024",
         "description": "Produkt-Analyse unterwegs. Das zweite Produkt der ProfitPath-Familie: Produkte analysieren, sobald man eine Website besucht oder einen Barcode scannt."
       },
       "nexossolutions": {
@@ -227,14 +227,9 @@
         "period": "2021",
         "description": "Proxy-Netzwerk als Service. Ein eigenes IP-Proxy-Netzwerk, erst gegen die eigenen Kosten, dann als Service für andere in derselben Lage."
       },
-      "research": {
-        "title": "Forschungsprojekt",
-        "period": "Auftrag",
-        "description": "Web-Scraping für eine Münchner Universität. Daten aus dem Web gesammelt und aufbereitet, für Forschung und Lehre."
-      },
       "portfolio": {
         "title": "huberdominik.com",
-        "period": "2026",
+        "period": "2026 – heute",
         "description": "Mein Portfolio, also die Seite, auf der du gerade bist: zweisprachig ohne Sprach-URLs, Text, der hereinstreamt, eine Karte mit fahrendem Auto und eine Navigation als Satz."
       }
     },

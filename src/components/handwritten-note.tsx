@@ -138,7 +138,8 @@ export function HandwrittenNote({
     <motion.span
       ref={ref}
       className={cn(
-        "inline-flex font-handwriting text-muted-foreground",
+        // text-base: every handwriting on the site has the same size (16px)
+        "inline-flex font-handwriting text-base text-muted-foreground",
         below ? "flex-col items-start" : "items-center gap-1",
         className,
       )}

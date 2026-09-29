@@ -71,13 +71,15 @@ type ProjectDefinition = {
   tools: readonly ToolKey[];
   /** Plain tags, e.g. platforms, for projects without tools to link */
   tags?: readonly ProjectTag[];
-  image?: StaticImageData;
+  /** A picture, or "og" for the site's Open Graph image in the visitor's language */
+  image?: StaticImageData | "og";
   /** Has a detail modal: shows the round "more" button */
   hasDetails?: boolean;
 };
 
 /** Newest first */
 export const PROJECTS = [
+  { key: "portfolio", mark: "HD", tools: ["nextjs", "react", "typescript", "tanstack"], image: "og" },
   {
     key: "profitpath",
     mark: "PP",
@@ -108,8 +110,6 @@ export const PROJECTS = [
     image: nexosProxiesImage,
     hasDetails: true,
   },
-  { key: "research", mark: "Rs", tools: ["python"] },
-  { key: "portfolio", mark: "HD", tools: ["nextjs", "react", "typescript", "tanstack"] },
 ] as const satisfies readonly ProjectDefinition[];
 
 export type ProjectKey = (typeof PROJECTS)[number]["key"];

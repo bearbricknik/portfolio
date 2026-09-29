@@ -17,7 +17,7 @@ export type ProjectCardProps = {
   period: string;
   description: ReactNode;
   /** Shown as a polaroid next to the text; without it a quiet placeholder keeps the layout */
-  image?: { src: StaticImageData | string; alt: string };
+  image?: { src: StaticImageData | string; alt: string; focus?: "center" | "left" | "right" };
   /** Links, e.g. to the tools used (AnchorLink chips) */
   links?: ReactNode;
   /** Plain tags, e.g. platforms ("iOS", "Android") */
@@ -84,9 +84,11 @@ export function ProjectCard({
       >
         {image ? (
           <Polaroid
-            photo={{ src: image.src, alt: image.alt, aspect: "landscape", caption: title }}
+            photo={{ src: image.src, alt: image.alt, focus: image.focus, aspect: "landscape", caption: title }}
+            reducedMotion={reducedMotion ?? false}
             size="md"
             priority={priority}
+            reveal
           />
         ) : (
           // Same footprint as the polaroid, so the texts line up next to each other;
@@ -123,6 +125,7 @@ export function ProjectCard({
             onClick={onMore}
             aria-label={moreLabel}
             data-cursor={moreLabel}
+            data-cursor-pointer
             className="group/more absolute top-0 right-0 grid size-6.5 place-items-center rounded-full border text-muted-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background"
           >
             <IconArrowUpRight

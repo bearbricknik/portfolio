@@ -17,7 +17,8 @@ const FINE_POINTER_QUERY = "(pointer: fine)";
  * (e.g. an image that opens a dialog) to make it interactive and set its label.
  * `data-cursor="pointer"` instead shows no label and turns the arrow into a
  * pointing hand, for clickable areas whose text makes no good label (e.g. a
- * whole row that opens).
+ * whole row that opens). `data-cursor-pointer` shows the hand together with
+ * the label (e.g. an icon button whose label says what it opens).
  */
 const POINTER_VALUE = "pointer";
 const INTERACTIVE_SELECTOR = [
@@ -170,7 +171,7 @@ export function SiteCursor() {
       const isPointer = interactive?.getAttribute("data-cursor") === POINTER_VALUE;
       const text = interactive && !isPointer ? getLabel(interactive) : "";
 
-      setPointer(isPointer);
+      setPointer(isPointer || Boolean(interactive?.hasAttribute("data-cursor-pointer")));
       if (text) setLabel(text);
       setVisible(Boolean(text));
     };

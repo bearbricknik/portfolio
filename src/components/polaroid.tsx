@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { motion } from "motion/react";
 
@@ -18,6 +19,8 @@ export type PolaroidPhoto = {
    * banners and logos, which a square crop would cut too much
    */
   aspect?: "square" | "landscape";
+  /** Which part stays visible when the crop cuts the photo, e.g. "left" (default: center) */
+  focus?: "center" | "left" | "right";
 };
 
 export type PolaroidSize = "sm" | "md" | "lg";
@@ -91,6 +94,11 @@ type PolaroidProps = {
   size?: PolaroidSize;
   /** Load right away (above the fold / first image on the page); otherwise lazy */
   priority?: boolean;
+  /**
+   * Reveal the photo once it has loaded: it resolves out of a bright blur
+   * (`.image-reveal`), instead of just appearing
+   */
+  reveal?: boolean;
   reducedMotion?: boolean;
   className?: string;
 };
@@ -100,8 +108,16 @@ type PolaroidProps = {
  * an optional title. The single source of the frame for every photo on the
  * site (about page fan, CV stations), so they all look the same.
  */
-export function Polaroid({ photo, size = "lg", priority = false, reducedMotion = false, className }: PolaroidProps) {
+export function Polaroid({
+  photo,
+  size = "lg",
+  priority = false,
+  reveal = false,
+  reducedMotion = false,
+  className,
+}: PolaroidProps) {
   const { className: photoClassName, sizes } = PHOTO[size][photo.aspect ?? "square"];
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <figure
@@ -117,13 +133,21 @@ export function Polaroid({ photo, size = "lg", priority = false, reducedMotion =
           alt={photo.alt}
           fill
           sizes={sizes}
-          className="object-cover"
+          className={cn(
+            "object-cover",
+            photo.focus === "left" && "object-left",
+            photo.focus === "right" && "object-right",
+            // Hidden until loaded, then revealed (lazy images reveal as they arrive)
+            reveal && !reducedMotion && (loaded ? "image-reveal" : "opacity-0"),
+          )}
+          onLoad={reveal ? () => setLoaded(true) : undefined}
           placeholder={typeof photo.src === "string" ? "empty" : "blur"}
           priority={priority}
         />
       </div>
       {photo.caption && (
-        <span className="pointer-events-none absolute inset-x-0 bottom-1 text-center font-handwriting text-xs text-neutral-500">
+        // leading-none: the 16px handwriting fits the frame's 24px bottom edge
+        <span className="pointer-events-none absolute inset-x-0 bottom-1 text-center font-handwriting text-base leading-none text-neutral-500">
           {photo.caption}
         </span>
       )}

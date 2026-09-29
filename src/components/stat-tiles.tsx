@@ -64,7 +64,8 @@ export function StatTiles({ items, after, waitForStreams = true, className }: St
           >
             {/* Label first in the markup (dt before dd), value first on screen */}
             <dt className="order-last text-xs text-muted-foreground">{item.label}</dt>
-            <dd className="text-2xl leading-tight font-medium tracking-tight tabular-nums">
+            {/* Geist's regular (proportional) digits: the tabular ones look like a monospace font */}
+            <dd className="text-2xl leading-tight font-medium tracking-tight">
               {/* Rolls up from 0 once the tiles are revealed */}
               <AnimatedNumber value={visible ? item.value : 0} />
             </dd>

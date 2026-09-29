@@ -25,14 +25,14 @@ export function SiteFooter() {
         the signature, so no empty row appears.
       */}
       <footer className="flex items-start justify-between gap-4 text-sm">
-        <div className="flex shrink-0 flex-col items-start gap-1">
+        <div className="flex shrink-0 flex-col items-start">
           {/* py-1: same height as an icon row, so the text stays centered next to it */}
           <p className="whitespace-nowrap py-1">
             <LocalTime timeZone="Europe/Berlin" />{" "}
             <span className="text-muted-foreground">{t("location")}</span>
           </p>
           {/* Written once the footer has faded in */}
-          <HandwrittenNote waitForStreams delay={0.5} tilt={0} className="text-2xl">
+          <HandwrittenNote waitForStreams delay={0.5} tilt={0}>
             {t("name")}
           </HandwrittenNote>
         </div>

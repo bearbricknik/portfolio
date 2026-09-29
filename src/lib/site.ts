@@ -17,6 +17,8 @@ export function getSiteUrl() {
 
 export const siteConfig = {
   url: getSiteUrl(),
+  /** The public domain, e.g. for the Open Graph image (never localhost) */
+  productionHost: new URL(PRODUCTION_URL).host,
   ogImage: {
     width: 1200,
     height: 630,

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { AnchorLink } from "@/components/anchor-link";
 import { LetterMark } from "@/components/letter-mark";
@@ -11,7 +11,9 @@ import { StatTiles } from "@/components/stat-tiles";
 import { ProjectList } from "@/components/tech-stack/project-list";
 import { ToolGroup } from "@/components/tech-stack/tool-group";
 import { ToolRow } from "@/components/tech-stack/tool-row";
+import type { Locale } from "@/i18n/config";
 import { pageMetadata } from "@/lib/metadata";
+import { OG_IMAGES } from "@/lib/og-images";
 import {
   PROJECTS,
   projectAnchor,
@@ -34,6 +36,7 @@ const PROJECT_MARK_COLOR = "text-violet-500";
 
 export default function TechStack() {
   const t = useTranslations("TechStackPage");
+  const locale = useLocale() as Locale;
 
   return (
     <section className="flex flex-col gap-6">
@@ -109,7 +112,13 @@ export default function TechStack() {
               title,
               period: t(`projects.${project.key}.period`),
               description: t(`projects.${project.key}.description`),
-              image: "image" in project ? { src: project.image, alt: title } : undefined,
+              image:
+                "image" in project
+                  ? project.image === "og"
+                    ? // The OG image's content sits on the left: keep that side when cropped
+                      { src: OG_IMAGES[locale], alt: title, focus: "left" as const }
+                    : { src: project.image, alt: title }
+                  : undefined,
               tags: "tags" in project ? project.tags.map((tag) => t(`tags.${tag}`)) : undefined,
               tools: project.tools.map((key) => {
                 const tool = toolByKey(key);

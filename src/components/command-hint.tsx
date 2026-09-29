@@ -54,7 +54,7 @@ export function CommandHint({ className }: { className?: string }) {
         delay={1}
         tilt={-4}
         // bottom-0: the arrow tip (~11px above the note's bottom) meets the middle of the 20px keys
-        className="pointer-events-none absolute right-full bottom-0 mr-1 text-lg whitespace-nowrap"
+        className="pointer-events-none absolute right-full bottom-0 mr-1 whitespace-nowrap"
       >
         {t("getToKnowMe")}
       </HandwrittenNote>

@@ -30,7 +30,7 @@ export function SiteHeader() {
             // Half-size arrow, tucked up under the text; its tip sits ~5px above the
             // note's bottom, so bottom-2 puts it on the middle of the name's 26px line
             arrowClassName="-mt-1 h-6 w-8 translate-x-1"
-            className="pointer-events-none absolute right-full bottom-2 mr-1 hidden text-sm whitespace-nowrap lg:inline-flex"
+            className="pointer-events-none absolute right-full bottom-2 mr-1 hidden whitespace-nowrap lg:inline-flex"
           >
             {t("openForWork")}
           </HandwrittenNote>

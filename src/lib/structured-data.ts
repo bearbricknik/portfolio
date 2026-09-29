@@ -1,3 +1,4 @@
+import { OG_IMAGES } from "@/lib/og-images";
 import { siteConfig } from "@/lib/site";
 import { SOCIALS } from "@/lib/socials";
 
@@ -15,7 +16,7 @@ export function siteGraph({ locale, role, description }: { locale: string; role:
         "@id": PERSON_ID,
         name: "Dominik Huber",
         url: siteConfig.url,
-        image: `${siteConfig.url}/opengraph-image`,
+        image: `${siteConfig.url}${OG_IMAGES.en.src}`,
         jobTitle: role,
         description,
         email: "mailto:dominik.huber97@googlemail.com",
