@@ -24,8 +24,6 @@ export const INTRO_TIMING = {
   helloWrittenAt: HELLO_WRITTEN_AT,
   /** Overlay (blur) fades out right after "hello" is written */
   overlayFadeOut: 600,
-  /** First StreamingText starts here (use as `notBefore`); the page heading streams here */
+  /** First StreamingText starts here (use as `notBefore`) */
   streamStart: HELLO_WRITTEN_AT - STREAM_LEAD,
-  /** The intro text below a streamed page heading starts right after it */
-  bodyStreamStart: HELLO_WRITTEN_AT - STREAM_LEAD + 150,
 } as const;

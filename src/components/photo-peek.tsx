@@ -1,6 +1,16 @@
 "use client";
 
-import { createContext, type ReactNode, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
@@ -14,6 +24,9 @@ const OFFSET = { x: 24, y: -70 };
 // Kept clear of the window's right edge (polaroid md, landscape ≈ 196px + tilt)
 const EDGE = 216;
 const FOLLOW = { stiffness: 350, damping: 35, mass: 0.6 };
+// The cursor has to rest on an entry this long (ms) before its photo appears,
+// so quickly passing over the list doesn't flash photos
+const SHOW_DELAY = 300;
 
 type Peek = { photo: PolaroidPhoto; tilt: number };
 
@@ -66,19 +79,44 @@ export function PhotoPeekProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("pointermove", onMove);
   }, [enabled, reducedMotion, x, y, followX, followY]);
 
+  // While waiting to appear: the photo to show once the delay is over
+  const pending = useRef<{ timer: number; peek: Peek } | null>(null);
+  const cancelPending = useCallback(() => {
+    if (pending.current) window.clearTimeout(pending.current.timer);
+    pending.current = null;
+  }, []);
+  useEffect(() => cancelPending, [cancelPending]);
+
   const show = useCallback(
     (photo: PolaroidPhoto, tilt = 3) => {
-      // Appearing: start at the cursor instead of flying in from the last spot
-      if (!visible) {
+      const next = { photo, tilt };
+      const apply = (target: Peek) =>
+        setPeek((current) => (current?.photo.src === target.photo.src && current.tilt === target.tilt ? current : target));
+
+      // Already showing (moving from one entry to the next): switch right away
+      if (visible) return apply(next);
+      // Still waiting: keep the timer, just remember the latest photo
+      if (pending.current) {
+        pending.current.peek = next;
+        return;
+      }
+      const timer = window.setTimeout(() => {
+        const target = pending.current?.peek ?? next;
+        pending.current = null;
+        // Appearing: start at the cursor instead of flying in from the last spot
         followX.jump(x.get());
         followY.jump(y.get());
-      }
-      setPeek((current) => (current?.photo.src === photo.src && current.tilt === tilt ? current : { photo, tilt }));
-      setVisible(true);
+        apply(target);
+        setVisible(true);
+      }, reducedMotion ? 0 : SHOW_DELAY);
+      pending.current = { timer, peek: next };
     },
-    [visible, x, y, followX, followY],
+    [visible, reducedMotion, x, y, followX, followY],
   );
-  const hide = useCallback(() => setVisible(false), []);
+  const hide = useCallback(() => {
+    cancelPending();
+    setVisible(false);
+  }, [cancelPending]);
   const value = useMemo(() => ({ enabled, show, hide }), [enabled, show, hide]);
 
   return (

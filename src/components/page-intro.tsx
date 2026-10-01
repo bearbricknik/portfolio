@@ -11,7 +11,7 @@ type PageIntroProps = {
   content: ReactNode;
   /**
    * When the stream may start (ms after page load), by default right as the
-   * "hello" intro ends. Use `INTRO_TIMING.bodyStreamStart` below a streamed heading.
+   * "hello" intro ends.
    */
   notBefore?: number;
 };

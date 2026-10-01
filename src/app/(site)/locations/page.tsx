@@ -6,13 +6,11 @@ import { useTranslations } from "next-intl";
 import { MapAttributionCollapsed } from "@/components/map-attribution-collapsed";
 import { MapDriveRoute } from "@/components/map-drive-route";
 import { MapFitBounds } from "@/components/map-fit-bounds";
-import { PageHeading } from "@/components/page-heading";
 import { PageIntro } from "@/components/page-intro";
 import { Badge, ExternalBadge } from "@/components/inline-badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Map, MapControls, MapMarker, MarkerContent, MarkerLabel } from "@/components/ui/map";
 import { DRIVE_ROUTE } from "@/lib/drive-route";
-import { INTRO_TIMING } from "@/lib/intro-timing";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -77,12 +75,8 @@ export default function Locations() {
     <div className="flex flex-col gap-6">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="LocationsPage" path="/locations" type="ContactPage" extra={LOCATIONS_JSON_LD} />
-      <PageHeading page="locations" stream />
-
       <PageIntro
         id="locations-intro"
-        // Right after the streamed heading
-        notBefore={INTRO_TIMING.bodyStreamStart}
         content={t.rich("intro", {
           heart: (chunks) => (
             <Badge icon={IconHeartFilled} color="text-red-500">

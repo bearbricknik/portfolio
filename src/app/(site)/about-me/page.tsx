@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 
 import { AgeIntro } from "@/components/age-intro";
 import { Badge } from "@/components/inline-badge";
-import { PageHeading } from "@/components/page-heading";
 import { PolaroidFan } from "@/components/polaroid-fan";
 import golf1 from "@/assets/photos/golf/golf-1.jpg";
 import golf2 from "@/assets/photos/golf/golf-2.jpg";
@@ -39,7 +38,6 @@ export default function AboutMe() {
     <section className="flex flex-col gap-6 text-left text-pretty hyphens-auto sm:text-justify">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="AboutPage" path="/about-me" type="ProfilePage" />
-      <PageHeading page="about" />
       <p>
         {/* Server render time: client starts from the same moment (no hydration mismatch) */}
         <AgeIntro renderedAt={renderTime()} /> {t("origin")}

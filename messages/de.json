@@ -93,8 +93,19 @@
   },
   "BlogPage": {
     "title": "Blog",
-    "comingSoon": "Hier entsteht gerade mein Blog. Die ersten Beiträge folgen bald.",
-    "description": "Blog von Dominik Huber über Frontend, Interfaces und Softwareentwicklung."
+    "description": "Blog von Dominik Huber über Frontend, Interfaces und Softwareentwicklung.",
+    "intro": "Notizen zu <strong>Projekten</strong>, <strong>Open Source</strong> und allem dazwischen. Was ich baue, was ich dabei lerne und was mich abseits des Bildschirms beschäftigt.",
+    "filterAll": "Alle",
+    "filterLabel": "Nach Kategorie filtern",
+    "pinned": "Angeheftet",
+    "empty": "In dieser Kategorie gibt es noch keine Beiträge.",
+    "back": "Zurück zum Blog",
+    "readingTime": "{minutes} Min.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "noPosts": "Die ersten Beiträge folgen bald."
   },
   "TechStackPage": {
     "title": "Tech-Stack",

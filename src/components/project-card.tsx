@@ -6,6 +6,7 @@ import { IconArrowUpRight } from "@central-icons-react/round-outlined-radius-3-s
 import { motion, useReducedMotion } from "motion/react";
 
 import { Polaroid } from "@/components/polaroid";
+import { RoundButton } from "@/components/round-button";
 import { useRevealGate } from "@/components/scroll-reveal";
 import { Tag } from "@/components/tag";
 import { cn } from "@/lib/utils";
@@ -119,19 +120,13 @@ export function ProjectCard({
         )}
 
         {onMore && (
-          <button
-            type="button"
+          <RoundButton
+            icon={IconArrowUpRight}
+            label={moreLabel ?? ""}
             onClick={onMore}
-            aria-label={moreLabel}
-            data-cursor={moreLabel}
-            data-cursor-pointer
-            className="group/more absolute top-0 right-0 grid size-6.5 place-items-center rounded-full border text-muted-foreground transition-colors duration-300 hover:border-foreground hover:bg-foreground hover:text-background"
-          >
-            <IconArrowUpRight
-              aria-hidden
-              className="size-3 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/more:rotate-45"
-            />
-          </button>
+            iconClassName="group-hover/round:rotate-45"
+            className="absolute top-0 right-0"
+          />
         )}
       </div>
     </motion.article>

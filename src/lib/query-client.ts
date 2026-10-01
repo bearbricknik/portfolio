@@ -3,6 +3,7 @@ import {
   defaultShouldDehydrateQuery,
   isServer,
 } from "@tanstack/react-query";
+import { cache } from "react";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -23,11 +24,12 @@ function makeQueryClient() {
 
 let browserQueryClient: QueryClient | undefined;
 
+// Server: one query client per request, shared by generateMetadata and the
+// page, so a query they both need runs once
+const getRequestQueryClient = cache(makeQueryClient);
+
 export function getQueryClient() {
-  if (isServer) {
-    // Server: always make a new query client
-    return makeQueryClient();
-  }
+  if (isServer) return getRequestQueryClient();
   // Browser: reuse the client so it isn't recreated if React suspends during the initial render
   if (!browserQueryClient) browserQueryClient = makeQueryClient();
   return browserQueryClient;

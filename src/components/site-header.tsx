@@ -34,7 +34,8 @@ export function SiteHeader() {
           >
             {t("openForWork")}
           </HandwrittenNote>
-          <Link href="/" className="font-medium">
+          {/* The name itself is the label: show the pointing hand, no bubble */}
+          <Link href="/" data-cursor="pointer" className="font-medium">
             {t("name")}
           </Link>
         </span>

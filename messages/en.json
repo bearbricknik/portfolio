@@ -93,8 +93,19 @@
   },
   "BlogPage": {
     "title": "Blog",
-    "comingSoon": "My blog is in the works. The first posts are coming soon.",
-    "description": "Dominik Huber's blog about frontend, interfaces and software development."
+    "description": "Dominik Huber's blog about frontend, interfaces and software development.",
+    "intro": "Notes on <strong>projects</strong>, <strong>open source</strong> and everything in between. What I build, what I learn along the way and what keeps me busy away from the screen.",
+    "filterAll": "All",
+    "filterLabel": "Filter by category",
+    "pinned": "Pinned",
+    "empty": "There are no posts in this category yet.",
+    "back": "Back to the blog",
+    "readingTime": "{minutes} min",
+    "copy": "Copy",
+    "copied": "Copied",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "noPosts": "The first posts are coming soon."
   },
   "TechStackPage": {
     "title": "Tech stack",

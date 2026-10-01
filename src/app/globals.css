@@ -367,3 +367,34 @@ html .maplibregl-map {
     scale: 1;
   }
 }
+
+/* Code blocks in posts (Shiki, both themes as variables): light by default,
+   dark with the site's dark theme; the block's own background stays ours */
+.code-block pre {
+  background: transparent !important;
+  margin: 0;
+}
+.code-block span {
+  color: var(--shiki-light);
+}
+.dark .code-block span {
+  color: var(--shiki-dark);
+}
+
+/* A post's content arriving (from the overview or in the other language):
+   fades in out of a slight blur. A plain animation on the live content, so
+   the scroll edges' backdrop blur, code blocks etc. stay correct throughout. */
+.content-in {
+  animation: content-in 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes content-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .content-in {
+    animation: none;
+  }
+}

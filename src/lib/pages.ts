@@ -9,7 +9,7 @@ import {
 
 /**
  * The pages in the navigation, with the icon and color that stand for them
- * (menu badges and the page heading). Titles: `Nav.pages.<key>` in the messages.
+ * (menu badges). Titles: `Nav.pages.<key>` in the messages.
  */
 export const PAGES = {
   about: { href: "/about-me", icon: IconHand5Finger, color: "text-amber-500" },

@@ -4,7 +4,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { CvEntry } from "@/components/cv/cv-entry";
 import { CvRegister } from "@/components/cv/cv-register";
 import { CvYear } from "@/components/cv/cv-year";
-import { PageHeading } from "@/components/page-heading";
 import { PageIntro } from "@/components/page-intro";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { Tag } from "@/components/tag";
@@ -77,7 +76,6 @@ export default function CV() {
     <section className="flex flex-col gap-6">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="CvPage" path="/cv" />
-      <PageHeading page="cv" />
       <PageIntro
         id="cv-intro"
         content={t.rich("intro", {

@@ -10,8 +10,12 @@ type SectionHeadingProps = RevealGateOptions & {
   children: ReactNode;
   /** Optional number of entries, shown muted next to the title */
   count?: number;
-  /** Heading level (default h2) */
-  as?: "h2" | "h3";
+  /** Heading level (default h2), or "div" when the row isn't a heading (e.g. a post's meta line) */
+  as?: "h2" | "h3" | "div";
+  /** Something in front of the title, e.g. a round back button */
+  leading?: ReactNode;
+  /** Classes for the title, e.g. to set it smaller and muted */
+  titleClassName?: string;
   id?: string;
   className?: string;
 };
@@ -26,6 +30,8 @@ export function SectionHeading({
   children,
   count,
   as: Tag = "h2",
+  leading,
+  titleClassName,
   id,
   after,
   waitForStreams = true,
@@ -41,7 +47,7 @@ export function SectionHeading({
       ref={ref}
       id={id}
       // Title and count share the baseline; the line sits in the middle of the row
-      className={cn("flex items-baseline gap-2", className)}
+      className={cn("flex gap-2", leading ? "items-center" : "items-baseline", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
       variants={{
@@ -49,7 +55,8 @@ export function SectionHeading({
         shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
       }}
     >
-      <Tag className="font-medium">{children}</Tag>
+      {leading}
+      <Tag className={cn("font-medium", titleClassName)}>{children}</Tag>
       {count !== undefined && <span className="text-sm text-muted-foreground">{count}</span>}
       <span aria-hidden className="h-px flex-1 self-center bg-border" />
     </motion.div>

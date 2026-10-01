@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { useLocale, useTranslations } from "next-intl";
 
 import { AnchorArrival } from "@/components/anchor-link";
-import { PageHeading } from "@/components/page-heading";
 import { PageIntro } from "@/components/page-intro";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { SectionHeading } from "@/components/section-heading";
@@ -39,7 +38,6 @@ export default function TechStack() {
       <PageJsonLd namespace="TechStackPage" path="/tech-stack" />
       {/* Opened from a link on another page (e.g. a tool on /cv): jump to it */}
       <AnchorArrival />
-      <PageHeading page="stack" />
       <PageIntro
         id="tech-stack-intro"
         content={t.rich("intro", {
