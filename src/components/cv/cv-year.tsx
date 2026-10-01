@@ -31,6 +31,9 @@ export function CvYear({ year, until, children }: CvYearProps) {
       className="grid grid-cols-[3rem_1fr] gap-x-3 border-t pt-4 pb-1 first:border-t-0 first:pt-2 sm:grid-cols-[3.5rem_1fr] sm:gap-x-4"
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
+      // Until it has appeared, nothing in it reacts: no photo on hover, no
+      // links to click or focus
+      inert={!visible}
       variants={{
         hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
         shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },

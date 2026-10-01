@@ -50,6 +50,8 @@ export function SectionHeading({
       className={cn("flex gap-2", leading ? "items-center" : "items-baseline", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
+      // Not interactive until it has appeared (e.g. links, the back button)
+      inert={!visible}
       variants={{
         hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
         shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },

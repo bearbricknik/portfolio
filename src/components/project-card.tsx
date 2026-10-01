@@ -68,6 +68,8 @@ export function ProjectCard({
       className={cn("grid gap-x-5 gap-y-4 border-b py-5 last:border-b-0 sm:grid-cols-[auto_1fr]", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
+      // Not interactive until it has appeared (e.g. links, the back button)
+      inert={!visible}
       whileHover="hover"
       variants={{
         hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 10, filter: "blur(5px)" },

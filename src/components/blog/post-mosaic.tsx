@@ -130,6 +130,8 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
                     initial="hidden"
                     animate={visible ? "shown" : "hidden"}
                     exit="leaving"
+                    // Invisible until revealed: not clickable or focusable before
+                    inert={!visible}
                     variants={{
                       hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98, filter: "blur(4px)" },
                       shown: {

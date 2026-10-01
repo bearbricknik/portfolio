@@ -28,6 +28,8 @@ export function ToolGroup({ label, children }: ToolGroupProps) {
       className="flex flex-col"
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
+      // Not interactive until it has appeared (e.g. links, the back button)
+      inert={!visible}
       variants={{ hidden: {}, shown: { transition: { staggerChildren: reducedMotion ? 0 : 0.06 } } }}
     >
       <motion.h3
