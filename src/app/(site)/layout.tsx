@@ -20,7 +20,7 @@ import { ogLocales } from "@/lib/metadata";
 import { ogImageMetadata } from "@/lib/og-images";
 import { siteConfig } from "@/lib/site";
 import { siteGraph } from "@/lib/structured-data";
-import "./globals.css";
+import "../globals.css";
 
 // Handwriting for HandwrittenNote (`font-handwriting`); swap the font here to change it everywhere
 const handwriting = Nothing_You_Could_Do({
