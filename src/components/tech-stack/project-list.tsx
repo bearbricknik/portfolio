@@ -30,8 +30,8 @@ export function ProjectList({ projects }: { projects: ProjectListItem[] }) {
           key={key}
           {...project}
           id={projectAnchor(key)}
-          // Alternating tilt, like photos laid down by hand
-          tilt={index % 2 ? 2 : -2.5}
+          // Straight here (the photos on /cv keep their tilt)
+          tilt={0}
           priority={index === 0}
           onMore={hasDetails ? () => setDetailsFor(key) : undefined}
           links={tools.map((tool) => (
