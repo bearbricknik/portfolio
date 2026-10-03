@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const renderTime = () => Date.now();
 
 // Paragraph keys in `AboutPage.story`, in reading order
-const STORY = ["p1", "p2", "p3", "p4", "p5", "p6"] as const;
+const STORY = ["p1", "p2", "p3", "p4"] as const;
 
 // Static imports: content-hashed URLs (cached immutably), known sizes and a blur placeholder
 // Order matches `AboutPage.golfPhotos` in the messages (the photo of me sits in the middle)

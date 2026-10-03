@@ -27,7 +27,7 @@ export async function pageMetadata({ namespace, path, index = true }: PageMetada
   const title = t("title");
   const description = t("description");
   // The full title, as the layout's template renders it in <title>
-  const fullTitle = `${title} — ${tSite("siteName")}`;
+  const fullTitle = `${title} | ${tSite("siteName")}`;
   // The shared preview image, in the page's language
   const image = ogImageMetadata(locale as Locale, tSite("title"));
 

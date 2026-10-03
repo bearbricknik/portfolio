@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "siteName": "Dominik Huber",
-    "title": "Dominik Huber – Full-Stack Developer",
+    "title": "Dominik Huber | Full-Stack Developer",
     "description": "Autodidaktischer Software-Entwickler aus Deutschland. Ich baue schnelle, präzise Interfaces mit Next.js, React und TypeScript."
   },
   "Controls": {
@@ -17,7 +17,7 @@
     "location": "in Deutschland"
   },
   "HomePage": {
-    "bio": "Hi, ich bin Dominik, UI/UX Design Engineer aus Ulm. Ursprünglich komme ich aus der Fahrzeug- und Motorentechnikbranche, doch meine eigentliche Leidenschaft habe ich irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS entwickelte ich meine ersten automatisierten Tools, die später über 1.000 Nutzern dabei halfen, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden mit der Zeit echte Produkte – und aus der Frage „Wie automatisiere ich das?“ wurde immer häufiger „Wie baue ich das besser?“.\n\nIch begann mich intensiver mit Backend-Systemen, APIs und skalierbarer Software zu beschäftigen und entwickelte schließlich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, die tausenden Nutzern Zugriff auf mehrere hundert Millionen Produktdaten ermöglichen.",
+    "bio": "Hi, ich bin Dominik, UI/UX Design Engineer aus Ulm. Ursprünglich komme ich aus der Fahrzeug- und Motorentechnikbranche, doch meine eigentliche Leidenschaft habe ich irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS entwickelte ich meine ersten automatisierten Tools, die später über 1.000 Nutzern dabei halfen, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden mit der Zeit echte Produkte, und aus der Frage „Wie automatisiere ich das?“ wurde immer häufiger „Wie baue ich das besser?“.\n\nIch begann mich intensiver mit Backend-Systemen, APIs und skalierbarer Software zu beschäftigen und entwickelte schließlich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, die tausenden Nutzern Zugriff auf mehrere hundert Millionen Produktdaten ermöglichen.",
     "bioAfterGraph": "Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man vielleicht nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt. Heute verbinde ich genau diese beiden Welten: Ich designe mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
   },
   "Socials": {
@@ -32,12 +32,10 @@
     "intro": "Ich heiße Dominik und bin <years>{years}</years> <muted>Jahre</muted>, <days>{days}</days> <muted>{days, plural, one {Tag} other {Tage}}</muted> und <seconds>{seconds}</seconds> <muted>{seconds, plural, one {Sekunde} other {Sekunden}}</muted> jung{birthday, select, yes { (heute ist mein <cake>Geburtstag</cake>)} other {}}.",
     "origin": "Ich komme gebürtig aus Ulm, Deutschland, und bin passionierter Full-Stack-Entwickler.",
     "story": {
-      "p1": "Ich verbringe wahrscheinlich mehr Zeit vor einem Bildschirm, als ich zugeben möchte – aber immerhin meistens aus einem guten Grund. Ich liebe es zu programmieren, neue Ideen umzusetzen und aus einem Gedanken Schritt für Schritt etwas zu bauen, das am Ende tatsächlich funktioniert. Meistens jedenfalls.",
-      "p2": "Technologie interessiert mich aber auch weit über das Programmieren hinaus. Besonders <apple>Apple</apple> hat es mir angetan. Ich mag gutes Design, durchdachte Produkte und diese kleinen Details, über die sich vermutlich nur Menschen freuen, die viel zu lange auf Benutzeroberflächen schauen. Neue Apple-Produkte verfolge ich deshalb meistens mit einer Mischung aus Begeisterung und der Frage, ob ich das jetzt wirklich brauche. Die Antwort kennen wir wahrscheinlich beide.",
-      "p3": "Wenn ich etwas Abstand vom Bildschirm brauche, zieht es mich gerne auf den <golf>Golfplatz</golf>. Ich mag die Mischung aus Ruhe, Konzentration und der Tatsache, dass dieser Sport einen regelmäßig daran erinnert, sich selbst nicht zu ernst zu nehmen. An manchen Tagen läuft alles genau so, wie man es sich vorgestellt hat – und an anderen ist man einfach froh, den Ball wiederzufinden.",
-      "p4": "Ein ganz anderer Teil von mir ist meine Begeisterung für <latam>Lateinamerika</latam>. Ich liebe die Musik, die Kultur, die Lebensfreude und besonders die Energie, die damit verbunden ist. Lateinamerikanische Musik läuft bei mir ziemlich regelmäßig – egal ob beim Arbeiten, unterwegs oder wenn aus „nur ein Song“ plötzlich eine ganze Playlist geworden ist.",
-      "p5": "Am Ende bin ich wahrscheinlich eine etwas ungewöhnliche Mischung: Entwickler, Apple-Enthusiast, Golfer und großer Fan lateinamerikanischer Kultur.",
-      "p6": "Und genau diese Mischung beschreibt mich eigentlich ziemlich gut."
+      "p1": "Ich verbringe wahrscheinlich mehr Zeit vor einem Bildschirm, als ich zugeben möchte. Aber immerhin meistens aus einem guten Grund. Ich liebe es zu programmieren, neue Ideen umzusetzen und aus einem Gedanken Schritt für Schritt etwas zu bauen, das am Ende tatsächlich funktioniert. Meistens jedenfalls.",
+      "p2": "Technologie interessiert mich aber auch weit über das Programmieren hinaus. Besonders <apple>Apple</apple> hat es mir angetan. Ich mag gutes Design, durchdachte Produkte und diese kleinen Details, über die sich vermutlich nur Menschen freuen, die viel zu lange auf Benutzeroberflächen schauen. Neue Apple-Produkte verfolge ich deshalb meistens mit einer Mischung aus Begeisterung und der Frage, ob ich das jetzt wirklich brauche. Die Antwort steht inzwischen in meinem Wohnzimmer: Ich besitze so ziemlich jedes Produkt und bin einer dieser Menschen, die ein ganzes Sideboard voller Apple-Kartons haben. Wegwerfen? Undenkbar, die sind schließlich auch gut designt.",
+      "p3": "Wenn ich etwas Abstand vom Bildschirm brauche, zieht es mich gerne auf den <golf>Golfplatz</golf>. Ich mag die Mischung aus Ruhe, Konzentration und der Tatsache, dass dieser Sport einen regelmäßig daran erinnert, sich selbst nicht zu ernst zu nehmen. An manchen Tagen läuft alles genau so, wie man es sich vorgestellt hat, und an anderen ist man einfach froh, den Ball wiederzufinden. Damit der Kopf trotzdem frei bleibt, gehe ich außerdem regelmäßig joggen und ins Gym. Da weiß man wenigstens immer, wo das Gewicht liegt.",
+      "p4": "Und dann ist da noch <latam>Lateinamerika</latam>. Mich packt dort jedes Mal die Reiselust, und ich komme selten zurück, ohne im Kopf schon die nächste Reise zu planen. Am meisten beeindrucken mich die Menschen: offen, herzlich und mit einer Leichtigkeit, die ansteckt. Man kommt als Fremder an und sitzt eine Stunde später mit am Tisch. Zu Hause laufen dann Cumbia und Bachata, beim Arbeiten, im Auto und auch dann noch, wenn aus „nur einem Song“ längst die ganze Playlist geworden ist."
     },
     "golfPhotos": [
       {
@@ -65,7 +63,7 @@
         "title": "Der Teich hat gewonnen"
       }
     ],
-    "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus NRW – Werdegang, Golf und was mich antreibt."
+    "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus NRW. Werdegang, Golf und was mich antreibt."
   },
   "LocationsPage": {
     "title": "Orte",

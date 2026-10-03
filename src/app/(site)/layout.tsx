@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: {
       default: title,
       // Subpages set `title: "Projekte"` → "Projekte — Dominik Huber"
-      template: `%s — ${siteName}`,
+      template: `%s | ${siteName}`,
     },
     description,
     applicationName: siteName,

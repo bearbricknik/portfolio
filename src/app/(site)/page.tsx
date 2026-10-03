@@ -65,7 +65,7 @@ export default async function Home() {
       <section className="flex flex-col gap-6">
         {/* Page heading for screen readers and SEO; the visible name sits in the shared header */}
         <h1 className="sr-only">
-          {tSite("name")} – {tSite("role")}
+          {tSite("name")} | {tSite("role")}
         </h1>
 
         {/* Streams in once the intro overlay is gone; "\n\n" in the message starts a new paragraph */}
