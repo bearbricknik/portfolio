@@ -18,7 +18,7 @@
   },
   "HomePage": {
     "bio": "Hi, I'm Dominik, a UI/UX design engineer from Ulm, Germany. I originally come from the automotive and engine engineering industry, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first automation tools, which later helped more than 1,000 users buy limited releases. Over time, small scripts turned into real products – and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nI dug deeper into backend systems, APIs and scalable software, and eventually built applications with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> and <postgres>PostgreSQL</postgres> that give thousands of users access to several hundred million product records.",
-    "bioAfterGraph": "Along the way, how software feels became just as important to me as how it works. I love thoughtful interfaces, good interactions and the small details you might not consciously notice, but immediately miss when they're gone.\n\nToday I bring exactly these two worlds together: I design with an engineer's understanding and build with a designer's eye."
+    "bioAfterGraph": "I love thoughtful interfaces, good interactions and the small details you might not consciously notice, but immediately miss when they're gone. Today I bring exactly these two worlds together: I design with an engineer's understanding and build with a designer's eye."
   },
   "Socials": {
     "label": "Profiles and contact",

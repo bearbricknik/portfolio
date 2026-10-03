@@ -18,7 +18,7 @@
   },
   "HomePage": {
     "bio": "Hi, ich bin Dominik, UI/UX Design Engineer aus Ulm. Ursprünglich komme ich aus der Fahrzeug- und Motorentechnikbranche, doch meine eigentliche Leidenschaft habe ich irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS entwickelte ich meine ersten automatisierten Tools, die später über 1.000 Nutzern dabei halfen, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden mit der Zeit echte Produkte – und aus der Frage „Wie automatisiere ich das?“ wurde immer häufiger „Wie baue ich das besser?“.\n\nIch begann mich intensiver mit Backend-Systemen, APIs und skalierbarer Software zu beschäftigen und entwickelte schließlich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, die tausenden Nutzern Zugriff auf mehrere hundert Millionen Produktdaten ermöglichen.",
-    "bioAfterGraph": "Dabei wurde mir immer wichtiger, wie sich Software anfühlt – nicht nur, wie sie funktioniert. Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man vielleicht nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt.\n\nHeute verbinde ich genau diese beiden Welten: Ich designe mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
+    "bioAfterGraph": "Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man vielleicht nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt. Heute verbinde ich genau diese beiden Welten: Ich designe mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
   },
   "Socials": {
     "label": "Profile und Kontakt",

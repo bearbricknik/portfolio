@@ -115,7 +115,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                   className="flex flex-col overflow-x-hidden overscroll-none"
                 >
                   {/* Header and footer are shared by every page; pages only bring their content */}
-                  <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-4 py-12 leading-relaxed">
+                  <div className="mx-auto flex w-full max-w-xl flex-col gap-6 px-4 py-10 leading-relaxed">
                     <SiteHeader />
                     <main className="flex flex-col">{children}</main>
                     <SiteFooter />

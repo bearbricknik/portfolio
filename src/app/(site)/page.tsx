@@ -73,15 +73,18 @@ export default async function Home() {
 
         <ContributionGraph after={`${INTRO_ID}-${locale}`} />
 
-        <PageIntro
-          id={AFTER_GRAPH_ID}
-          content={t.rich("bioAfterGraph", badges)}
-          after={INTRO_ID}
-          delay={AFTER_GRAPH_DELAY}
-        />
+        {/* Text after text: the paragraph spacing (gap-4), not the section's */}
+        <div className="flex flex-col gap-4">
+          <PageIntro
+            id={AFTER_GRAPH_ID}
+            content={t.rich("bioAfterGraph", badges)}
+            after={INTRO_ID}
+            delay={AFTER_GRAPH_DELAY}
+          />
 
-        {/* How to reach me, last (the same paragraph as on /locations) */}
-        <PageIntro id="home-contact" content={tContact.rich("text", contactBadges)} after={AFTER_GRAPH_ID} />
+          {/* How to reach me, last (the same paragraph as on /locations) */}
+          <PageIntro id="home-contact" content={tContact.rich("text", contactBadges)} after={AFTER_GRAPH_ID} />
+        </div>
       </section>
     </HydrationBoundary>
   );

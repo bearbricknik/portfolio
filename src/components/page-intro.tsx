@@ -36,7 +36,7 @@ export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart, a
       after={after ? `${after}-${locale}` : undefined}
       delay={delay}
       interval={30}
-      className="flex flex-col gap-6"
+      className="flex flex-col gap-4"
       // Hyphenation (uses <html lang>) keeps the ragged edge calm, especially in German
       textClassName="text-pretty hyphens-auto"
       content={content}
