@@ -14,13 +14,17 @@ type PageIntroProps = {
    * "hello" intro ends.
    */
   notBefore?: number;
+  /** Start only after the stream with this id has finished (see StreamingText) */
+  after?: string;
+  /** Milliseconds to wait before streaming (with `after`: after that stream) */
+  delay?: number;
 };
 
 /**
  * The streamed opening text of a page, with the same timing, pace and
  * typography everywhere: left-aligned on phones, justified from `sm`.
  */
-export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart }: PageIntroProps) {
+export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart, after, delay }: PageIntroProps) {
   const locale = useLocale();
 
   return (
@@ -29,6 +33,8 @@ export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart }:
       key={locale}
       id={`${id}-${locale}`}
       notBefore={notBefore}
+      after={after ? `${after}-${locale}` : undefined}
+      delay={delay}
       interval={30}
       className="flex flex-col gap-6"
       // Hyphenation (uses <html lang>) keeps justified lines even, especially in German

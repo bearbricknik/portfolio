@@ -133,6 +133,12 @@ type StreamingTextProps = {
   id?: string;
   /** Only start once the component is scrolled into view */
   startOnView?: boolean;
+  /**
+   * Wait until the stream with this id has finished (e.g. a second paragraph
+   * after the first one); `delay` then counts from that moment, e.g. to let
+   * something in between appear first
+   */
+  after?: string;
   /** Restart after `holdMs` once the stream is done */
   loop?: boolean;
   /** Milliseconds the finished text stays before a loop restarts */
@@ -157,6 +163,7 @@ export function StreamingText({
   notBefore = 0,
   id,
   startOnView = true,
+  after,
   loop = false,
   holdMs = 3400,
   caret = true,
@@ -168,7 +175,10 @@ export function StreamingText({
   const tokens = useMemo(() => tokenize(content), [content]);
   const paragraphs = useMemo(() => toParagraphs(tokens), [tokens]);
   const rootRef = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(!startOnView);
+  const [inView, setInView] = useState(!startOnView);
+  // Ready once in view and, with `after`, once that stream has finished
+  const afterDone = useStreamingStore((state) => (after ? state.seen[after] === true : true));
+  const started = inView && afterDone;
   const [count, setCount] = useState(0);
   // Store starts empty on every page load, so server and client render the same
   const seen = useStreamingStore((state) => (id ? state.seen[id] === true : false));
@@ -187,7 +197,7 @@ export function StreamingText({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-        setStarted(true);
+        setInView(true);
         observer.disconnect();
       },
       { threshold: 0.2 },
