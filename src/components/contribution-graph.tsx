@@ -224,7 +224,8 @@ function Calendar({ after, waitForStreams, className }: ContributionGraphProps) 
 
       <figcaption className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm text-muted-foreground">
         <span>{t.rich("total", { count: data.total, strong: (chunks) => <span className="font-medium text-foreground">{chunks}</span> })}</span>
-        <span aria-hidden className="flex items-center gap-1 text-xs">
+        {/* Legend only where it fits next to the total (hidden on phones) */}
+        <span aria-hidden className="hidden items-center gap-1 text-xs sm:flex">
           {t("less")}
           {LEVELS.map((level) => (
             <span key={level} className={cn("size-2.5 rounded-[20%]", LEVEL_CLASS[level])} />
