@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IconCalendar1, IconEmail1, IconMapPin } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
+import { IconMapPin } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 import { IconHeart as IconHeartFilled } from "@central-icons-react/round-filled-radius-3-stroke-1.5";
 import { useTranslations } from "next-intl";
 
@@ -7,7 +7,8 @@ import { MapAttributionCollapsed } from "@/components/map-attribution-collapsed"
 import { MapDriveRoute } from "@/components/map-drive-route";
 import { MapFitBounds } from "@/components/map-fit-bounds";
 import { PageIntro } from "@/components/page-intro";
-import { Badge, ExternalBadge } from "@/components/inline-badge";
+import { contactBadges } from "@/components/contact-badges";
+import { Badge } from "@/components/inline-badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Map, MapControls, MapMarker, MarkerContent, MarkerLabel } from "@/components/ui/map";
 import { DRIVE_ROUTE } from "@/lib/drive-route";
@@ -50,9 +51,6 @@ const LOCATIONS_JSON_LD = {
   })),
 };
 
-const EMAIL = "dominik.huber97@googlemail.com";
-const CAL_URL = "https://cal.com/dominik-huber-curt5d/15-minuten";
-
 function Marker({ position, label }: { position: [number, number]; label: string }) {
   return (
     <MapMarker longitude={position[0]} latitude={position[1]}>
@@ -69,6 +67,7 @@ function Marker({ position, label }: { position: [number, number]; label: string
 
 export default function Locations() {
   const t = useTranslations("LocationsPage");
+  const tContact = useTranslations("Contact");
 
   return (
     // Same spacing as the paragraphs on the other pages
@@ -77,29 +76,18 @@ export default function Locations() {
       <PageJsonLd namespace="LocationsPage" path="/locations" type="ContactPage" extra={LOCATIONS_JSON_LD} />
       <PageIntro
         id="locations-intro"
-        content={t.rich("intro", {
-          heart: (chunks) => (
-            <Badge icon={IconHeartFilled} color="text-red-500">
-              {chunks}
-            </Badge>
-          ),
-          cal: (chunks) => (
-            <ExternalBadge href={CAL_URL} icon={IconCalendar1} color="text-muted-foreground" cursorLabel="cal.com ↗">
-              {chunks}
-            </ExternalBadge>
-          ),
-          email: (chunks) => (
-            <ExternalBadge
-              href={`mailto:${EMAIL}`}
-              icon={IconEmail1}
-              color="text-muted-foreground"
-              cursorLabel={EMAIL}
-              newTab={false}
-            >
-              {chunks}
-            </ExternalBadge>
-          ),
-        })}
+        // Where I'm from, then how to reach me (shared with the home page)
+        content={[
+          t.rich("intro", {
+            heart: (chunks) => (
+              <Badge icon={IconHeartFilled} color="text-red-500">
+                {chunks}
+              </Badge>
+            ),
+          }),
+          "\n\n",
+          tContact.rich("text", contactBadges),
+        ]}
       />
 
       {/* Everything below appears once the intro has streamed, then in view */}

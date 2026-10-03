@@ -34,8 +34,8 @@ export default function AboutMe() {
   const t = useTranslations("AboutPage");
 
   return (
-    // Justified with hyphenation, like the bio on the home page
-    <section className="flex flex-col gap-6 text-left text-pretty hyphens-auto sm:text-justify">
+    // Hyphenated, like the bio on the home page
+    <section className="flex flex-col gap-6 text-pretty hyphens-auto">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="AboutPage" path="/about-me" type="ProfilePage" />
       <p>

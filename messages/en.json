@@ -17,8 +17,8 @@
     "location": "in Germany"
   },
   "HomePage": {
-    "bio": "Hi 👋 I'm Dominik, a former automotive and engine engineering student at the <uni>University of Stuttgart</uni>. During the pandemic I taught myself programming, and I've been building software ever since, with a focus on interfaces that feel fast, precise and calm.\n\nIt started with <extensions>browser extensions</extensions> in plain <js>JavaScript</js>, and honestly a lot of wrestling with HTML and CSS, with great support from my team along the way. From there I moved into data: scraping pipelines in <python>Python</python> and <node>Node.js</node>. Eventually I found where I'm happiest: the frontend. Today I build with <next>Next.js</next>, <react>React</react> and <ts>TypeScript</ts>, and I care about the details you only notice when they're missing: type-safe APIs, accessible components, motion that supports instead of distracts, and interfaces that stay responsive under real data.",
-    "bioAfterGraph": "That foundation led me to build <profitpath>ProfitPath</profitpath>, an Amazon arbitrage platform that makes online arbitrage accessible for sellers. It processes data from 1,000+ companies and suppliers and 200M+ products updated daily, and turns it into tools like supplier search, wholesale scanning, competitor analysis and automated profit calculations. The hard part isn't the data, it's the UX: making millions of rows scannable, filterable and actionable in seconds. Want to know more? Reach out on <linkedin>LinkedIn</linkedin>"
+    "bio": "Hi, I'm Dominik, a UI/UX design engineer from Ulm, Germany. I originally come from the automotive and engine engineering industry, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first automation tools, which later helped more than 1,000 users buy limited releases. Over time, small scripts turned into real products – and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nI dug deeper into backend systems, APIs and scalable software, and eventually built applications with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> and <postgres>PostgreSQL</postgres> that give thousands of users access to several hundred million product records.",
+    "bioAfterGraph": "Along the way, how software feels became just as important to me as how it works. I love thoughtful interfaces, good interactions and the small details you might not consciously notice, but immediately miss when they're gone.\n\nToday I bring exactly these two worlds together: I design with an engineer's understanding and build with a designer's eye."
   },
   "Socials": {
     "label": "Profiles and contact",
@@ -69,7 +69,7 @@
   },
   "LocationsPage": {
     "title": "Locations",
-    "intro": "Originally, I'm from the south of Germany – Ulm, to be precise. After 26 years, I took the leap and started over in a new city: Cologne, in the <heart>heart</heart> of NRW, Germany. Today, NRW is still my home.\n\nThe fastest way to get in touch is to send me a simple <email>email</email>. I should reply within a few hours. Got a project in mind that would be a good fit? Then book a 15-minute call with me directly on <cal>Cal.com</cal>",
+    "intro": "Originally, I'm from the south of Germany – Ulm, to be precise. After 26 years, I took the leap and started over in a new city: Cologne, in the <heart>heart</heart> of NRW, Germany. Today, NRW is still my home.",
     "map": {
       "cologne": "Cologne",
       "nersingen": "Nersingen"
@@ -343,5 +343,8 @@
     "total": "<strong>{count, number}</strong> commits in the last year",
     "less": "Less",
     "more": "More"
+  },
+  "Contact": {
+    "text": "The fastest way to get in touch is to send me a simple <email>email</email>. I should reply within a few hours. Got a project in mind that would be a good fit? Then book a 15-minute call with me directly on <cal>cal.com</cal>"
   }
 }

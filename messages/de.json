@@ -17,8 +17,8 @@
     "location": "in Deutschland"
   },
   "HomePage": {
-    "bio": "Hi 👋 ich bin Dominik, ehemaliger Student der Fahrzeug- und Motorentechnik an der <uni>Universität Stuttgart</uni>. Während der Pandemie habe ich mir das Programmieren selbst beigebracht und baue seitdem Software, mit Fokus auf Interfaces, die sich schnell, präzise und ruhig anfühlen.\n\nAngefangen hat alles mit <extensions>Browser-Extensions</extensions> in reinem <js>JavaScript</js>, und ehrlich gesagt mit viel Ringen mit HTML und CSS, bei dem mich mein Team großartig unterstützt hat. Danach ging es in Richtung Daten: Scraping-Pipelines mit <python>Python</python> und <node>Node.js</node>. Irgendwann habe ich gemerkt, wo ich mich am wohlsten fühle: im Frontend. Heute baue ich mit <next>Next.js</next>, <react>React</react> und <ts>TypeScript</ts> und achte auf die Details, die man erst bemerkt, wenn sie fehlen: typsichere APIs, barrierefreie Komponenten, Animationen, die unterstützen statt ablenken, und Interfaces, die auch mit echten Datenmengen flüssig bleiben.",
-    "bioAfterGraph": "Auf dieser Basis habe ich <profitpath>ProfitPath</profitpath> aufgebaut, eine Amazon-Arbitrage-Plattform, die Online-Arbitrage für Seller zugänglich macht. Sie verarbeitet täglich Daten von über 1.000 Unternehmen und Lieferanten und mehr als 200 Mio. aktualisierten Produkten und macht daraus Werkzeuge wie Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung. Die eigentliche Herausforderung sind dabei nicht die Daten, sondern die UX: Millionen von Zeilen so aufzubereiten, dass man sie in Sekunden überblicken, filtern und nutzen kann. Mehr erfahren? Schreib mir gern auf <linkedin>LinkedIn</linkedin>"
+    "bio": "Hi, ich bin Dominik, UI/UX Design Engineer aus Ulm. Ursprünglich komme ich aus der Fahrzeug- und Motorentechnikbranche, doch meine eigentliche Leidenschaft habe ich irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS entwickelte ich meine ersten automatisierten Tools, die später über 1.000 Nutzern dabei halfen, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden mit der Zeit echte Produkte – und aus der Frage „Wie automatisiere ich das?“ wurde immer häufiger „Wie baue ich das besser?“.\n\nIch begann mich intensiver mit Backend-Systemen, APIs und skalierbarer Software zu beschäftigen und entwickelte schließlich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, die tausenden Nutzern Zugriff auf mehrere hundert Millionen Produktdaten ermöglichen.",
+    "bioAfterGraph": "Dabei wurde mir immer wichtiger, wie sich Software anfühlt – nicht nur, wie sie funktioniert. Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man vielleicht nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt.\n\nHeute verbinde ich genau diese beiden Welten: Ich designe mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
   },
   "Socials": {
     "label": "Profile und Kontakt",
@@ -69,7 +69,7 @@
   },
   "LocationsPage": {
     "title": "Orte",
-    "intro": "Ursprünglich komme ich aus dem Süden von Deutschland, genauer gesagt aus Ulm. Nach 26 Jahren wagte ich einen Neuanfang in einer neuen Stadt, Köln im <heart>Herzen</heart> von NRW, Deutschland. Heute bin ich weiterhin in NRW zu Hause.\n\nDer schnellste Weg, um mit mir in Kontakt zu kommen, ist, mir eine simple <email>E-Mail</email> zu schreiben. Ich sollte innerhalb weniger Stunden antworten. Du hast ein Projekt im Kopf, das gut zu mir passen würde? Dann buch dir direkt einen 15-Minuten-Termin auf <cal>Cal.com</cal>",
+    "intro": "Ursprünglich komme ich aus dem Süden von Deutschland, genauer gesagt aus Ulm. Nach 26 Jahren wagte ich einen Neuanfang in einer neuen Stadt, Köln im <heart>Herzen</heart> von NRW, Deutschland. Heute bin ich weiterhin in NRW zu Hause.",
     "map": {
       "cologne": "Köln",
       "nersingen": "Nersingen"
@@ -343,5 +343,8 @@
     "total": "<strong>{count, number}</strong> Commits im letzten Jahr",
     "less": "Weniger",
     "more": "Mehr"
+  },
+  "Contact": {
+    "text": "Der schnellste Weg, um mit mir in Kontakt zu kommen, ist, mir eine simple <email>E-Mail</email> zu schreiben. Ich sollte innerhalb weniger Stunden antworten. Du hast ein Projekt im Kopf, das gut zu mir passen würde? Dann buch dir direkt einen 15-Minuten-Termin auf <cal>Cal.com</cal>"
   }
 }

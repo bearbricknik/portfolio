@@ -62,7 +62,7 @@ export function CvEntry({ id, title, description, photo, photoLabel, tilt = -1.5
           </>
         )}
       </h3>
-      <p className="mt-0.5 text-left text-sm leading-relaxed text-pretty text-muted-foreground hyphens-auto sm:text-justify">
+      <p className="mt-0.5 text-sm leading-relaxed text-pretty text-muted-foreground hyphens-auto">
         {description}
       </p>
       {photo && (

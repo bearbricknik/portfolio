@@ -22,7 +22,7 @@ type PageIntroProps = {
 
 /**
  * The streamed opening text of a page, with the same timing, pace and
- * typography everywhere: left-aligned on phones, justified from `sm`.
+ * typography everywhere: left-aligned, with balanced lines and hyphenation.
  */
 export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart, after, delay }: PageIntroProps) {
   const locale = useLocale();
@@ -37,8 +37,8 @@ export function PageIntro({ id, content, notBefore = INTRO_TIMING.streamStart, a
       delay={delay}
       interval={30}
       className="flex flex-col gap-6"
-      // Hyphenation (uses <html lang>) keeps justified lines even, especially in German
-      textClassName="text-left text-pretty hyphens-auto sm:text-justify"
+      // Hyphenation (uses <html lang>) keeps the ragged edge calm, especially in German
+      textClassName="text-pretty hyphens-auto"
       content={content}
     />
   );
