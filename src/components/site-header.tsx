@@ -2,12 +2,13 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { HandwrittenNote } from "@/components/handwritten-note";
+import { SiteControls } from "@/components/site-controls";
 import { SiteNav } from "@/components/site-nav";
 
 /**
  * Shared header on every page (rendered by the root layout): name, role and
- * the navigation. Language and theme controls live in the top right corner of
- * the layout instead.
+ * the navigation. Language and theme sit next to the navigation on phones;
+ * from `sm` on they live in the top right corner of the layout instead.
  */
 export function SiteHeader() {
   const t = useTranslations("Site");
@@ -41,7 +42,10 @@ export function SiteHeader() {
         </span>
         <p className="text-muted-foreground">{t("role")}</p>
       </div>
-      <SiteNav />
+      <div className="flex items-center gap-1">
+        <SiteControls className="sm:hidden" />
+        <SiteNav />
+      </div>
     </header>
   );
 }

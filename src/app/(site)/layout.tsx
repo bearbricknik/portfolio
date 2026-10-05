@@ -7,14 +7,13 @@ import { Nothing_You_Could_Do } from "next/font/google";
 import { CommandHint } from "@/components/command-hint";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { JsonLd } from "@/components/json-ld";
-import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Providers } from "@/components/providers";
 import { ScrollContainer } from "@/components/scroll-container";
 import { ServiceWorkerCleanup } from "@/components/service-worker-cleanup";
 import { SiteCursor } from "@/components/site-cursor";
+import { SiteControls } from "@/components/site-controls";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { locales } from "@/i18n/config";
 import { ogLocales } from "@/lib/metadata";
 import { ogImageMetadata } from "@/lib/og-images";
@@ -123,12 +122,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
                 </ScrollContainer>
               </div>
               {/* Language and theme in the top right corner, mirroring the ⌘K hint
-                  below; always visible, also on phones */}
+                  below; on phones they sit next to the navigation instead */}
               {/* z-20: above the scroll fades (z-10) */}
-              <div className="absolute top-4 right-4 z-20 flex items-center gap-1">
-                <LocaleSwitcher />
-                <ThemeSwitcher />
-              </div>
+              <SiteControls className="absolute top-4 right-4 z-20 hidden sm:flex" />
               {/* ⌘K / Ctrl+K hint in the bottom right corner: same 4px offset to the
                   right and bottom, so it fits the 24px padding exactly (Kbd = 20px) */}
               {/* z-20: above the scroll fades (z-10), which it overlaps at this offset */}

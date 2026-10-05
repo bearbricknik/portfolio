@@ -19,7 +19,7 @@ export type CvEntryProps = {
   photo?: PolaroidPhoto;
   /** Screen reader hint next to the title when there's a photo, e.g. "mit Foto" */
   photoLabel?: string;
-  /** Rotation of the photo in degrees; alternate it between entries */
+  /** Rotation of the hover peek in degrees; alternate it between entries */
   tilt?: number;
   /** Chips and tags below the text (ToolLink, ProjectLink, Tag) */
   footer?: ReactNode;
@@ -66,8 +66,9 @@ export function CvEntry({ id, title, description, photo, photoLabel, tilt = -1.5
         {description}
       </p>
       {photo && (
-        // Phones and touch screens: the photo sits in the entry
-        <div className="mt-3 mb-1 w-fit pointer-fine:md:hidden" style={{ rotate: `${tilt}deg` }}>
+        // Phones and touch screens: the photo sits in the entry, straight (only
+        // the hover peek is tilted)
+        <div className="mt-3 mb-1 w-fit pointer-fine:md:hidden">
           <Polaroid photo={{ ...photo, aspect: "landscape" }} size="md" reveal reducedMotion={reducedMotion ?? false} />
         </div>
       )}
