@@ -106,7 +106,8 @@ type PolaroidProps = {
 /**
  * One polaroid: white frame with the wider bottom edge, the photo inside and
  * an optional title. The single source of the frame for every photo on the
- * site (about page fan, CV stations), so they all look the same.
+ * site (about page fan, CV stations), so they all look the same. Flat by
+ * default; where a photo floats or overlaps others it brings its own shadow.
  */
 export function Polaroid({
   photo,
@@ -122,7 +123,7 @@ export function Polaroid({
   return (
     <figure
       className={cn(
-        "relative rounded-lg bg-white shadow-md ring-1 ring-black/5",
+        "relative rounded-lg bg-white ring-1 ring-black/5",
         size === "lg" ? "p-1.5 pb-6 sm:p-2 sm:pb-8" : "p-1.5 pb-6",
         className,
       )}

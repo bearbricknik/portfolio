@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useLocale } from "next-intl";
 
 import { Polaroid, type PolaroidPhoto, type PolaroidSize } from "@/components/polaroid";
+import { type RevealGateOptions, useRevealGate } from "@/components/scroll-reveal";
 import { cn } from "@/lib/utils";
+import { useStreamingStore } from "@/stores/streaming-store";
 
-type PolaroidFanProps = {
+type PolaroidFanProps = Pick<RevealGateOptions, "after"> & {
   /** Any number of photos, laid out as a fan from left to right */
   photos: PolaroidPhoto[];
   /** `lg` (default) for a fan on its own, `sm` next to text (e.g. a CV station) */
@@ -27,10 +30,20 @@ type PolaroidFanProps = {
    * `true` = 2px, or pass the blur strength in px.
    */
   blurSurroundings?: boolean | number;
+  /**
+   * Id under which the fan reports that its cards are being dealt (the locale
+   * is appended, like stream ids), so a StreamingText can wait for it with `after`
+   */
+  revealId?: string;
   className?: string;
 };
 
 const SPRING = { type: "spring", stiffness: 320, damping: 24 } as const;
+const EASE = [0.23, 1, 0.32, 1] as const;
+
+// Reveal: the cards are dealt from left to right, each settling out of a blur (s)
+const FAN_DEAL_STAGGER = 0.08;
+const FAN_DEAL_DURATION = 0.7;
 
 /**
  * Deterministic pseudo-random number in [0, 1) (mulberry32). Real randomness
@@ -52,8 +65,9 @@ const OVERLAP: Record<PolaroidSize, string> = {
 };
 
 /**
- * A fan of polaroid photos, each casually tilted. Hovering (or focusing) a card
- * straightens it, lifts it to the front and writes in its title.
+ * A fan of polaroid photos, each casually tilted. Once in view (and after the
+ * `after` stream) the cards are dealt in one by one. Hovering (or focusing) a
+ * card straightens it, lifts it to the front and writes in its title.
  */
 export function PolaroidFan({
   photos,
@@ -64,10 +78,21 @@ export function PolaroidFan({
   arc = 3,
   priority = false,
   blurSurroundings = false,
+  after,
+  revealId,
   className,
 }: PolaroidFanProps) {
   const reducedMotion = useReducedMotion() ?? false;
+  const ref = useRef<HTMLUListElement>(null);
+  const visible = useRevealGate(ref, { after });
+  const locale = useLocale();
+  const markSeen = useStreamingStore((state) => state.markSeen);
+  useEffect(() => {
+    if (visible && revealId) markSeen(`${revealId}-${locale}`);
+  }, [visible, revealId, locale, markSeen]);
   const center = (photos.length - 1) / 2;
+  const dealtOut = reducedMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.94, filter: "blur(6px)" };
+  const dealtIn = { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" };
   // Index of the hovered/focused card (null = none); drives the surrounding blur
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const deactivate = (index: number) =>
@@ -76,7 +101,12 @@ export function PolaroidFan({
   return (
     // z-10: its own layer above the page text, so the blur also covers
     // positioned inline elements (badges) that come after it in the DOM
-    <ul className={cn("relative z-10 flex items-start justify-center py-12", className)}>
+    <ul
+      ref={ref}
+      className={cn("relative z-10 flex items-start justify-center py-12", className)}
+      // Not interactive before the cards are dealt
+      inert={!visible}
+    >
       {blurSurroundings && (
         <motion.li
           aria-hidden
@@ -124,13 +154,24 @@ export function PolaroidFan({
             }}
             transition={reducedMotion ? { duration: 0 } : SPRING}
           >
-            <Polaroid
-              photo={photo}
-              size={size}
-              // Only the first card loads eagerly; the others lazily as they come into view
-              priority={priority && index === 0}
-              reducedMotion={reducedMotion}
-            />
+            {/* Dealt in on reveal; its own layer, so it doesn't fight the hover
+                transforms. Plain values, no variant labels: the card's rest/focus
+                must still reach the title inside */}
+            <motion.div
+              initial={dealtOut}
+              animate={visible ? dealtIn : dealtOut}
+              transition={{ duration: FAN_DEAL_DURATION, ease: EASE, delay: visible && !reducedMotion ? index * FAN_DEAL_STAGGER : 0 }}
+            >
+              <Polaroid
+                photo={photo}
+                size={size}
+                // Only the first card loads eagerly; the others lazily as they come into view
+                priority={priority && index === 0}
+                reducedMotion={reducedMotion}
+                // The cards overlap: the shadow keeps them apart
+                className="shadow-md"
+              />
+            </motion.div>
           </motion.li>
         );
       })}

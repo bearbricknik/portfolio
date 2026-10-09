@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { IconCamera1 } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
-import { useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { usePhotoPeek } from "@/components/photo-peek";
 import { Polaroid, type PolaroidPhoto } from "@/components/polaroid";
@@ -35,10 +35,10 @@ export function CvEntry({ id, title, description, photo, photoLabel, tilt = -1.5
   const peeks = Boolean(photo) && peek.enabled;
 
   return (
-    <article
+    <motion.article
       id={id}
       // Negative margin + padding: room for the pulse when a link jumps here
-      className="-mx-2.5 scroll-mt-24 rounded-lg px-2.5 pt-0.5 pb-3.5"
+      className="group/entry -mx-2.5 scroll-mt-24 rounded-lg px-2.5 pt-0.5 pb-3.5"
       // The photo follows the cursor over the entry, but steps aside over the
       // badge row (gaps included), so it never covers what is about to be clicked
       onPointerOver={
@@ -51,6 +51,10 @@ export function CvEntry({ id, title, description, photo, photoLabel, tilt = -1.5
           : undefined
       }
       onPointerLeave={peeks ? peek.hide : undefined}
+      // Drives the inline photo's lift (same as the project cards on /tech-stack)
+      initial="rest"
+      animate="rest"
+      whileHover="hover"
     >
       <h3 className="flex items-center gap-2 font-medium text-balance">
         {title}
@@ -68,15 +72,27 @@ export function CvEntry({ id, title, description, photo, photoLabel, tilt = -1.5
       {photo && (
         // Phones and touch screens: the photo sits in the entry, straight (only
         // the hover peek is tilted)
-        <div className="mt-3 mb-1 w-fit pointer-fine:md:hidden">
-          <Polaroid photo={{ ...photo, aspect: "landscape" }} size="md" reveal reducedMotion={reducedMotion ?? false} />
-        </div>
+        <motion.div
+          className="mt-3 mb-1 w-fit pointer-fine:md:hidden"
+          // Lifts a little while the entry is hovered
+          variants={{ rest: { y: 0, scale: 1 }, hover: reducedMotion ? { y: 0, scale: 1 } : { y: -3, scale: 1.03 } }}
+          transition={{ type: "spring", stiffness: 320, damping: 24 }}
+        >
+          <Polaroid
+            photo={{ ...photo, aspect: "landscape" }}
+            size="md"
+            reveal
+            reducedMotion={reducedMotion ?? false}
+            // Flat until the entry is hovered
+            className="transition-shadow duration-300 ease-out group-hover/entry:shadow-sm"
+          />
+        </motion.div>
       )}
       {footer && (
         <div data-cv-badges className="mt-3 flex flex-wrap items-center gap-1.5">
           {footer}
         </div>
       )}
-    </article>
+    </motion.article>
   );
 }

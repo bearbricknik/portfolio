@@ -65,7 +65,7 @@ export function ProjectCard({
     <motion.article
       ref={ref}
       id={id}
-      className={cn("grid gap-x-5 gap-y-4 border-b py-5 last:border-b-0 sm:grid-cols-[auto_1fr]", className)}
+      className={cn("group/card grid gap-x-5 gap-y-4 border-b py-5 last:border-b-0 sm:grid-cols-[auto_1fr]", className)}
       initial="hidden"
       animate={visible ? "shown" : "hidden"}
       // Not interactive until it has appeared (e.g. links, the back button)
@@ -93,6 +93,8 @@ export function ProjectCard({
             size="md"
             priority={priority}
             reveal
+            // Flat until the card is hovered, then it lifts off the page
+            className="transition-shadow duration-300 ease-out group-hover/card:shadow-sm"
           />
         ) : (
           // Same footprint as the polaroid, so the texts line up next to each other;

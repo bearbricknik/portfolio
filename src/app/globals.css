@@ -398,3 +398,22 @@ html .maplibregl-map {
     animation: none;
   }
 }
+
+/* Contribution calendar: once revealed ([data-revealed] on the figure), each
+   active day's shade grows out of its empty square, in a diagonal wave
+   (delays per day from contribution-graph.tsx). Only opacity and scale, so
+   the few hundred squares stay on the compositor. */
+[data-revealed] .contribution-ink {
+  animation: contribution-ink-in 700ms cubic-bezier(0.23, 1, 0.32, 1) var(--ink-delay, 0ms) both;
+}
+@keyframes contribution-ink-in {
+  from {
+    opacity: 0;
+    scale: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-revealed] .contribution-ink {
+    animation: none;
+  }
+}

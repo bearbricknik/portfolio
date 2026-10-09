@@ -145,6 +145,8 @@ export function PhotoPeekProvider({ children }: { children: ReactNode }) {
                   size="md"
                   reveal
                   reducedMotion={reducedMotion ?? false}
+                  // Floats above the page
+                  className="shadow-md"
                 />
               )}
             </motion.div>

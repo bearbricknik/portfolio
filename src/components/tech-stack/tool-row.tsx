@@ -48,7 +48,7 @@ export function ToolRow({ id, name, summary, mark, skill, description, footer }:
     <motion.li
       ref={ref}
       id={id}
-      className="border-b"
+      className="border-b last:border-b-0"
       variants={{
         hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(4px)" },
         shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },

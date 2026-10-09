@@ -60,6 +60,25 @@ function updateEdgeFade(element: HTMLElement) {
   element.style.setProperty("--fade-end", element.scrollLeft < end - 1 ? EDGE_FADE : "0px");
 }
 
+// Reveal choreography (ms): a diagonal wave runs through the weeks once the
+// calendar has started fading in, with a little seeded scatter per day so it
+// feels inked rather than mechanical
+const INK_START = 180;
+const INK_PER_WEEK = 12;
+const INK_PER_WEEKDAY = 26;
+const INK_SCATTER = 70;
+
+/**
+ * When a day's shade appears. The wave starts at the week you see first: the
+ * oldest when everything fits, the latest when it scrolls (phones start there)
+ */
+function inkDelay(index: number, weeks: number, scroll: boolean) {
+  const week = Math.floor(index / 7);
+  const fromStart = scroll ? weeks - 1 - week : week;
+  const scatter = ((index * 37) % 11) / 10;
+  return Math.round(INK_START + fromStart * INK_PER_WEEK + (index % 7) * INK_PER_WEEKDAY + scatter * INK_SCATTER);
+}
+
 type ContributionGraphProps = RevealGateOptions & { className?: string };
 
 /**
@@ -145,16 +164,24 @@ function Calendar({ after, waitForStreams, className }: ContributionGraphProps) 
   }, [days, weeks, size]);
 
   // The days only change with the data or once measured, not when the
-  // calendar appears or resizes
+  // calendar appears or resizes. Every day is an empty square; active days get
+  // their shade as an inner square that "inks in" on reveal (see globals.css)
   const cells = useMemo(
     () =>
-      days.map((day) => (
+      days.map((day, index) => (
         <span
           key={day.date}
-          className={cn("block aspect-square rounded-[20%]", measured && "size-(--cell)", LEVEL_CLASS[day.level])}
-        />
+          className={cn("block aspect-square rounded-[20%]", measured && "size-(--cell)", LEVEL_CLASS[0])}
+        >
+          {day.level > 0 && (
+            <span
+              className={cn("contribution-ink block size-full rounded-[inherit]", LEVEL_CLASS[day.level])}
+              style={{ "--ink-delay": `${inkDelay(index, weeks, scroll)}ms` } as React.CSSProperties}
+            />
+          )}
+        </span>
       )),
-    [days, measured],
+    [days, weeks, measured, scroll],
   );
 
   return (
@@ -167,8 +194,9 @@ function Calendar({ after, waitForStreams, className }: ContributionGraphProps) 
         hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, filter: "blur(4px)" },
         shown: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: EASE } },
       }}
-      // Not interactive before it has appeared
+      // Not interactive before it has appeared; starts the days' ink (globals.css)
       inert={!visible}
+      data-revealed={visible || undefined}
       style={
         size
           ? ({ "--cell": `${size.cell}px`, "--gap": `${size.gap}px` } as React.CSSProperties)

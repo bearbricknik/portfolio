@@ -13,8 +13,10 @@ import { getQueryClient } from "@/lib/query-client";
 // The intro streams first, then the commit calendar fades in, then the rest of
 // the text streams on (each waits for the one before)
 const INTRO_ID = "home-intro";
-// Time for the calendar to fade in before the next paragraph starts (ms)
-const AFTER_GRAPH_DELAY = 700;
+// Head start for the calendar before the next paragraph streams (ms): the text
+// begins while the calendar is still fading in and its squares fill in
+// alongside, so there's no idle moment between the two
+const AFTER_GRAPH_DELAY = 300;
 const AFTER_GRAPH_ID = "home-after-graph";
 
 export default async function Home() {
