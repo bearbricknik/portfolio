@@ -59,13 +59,10 @@ function ThemeToggler({
     effective: ThemeSelection;
     resolved: Resolved;
   }>(null);
-  const [current, setCurrent] = React.useState<{
-    effective: ThemeSelection;
-    resolved: Resolved;
-  }>({
-    effective: theme,
-    resolved: resolvedTheme,
-  });
+  // What the button shows and toggles from: the theme being switched to while
+  // a switch runs, otherwise the actual theme (never a copy of it, which goes
+  // stale when the theme changes elsewhere, e.g. in the other language's tree)
+  const current = preview ?? { effective: theme, resolved: resolvedTheme };
 
   React.useEffect(() => {
     if (
@@ -85,7 +82,6 @@ function ThemeToggler({
     async (theme: ThemeSelection) => {
       const resolved = theme === 'system' ? getSystemEffective() : theme;
 
-      setCurrent({ effective: theme, resolved });
       onImmediateChange?.(theme);
 
       if (theme === 'system' && resolved === resolvedTheme) {
