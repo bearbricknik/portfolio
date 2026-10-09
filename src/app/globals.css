@@ -285,18 +285,11 @@
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   opacity: 0;
-}
-
-.intro-path-h {
+  /* Per stroke (set inline by IntroOverlay): when it's drawn, how fast, and
+     how it fades in at the start */
   animation:
-    intro-draw var(--intro-h-draw) ease-in-out forwards,
-    intro-fade-in 0.4s forwards;
-}
-
-.intro-path-ello {
-  animation:
-    intro-draw var(--intro-ello-draw) ease-in-out var(--intro-ello-delay) forwards,
-    intro-fade-in 0.7s var(--intro-ello-delay) forwards;
+    intro-draw var(--draw-duration) var(--draw-easing) var(--draw-delay) forwards,
+    intro-fade-in var(--draw-fade) var(--draw-delay) forwards;
 }
 
 @keyframes intro-draw {
