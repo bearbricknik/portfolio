@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- "d." in Geist Medium (as paths, no font needed); flips with the browser's theme -->
+  <style>
+    .bg { fill: #0a0a0a; }
+    .d { fill: #fafafa; }
+    .dot { fill: #a3a3a3; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #fafafa; }
+      .d { fill: #0a0a0a; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14.08"/>
+  <path class="d" d="M28.5 46.5Q25.8 46.5 23.8 45.1Q21.8 43.8 20.7 41.3Q19.7 38.8 19.7 35.4Q19.7 32.1 20.7 29.6Q21.8 27.1 23.8 25.8Q25.8 24.4 28.5 24.4Q30.7 24.4 32.4 25.3Q34.1 26.2 34.9 27.9L34.9 17.8L39.1 17.8L39.1 46L35.2 46L35.1 42.8Q34.2 44.6 32.5 45.5Q30.7 46.5 28.5 46.5ZM29.6 42.8Q32.2 42.8 33.6 40.9Q34.9 38.9 34.9 35.4Q34.9 31.9 33.6 30.0Q32.2 28.1 29.6 28.1Q27.0 28.1 25.5 30.0Q24.0 32.0 24.0 35.4Q24.0 38.8 25.5 40.8Q27.0 42.8 29.6 42.8Z"/>
+  <path class="dot" d="M46.8 46L41.7 46L41.7 41.0L46.8 41.0Z"/>
+</svg>
