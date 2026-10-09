@@ -4,12 +4,11 @@ import { useEffect, useRef, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
-import { setLocale } from "@/i18n/actions";
 import { LOCALE_COOKIE } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import { useLocaleAlternatesStore } from "@/stores/locale-alternates-store";
 
-// Same cookie as the server action sets
+// The proxy reads this cookie and serves the prerendered page in that language
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 export function LocaleSwitcher({ className }: { className?: string }) {
@@ -36,16 +35,18 @@ export function LocaleSwitcher({ className }: { className?: string }) {
   }, [pathname, router]);
 
   const switchLocale = () => {
+    document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
     if (!alternatePath || alternatePath === pathname) {
       // Same address in both languages (also a post without a translation of
-      // its address): re-render the current route in the new language
-      startTransition(() => setLocale(target));
+      // its address): fetch the current route again; with the new cookie the
+      // proxy serves the other language's version (and the router's cache of
+      // the old language is dropped)
+      startTransition(() => router.refresh());
       return;
     }
-    // The page has its own address in the other language (e.g. a post): set
-    // the cookie and go there. The navigation is a transition: the old post
-    // stays until the new one is ready, which then fades in (no blank page).
-    document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
+    // The page has its own address in the other language (e.g. a post): go
+    // there. The navigation is a transition: the old post stays until the new
+    // one is ready, which then fades in (no blank page).
     arriving.current = alternatePath;
     startTransition(() => router.replace(alternatePath, { scroll: false }));
   };

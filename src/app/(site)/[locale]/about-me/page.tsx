@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { useLocale, useTranslations } from "next-intl";
+import { cacheLife } from "next/cache";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { AboutIntro } from "@/components/about-intro";
 import { PolaroidFan } from "@/components/polaroid-fan";
@@ -16,9 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ namespace: "AboutPage", path: "/about-me" });
 }
 
-// Outside the component on purpose: reading the clock is a side effect. The
-// page is rendered per request (cookie-based locale), so this is the request time.
-const renderTime = () => Date.now();
+// When the page was rendered: the age counter starts here on the server and in
+// the browser alike (no hydration mismatch), and its first tick rolls the
+// numbers on to the current time. The prerendered page is renewed daily.
+async function renderTime() {
+  "use cache";
+  cacheLife("days");
+  return Date.now();
+}
 
 // The story streams up to the golf paragraph, then the golf photos are dealt
 // in, then the last paragraph streams on (each waits for the one before)
@@ -33,9 +39,8 @@ const AFTER_FAN_DELAY = 700;
 // Order matches `AboutPage.golfPhotos` in the messages (the photo of me sits in the middle)
 const GOLF_PHOTOS = [golf2, golf3, golf1, golf4, golf5, golf6];
 
-export default function AboutMe() {
-  const t = useTranslations("AboutPage");
-  const locale = useLocale();
+export default async function AboutMe() {
+  const [t, locale] = await Promise.all([getTranslations("AboutPage"), getLocale()]);
 
   return (
     <section className="flex flex-col gap-6">
@@ -43,7 +48,7 @@ export default function AboutMe() {
       <PageJsonLd namespace="AboutPage" path="/about-me" type="ProfilePage" />
 
       {/* Server render time: the age counter starts from the same moment (no hydration mismatch) */}
-      <AboutIntro id={INTRO_ID} withAge story={["p1", "p2", "p3"]} renderedAt={renderTime()} />
+      <AboutIntro id={INTRO_ID} withAge story={["p1", "p2", "p3"]} renderedAt={await renderTime()} />
 
       {/* Golf photos right below the golf paragraph, dealt in once it has streamed */}
       <PolaroidFan

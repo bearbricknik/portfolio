@@ -1,14 +1,11 @@
 import type { MetadataRoute } from "next";
+import { cacheLife } from "next/cache";
 
 import { locales } from "@/i18n/config";
-import { postSitemapOptions } from "@/lib/blog-queries";
+import { getPostSlugs } from "@/lib/blog-data.server";
 import { postAlternates, postUrl } from "@/lib/blog-urls";
-import { getQueryClient } from "@/lib/query-client";
 import { ROUTES, type AppRoute } from "@/lib/routes";
 import { siteConfig } from "@/lib/site";
-
-// Rebuilt at most once an hour, so new posts show up without a deploy
-export const revalidate = 3600;
 
 /**
  * Pages from ROUTES, then every blog post once per language: each entry lists
@@ -16,6 +13,10 @@ export const revalidate = 3600;
  * connect /blog/<slug-de> and /blog/<slug-en>.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Cached like the posts it lists: rebuilt when they change (webhook) or hourly
+  "use cache";
+  cacheLife("hours");
+
   const pages = (ROUTES as AppRoute[])
     .filter((route) => !route.excludeFromSitemap)
     .map(({ href, changeFrequency = "monthly", priority = 0.8 }) => ({
@@ -25,8 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority,
     }));
 
-  // The same query options as everywhere else; the sitemap has to wait for them
-  const posts = await getQueryClient().fetchQuery(postSitemapOptions());
+  const posts = await getPostSlugs();
 
   const postEntries = posts.flatMap(({ slugs, _updatedAt }) => {
     const languages = postAlternates(slugs);

@@ -10,20 +10,30 @@ import { SanityImage } from "@/components/sanity-image";
 import { SectionHeading } from "@/components/section-heading";
 import type { Locale } from "@/i18n/config";
 import { CATEGORY_ICON, COVER_RATIO, readingMinutes } from "@/lib/blog";
-import { blogPostOptions } from "@/lib/blog-queries";
+import { getPost as fetchPost, getPostSlugs } from "@/lib/blog-data.server";
 import { postAlternates } from "@/lib/blog-urls";
-import { getQueryClient } from "@/lib/query-client";
 import { urlFor } from "@/sanity/lib/image";
 
-// Read through TanStack Query: generateMetadata and the page share the
-// request's query client, so the post is fetched once
+// Cached read (blog-data.server.ts): generateMetadata and the page share it
 async function getPost(slug: string) {
   const locale = (await getLocale()) as Locale;
-  const post = await getQueryClient().fetchQuery(blogPostOptions(decodeURIComponent(slug), locale));
+  const post = await fetchPost(decodeURIComponent(slug), locale);
   return { post, locale };
 }
 
-export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): Promise<Metadata> {
+/**
+ * Every post is prerendered in both languages under each of its addresses
+ * (the other language's address redirects to this one's). Posts published
+ * later are rendered on their first visit and cached from then on.
+ */
+export async function generateStaticParams() {
+  const posts = await getPostSlugs();
+  const slugs = [...new Set(posts.flatMap(({ slugs }) => [slugs.de, slugs.en]).filter((slug) => slug !== null))];
+  // At least one entry is required; without posts it's a page that doesn't exist (404)
+  return slugs.length ? slugs.map((slug) => ({ slug })) : [{ slug: "_" }];
+}
+
+export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const { post, locale } = await getPost(slug);
   if (!post) return {};
@@ -54,7 +64,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
  * category, date and reading time; the title; the cover; the excerpt as
  * the lead; the text.
  */
-export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">) {
+export default async function BlogPostPage({ params }: PageProps<"/[locale]/blog/[slug]">) {
   const { slug } = await params;
   const { post, locale } = await getPost(slug);
   if (!post) notFound();

@@ -1,20 +1,20 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { formatForDisplay, useHotkey } from "@tanstack/react-hotkeys";
 import { useTranslations } from "next-intl";
 
 import { HandwrittenNote } from "@/components/handwritten-note";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { cn } from "@/lib/utils";
 
-// ⌘K on macOS, Ctrl+K on Windows/Linux ("Mod" resolves per platform)
-const HOTKEY = "Mod+K";
+// ⌘K on Apple devices, Ctrl+K elsewhere
 const TARGET = "/about-me";
 
 const subscribe = () => () => {};
+
+const isApple = () => /mac|iphone|ipad/i.test(navigator.platform || navigator.userAgent);
 
 /**
  * Key labels for the visitor's platform, e.g. "⌘ K" or "Ctrl K". Only known in
@@ -26,7 +26,9 @@ function useHotkeyKeys() {
     subscribe,
     () =>
       window.matchMedia("(hover: hover) and (pointer: fine)").matches
-        ? formatForDisplay(HOTKEY, { parts: true }).join(" ")
+        ? isApple()
+          ? "⌘ K"
+          : "Ctrl K"
         : null,
     () => null,
   );
@@ -39,7 +41,17 @@ export function CommandHint({ className }: { className?: string }) {
   const t = useTranslations("Controls");
   const keys = useHotkeyKeys();
 
-  useHotkey(HOTKEY, () => router.push(TARGET), { requireReset: true });
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const mod = isApple() ? event.metaKey : event.ctrlKey;
+      // Held down (auto-repeat) counts once
+      if (!mod || event.repeat || event.altKey || event.shiftKey || event.key.toLowerCase() !== "k") return;
+      event.preventDefault();
+      router.push(TARGET);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [router]);
 
   if (!keys) return null;
 
@@ -61,7 +73,7 @@ export function CommandHint({ className }: { className?: string }) {
       <Link
         href={TARGET}
         aria-label={t("aboutMe")}
-        aria-keyshortcuts={HOTKEY.replace("Mod", keys[0] === "⌘" ? "Meta" : "Control")}
+        aria-keyshortcuts={keys[0] === "⌘" ? "Meta+K" : "Control+K"}
         // A flex box of exactly the Kbd height
         className="flex rounded-md opacity-60 transition-opacity hover:opacity-100 focus-visible:opacity-100"
       >

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { connection, NextResponse } from "next/server";
 
 import { getContributions, GITHUB_REVALIDATE } from "@/lib/github/contributions.server";
 
@@ -9,6 +9,8 @@ import { getContributions, GITHUB_REVALIDATE } from "@/lib/github/contributions.
  * the fetch cache, the response by the CDN, both hourly.
  */
 export async function GET() {
+  // Answered per request (never prerendered), from the cached calendar
+  await connection();
   try {
     const calendar = await getContributions();
     return NextResponse.json(calendar, {

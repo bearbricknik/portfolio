@@ -4,7 +4,6 @@ import { isLocale, locales } from "@/i18n/config";
 import { renderOgImage } from "@/lib/og-image";
 
 // Both languages are rendered once at build time
-export const dynamic = "force-static";
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }

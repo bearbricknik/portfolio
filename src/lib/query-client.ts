@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { cache } from "react";
 
-function makeQueryClient() {
+export function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {

@@ -30,6 +30,9 @@ export function PostCard({ post, pinnedLabel, priority = false, className }: Pos
   return (
     <Link
       href={`/blog/${post.slug}`}
+      // Not just the post page's shell: the post itself (prerendered) is
+      // loaded once the card is in view, so opening it is instant
+      prefetch
       // The card's text makes no good cursor label: show the pointing hand instead
       data-cursor="pointer"
       className={cn(

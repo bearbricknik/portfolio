@@ -1,5 +1,7 @@
 import "server-only";
 
+import { cacheLife, cacheTag } from "next/cache";
+
 import { smoothContributions, withLevels } from "@/lib/github/calendar";
 import type { ContributionCalendar } from "@/lib/github/types";
 
@@ -49,8 +51,6 @@ async function fetchAccount({ token, login }: Account) {
     method: "POST",
     headers: { authorization: `bearer ${token}`, "content-type": "application/json", "user-agent": "huberdominik.com" },
     body: JSON.stringify({ query: QUERY, variables: { login } }),
-    // Cached on the server; cleared hourly (or by tag)
-    next: { revalidate: GITHUB_REVALIDATE, tags: [GITHUB_TAG] },
     // A hanging GitHub must not hold up the request (failures aren't cached)
     signal: AbortSignal.timeout(FETCH_TIMEOUT),
   });
@@ -68,6 +68,12 @@ async function fetchAccount({ token, login }: Account) {
  * only when every account fails does this throw.
  */
 export async function getContributions(): Promise<ContributionCalendar> {
+  // Cached on the server and prerendered into the home page; refreshed hourly
+  // (or by tag). A failure throws and isn't cached.
+  "use cache";
+  cacheLife("hours");
+  cacheTag(GITHUB_TAG);
+
   const configured = accounts();
   if (!configured.length) throw new Error("No GitHub accounts configured (GITHUB_TOKEN_<NAME> + GITHUB_USERNAME_<NAME>)");
 

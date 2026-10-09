@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Nothing_You_Could_Do } from "next/font/google";
@@ -19,7 +19,7 @@ import { ogLocales } from "@/lib/metadata";
 import { ogImageMetadata } from "@/lib/og-images";
 import { siteConfig } from "@/lib/site";
 import { siteGraph } from "@/lib/structured-data";
-import "../globals.css";
+import "../../globals.css";
 
 // Handwriting for HandwrittenNote (`font-handwriting`); swap the font here to change it everywhere
 const handwriting = Nothing_You_Could_Do({
@@ -76,6 +76,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// The only message namespaces client components read (useTranslations in a
+// "use client" file); everything else is rendered on the server and stays out
+// of the page's payload. Add a namespace here when a client component needs it.
+const CLIENT_NAMESPACES = ["Controls", "Nav", "AboutPage", "ContributionGraph"] as const;
+
+// Every page exists once per language; the proxy picks the visitor's (src/proxy.ts)
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export const viewport: Viewport = {
   // Browser UI color, matches the dark (default) and light background
   themeColor: [
@@ -86,10 +96,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/[locale]">) {
   const locale = await getLocale();
   const tSite = await getTranslations("Site");
   const tMeta = await getTranslations("Metadata");
+  const messages = await getMessages();
+  const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((namespace) => [namespace, messages[namespace]]));
 
   return (
     // next-themes sets the theme class on <html> before hydration
@@ -103,7 +115,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <ServiceWorkerCleanup />
         {/* The person and the site, for search engines; pages add their own page + breadcrumb */}
         <JsonLd data={siteGraph({ locale, role: tSite("role"), description: tMeta("description") })} />
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <Providers>
             {/* Viewport-sized frame, independent of the body's height */}
             <div className="fixed inset-0 flex flex-col p-6">

@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  // Pages are prerendered (per language, see src/proxy.ts) with cached data
+  // ("use cache"); only what can't be cached streams in at request time
+  cacheComponents: true,
+  // A link prefetches the page's static shell once per route, so navigating
+  // shows it instantly
+  partialPrefetching: true,
   images: {
     // Smaller files than JPEG/PNG for every optimized image
     formats: ["image/avif", "image/webp"],
