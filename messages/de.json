@@ -253,7 +253,7 @@
   "CvPage": {
     "title": "Lebenslauf",
     "description": "Lebenslauf von Dominik Huber, Full-Stack-Entwickler: Stationen, Projekte und Erfahrung.",
-    "intro": "Mein Lebenslauf, gelesen wie ein <strong>git log</strong>: der neueste Commit oben, der Initial Commit von 1997 ganz unten. Dazwischen ein Branch-Wechsel von Fahrzeug- und Motorentechnik zu Software, ein paar Gründungen als eigene Forks und heute der Main-Branch <strong>ProfitPath</strong>. Läuft seit 1997 und ist noch lange nicht fertig.\n\nAm Anfang dachte ich, mein Weg führt in den Automobilsektor. Irgendwann habe ich ihn dann in der Webentwicklung gefunden, und dort bin ich bis heute zu Hause.",
+    "intro": "Am Anfang dachte ich, mein Weg führt in den Automobilsektor. Irgendwann habe ich ihn dann in der Webentwicklung gefunden, und dort bin ich bis heute zu Hause.",
     "today": "heute",
     "hasPhoto": "mit Foto",
     "entries": {
