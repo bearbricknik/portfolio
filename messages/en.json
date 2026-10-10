@@ -109,7 +109,7 @@
   "TechStackPage": {
     "title": "Tech stack",
     "description": "The tools and technologies Dominik Huber works with: Next.js, React, TypeScript and more.",
-    "intro": "The tools I work with and the projects they're part of. It started with browser extensions in plain JavaScript; today it's platforms like <strong>ProfitPath</strong>, built with Next.js and TypeScript. Here you can see how well I know each tool and where I've used it.",
+    "intro": "The tools I work with and the projects they're part of. It started with browser extensions in plain JavaScript. Today I build platforms like <strong>ProfitPath</strong> with Next.js and TypeScript. Here you can see how well I know each tool and where I've used it.",
     "stats": {
       "tools": "{count, plural, one {tool} other {tools}}",
       "projects": "{count, plural, one {project} other {projects}}",
@@ -343,6 +343,6 @@
     "more": "More"
   },
   "Contact": {
-    "text": "The quickest way to reach me is a short <email>email</email>; I usually reply within a few hours. Got a project in mind that could be a good fit? Then book a 15-minute call directly on <cal>Cal.com</cal>."
+    "text": "The quickest way to reach me is a short <email>email</email>. I usually reply within a few hours. Got a project in mind that could be a good fit? Then book a 15-minute call directly on <cal>Cal.com</cal>."
   }
 }
