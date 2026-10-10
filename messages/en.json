@@ -253,7 +253,7 @@
   "CvPage": {
     "title": "Curriculum Vitae",
     "description": "CV of Dominik Huber, full-stack developer: roles, projects and experience.",
-    "intro": "My CV, read like a <strong>git log</strong>: the latest commit on top, the initial commit from 1997 at the very bottom. In between, a branch switch from automotive and engine technology to software, a few companies founded as forks of their own and today the main branch <strong>ProfitPath</strong>. Running since 1997 and far from finished.",
+    "intro": "My CV, read like a <strong>git log</strong>: the latest commit on top, the initial commit from 1997 at the very bottom. In between, a branch switch from automotive and engine technology to software, a few companies founded as forks of their own and today the main branch <strong>ProfitPath</strong>. Running since 1997 and far from finished.\n\nAt first, I thought I'd find my path in the automotive industry. Somewhere along the way, I found it in web development instead, and that's where I've been at home ever since.",
     "today": "today",
     "hasPhoto": "with photo",
     "entries": {
