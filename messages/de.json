@@ -235,7 +235,7 @@
       "nexosproxies": {
         "title": "NexosProxies",
         "period": "2021",
-        "description": "Proxy-Netzwerke. Eigene dedizierte Residential- und Datacenter-Proxies, Squid als Proxy-Server, Authentifizierung im Format IP:PORT:USER:PASSWORD und vieles mehr."
+        "description": "Proxy-Netzwerke. Eigene dedizierte Residential- und Datacenter-Proxies über IPv4 und IPv6, SOCKS5-Proxies, Squid als Proxy-Server, Authentifizierung im Format IP:PORT:USER:PASSWORD und vieles mehr."
       },
       "portfolio": {
         "title": "huberdominik.com",
