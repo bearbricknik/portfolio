@@ -279,7 +279,7 @@
       },
       "nexossolutions": {
         "title": "NexosSolutions",
-        "description": "My own browser extension in plain JavaScript, HTML and CSS, built with my team to cut costs."
+        "description": "Automated checkout software, built with my team: a browser extension in plain JavaScript, HTML and CSS and a mobile app built with Expo and React Native. Both make buying limited releases easier, with release automation, bot protection bypasses and much more."
       },
       "nexosproxies": {
         "title": "NexosProxies",
