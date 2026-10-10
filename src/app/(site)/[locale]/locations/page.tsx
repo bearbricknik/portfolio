@@ -41,7 +41,7 @@ export default function Locations() {
 
   return (
     // Same spacing as the paragraphs on the other pages
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="LocationsPage" path="/locations" type="ContactPage" extra={LOCATIONS_JSON_LD} />
       <PageIntro

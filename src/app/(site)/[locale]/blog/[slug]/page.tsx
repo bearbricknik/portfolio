@@ -85,7 +85,7 @@ export default async function BlogPostPage({ params }: PageProps<"/[locale]/blog
   return (
     // key: a new post (or this post in the other language) mounts fresh and
     // fades in; the old one stays until the new one is ready
-    <article key={localSlug ?? post.slugs.de} className="content-in flex flex-col gap-6">
+    <article key={localSlug ?? post.slugs.de} className="content-in flex flex-col gap-4">
       <LocaleAlternates paths={paths} />
       <SectionHeading
         as="div"

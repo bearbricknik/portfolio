@@ -43,7 +43,7 @@ export default async function AboutMe() {
   const [t, locale] = await Promise.all([getTranslations("AboutPage"), getLocale()]);
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-4">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="AboutPage" path="/about-me" type="ProfilePage" />
 

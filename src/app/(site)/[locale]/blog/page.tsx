@@ -25,7 +25,7 @@ export default async function Blog() {
   return (
     <BlogData locale={locale}>
       <BlogFilterProvider>
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col gap-4">
           <h1 className="sr-only">{t("title")}</h1>
           <PageJsonLd namespace="BlogPage" path="/blog" />
           <PageIntro

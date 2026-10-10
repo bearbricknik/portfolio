@@ -33,7 +33,7 @@ export default function TechStack() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-4">
       <h1 className="sr-only">{t("title")}</h1>
       <PageJsonLd namespace="TechStackPage" path="/tech-stack" />
       {/* Opened from a link on another page (e.g. a tool on /cv): jump to it */}
@@ -54,7 +54,7 @@ export default function TechStack() {
       />
 
       {/* gap-6: same space above and below the section heading as between the page blocks */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
         <SectionHeading id="tools" count={TECH_STACK_STATS.tools}>
           {t("sections.tools")}
         </SectionHeading>

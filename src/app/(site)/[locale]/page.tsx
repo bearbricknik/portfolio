@@ -59,7 +59,7 @@ export default async function Home() {
   };
 
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-4">
       {/* Page heading for screen readers and SEO; the visible name sits in the shared header */}
       <h1 className="sr-only">
         {tSite("name")} | {tSite("role")}
