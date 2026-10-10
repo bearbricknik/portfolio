@@ -267,7 +267,7 @@
       },
       "profitpath": {
         "title": "Full-stack developer at ProfitPath",
-        "description": "A tool that helps Amazon sellers find profitable products, updated daily from the data of more than 1,000 companies and suppliers. My focus: interface and user experience."
+        "description": "A platform for Amazon sellers. Finds profitable products for online arbitrage: more than 200 million products, updated daily and served from PostgreSQL, plus CSV scanning, competitor analysis, automatic profit calculation and much more."
       },
       "fourbyte": {
         "title": "Founder of FourByte GmbH",
