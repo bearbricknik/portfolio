@@ -6,9 +6,24 @@ import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 // next-themes' default localStorage key
 const STORAGE_KEY = "theme";
 
+/**
+ * next-themes' inline script sets the stored theme before the first paint. It
+ * only has to run in the server HTML. When a language switch renders the other
+ * language's root layout in the browser, React would warn about a script it
+ * never runs; marked as a data block there, it's left alone (the attribute
+ * differs from the server HTML, which next-themes already allows on it).
+ */
+const THEME_SCRIPT_PROPS = { type: typeof window === "undefined" ? "text/javascript" : "text/plain" };
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+      scriptProps={THEME_SCRIPT_PROPS}
+    >
       <ThemeSync />
       {children}
     </NextThemesProvider>
