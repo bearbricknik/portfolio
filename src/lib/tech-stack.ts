@@ -92,7 +92,7 @@ export const PROJECTS = [
   {
     key: "profitgo",
     mark: "PG",
-    tools: [],
+    tools: ["reactNative"],
     tags: ["chromeExtension", "ios", "android"],
     image: profitGoImage,
     hasDetails: true,

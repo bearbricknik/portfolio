@@ -146,7 +146,7 @@
       "reactNative": {
         "name": "React Native & Expo",
         "summary": "Native apps with React",
-        "description": "React components that render real native views, through the New Architecture with Fabric and TurboModules. Expo Router, EAS Build and over-the-air updates take care of navigation, builds and releases. That's how the NexosSolutions app for iOS and Android came out of a single codebase."
+        "description": "React components that render real native views, through the New Architecture with Fabric and TurboModules. Expo Router, EAS Build and over-the-air updates take care of navigation, builds and releases. That's how the NexosSolutions and ProfitGo apps for iOS and Android each came out of a single codebase."
       },
       "chromeExtensions": {
         "name": "Chrome extensions & Webpack",
