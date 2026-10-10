@@ -257,6 +257,10 @@
     "today": "today",
     "hasPhoto": "with photo",
     "entries": {
+      "dghGrundbesitz": {
+        "title": "Founder of DGH Grundbesitz eGbR",
+        "description": "Real estate and software under one roof: we rent out, lease and sell property and build the software for it ourselves. That way, management, tenants and contracts run digitally and largely automatically."
+      },
       "portfolio": {
         "title": "huberdominik.com",
         "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."

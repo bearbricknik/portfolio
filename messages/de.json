@@ -257,6 +257,10 @@
     "today": "heute",
     "hasPhoto": "mit Foto",
     "entries": {
+      "dghGrundbesitz": {
+        "title": "Gründer der DGH Grundbesitz eGbR",
+        "description": "Immobilien und Software unter einem Dach: Wir vermieten, verpachten und verkaufen Immobilien und bauen die Software dafür selbst. So laufen Verwaltung, Mieter und Verträge digital und größtenteils automatisch."
+      },
       "portfolio": {
         "title": "huberdominik.com",
         "description": "Mein Portfolio, die Seite, auf der du gerade bist: zweisprachig, mit Streaming-Text, Static und Partial Prerendering, Server-Side Rendering, Data Fetching mit TanStack Query und vielem mehr."
