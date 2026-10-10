@@ -62,7 +62,7 @@ export const TOOLS = [
 export type ToolKey = (typeof TOOLS)[number]["key"];
 
 /** Plain tags on projects (platforms etc.); names in `TechStackPage.tags` */
-export const PROJECT_TAGS = ["chromeExtension", "ios", "android", "proxyServers", "networking"] as const;
+export const PROJECT_TAGS = ["ios", "android", "proxyServers", "networking"] as const;
 export type ProjectTag = (typeof PROJECT_TAGS)[number];
 
 type ProjectDefinition = {
@@ -92,8 +92,8 @@ export const PROJECTS = [
   {
     key: "profitgo",
     mark: "PG",
-    tools: ["reactNative"],
-    tags: ["chromeExtension", "ios", "android"],
+    tools: ["chromeExtensions", "reactNative"],
+    tags: ["ios", "android"],
     image: profitGoImage,
     hasDetails: true,
   },

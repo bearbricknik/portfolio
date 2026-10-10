@@ -244,7 +244,6 @@
       }
     },
     "tags": {
-      "chromeExtension": "Chrome extension",
       "ios": "iOS",
       "android": "Android",
       "proxyServers": "Proxy servers",
