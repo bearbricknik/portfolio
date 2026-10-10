@@ -2,7 +2,7 @@
   "Metadata": {
     "siteName": "Dominik Huber",
     "title": "Dominik Huber | Full-Stack Developer",
-    "description": "Autodidaktischer Software-Entwickler aus Deutschland. Ich baue schnelle, präzise Interfaces mit Next.js, React und TypeScript."
+    "description": "Full-Stack-Entwickler mit Fokus auf UI/UX-Design, gebürtig aus Ulm und zu Hause in Köln. Ich baue schnelle, durchdachte Web-Apps mit Next.js, React und TypeScript."
   },
   "Controls": {
     "switchLocale": "Switch to English",
@@ -12,13 +12,13 @@
   },
   "Site": {
     "name": "Dominik Huber",
-    "role": "Full-Stack Developer",
+    "role": "Full-Stack Developer · UI/UX",
     "openForWork": "Offen für Projekte",
     "location": "in Deutschland"
   },
   "HomePage": {
-    "bio": "Hi, ich bin Dominik, UI/UX Design Engineer aus Ulm. Ursprünglich komme ich aus der Fahrzeug- und Motorentechnikbranche, doch meine eigentliche Leidenschaft habe ich irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS entwickelte ich meine ersten automatisierten Tools, die später über 1.000 Nutzern dabei halfen, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden mit der Zeit echte Produkte, und aus der Frage „Wie automatisiere ich das?“ wurde immer häufiger „Wie baue ich das besser?“.\n\nIch begann mich intensiver mit Backend-Systemen, APIs und skalierbarer Software zu beschäftigen und entwickelte schließlich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, die tausenden Nutzern Zugriff auf mehrere hundert Millionen Produktdaten ermöglichen.",
-    "bioAfterGraph": "Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man vielleicht nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt. Heute verbinde ich genau diese beiden Welten: Ich designe mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
+    "bio": "Hi, ich bin Dominik, Full-Stack-Entwickler mit Fokus auf UI/UX-Design. Gebürtig komme ich aus Ulm, zu Hause bin ich heute in Köln. Studiert habe ich Fahrzeug- und Motorentechnik, meine eigentliche Leidenschaft habe ich aber irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS habe ich meine ersten Tools gebaut, die später über 1.000 Nutzern geholfen haben, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden echte Produkte, und aus der Frage „Wie automatisiere ich das?“ wurde immer öfter „Wie baue ich das besser?“.\n\nDanach habe ich mich tiefer in Backend-Systeme, APIs und skalierbare Software eingearbeitet. Heute baue ich mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres> Anwendungen, über die Tausende Nutzer auf mehrere hundert Millionen Produktdaten zugreifen.",
+    "bioAfterGraph": "Ich liebe durchdachte Interfaces, gute Interaktionen und die kleinen Details, die man nicht bewusst wahrnimmt, deren Fehlen man aber sofort spürt. Genau dort treffen sich meine beiden Welten: Ich gestalte mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
   },
   "Socials": {
     "label": "Profile und Kontakt",
@@ -30,17 +30,17 @@
   "AboutPage": {
     "title": "Über mich",
     "intro": "Ich heiße Dominik und bin <years>{years}</years> <muted>Jahre</muted>, <days>{days}</days> <muted>{days, plural, one {Tag} other {Tage}}</muted> und <seconds>{seconds}</seconds> <muted>{seconds, plural, one {Sekunde} other {Sekunden}}</muted> jung{birthday, select, yes { (heute ist mein <cake>Geburtstag</cake>)} other {}}.",
-    "origin": "Ich komme gebürtig aus Ulm, Deutschland, und bin passionierter Full-Stack-Entwickler.",
+    "origin": "Geboren und aufgewachsen bin ich in Ulm, zu Hause bin ich heute in Köln.",
     "story": {
       "p1": "Ich verbringe wahrscheinlich mehr Zeit vor einem Bildschirm, als ich zugeben möchte. Aber immerhin meistens aus einem guten Grund. Ich liebe es zu programmieren, neue Ideen umzusetzen und aus einem Gedanken Schritt für Schritt etwas zu bauen, das am Ende tatsächlich funktioniert. Meistens jedenfalls.",
-      "p2": "Technologie interessiert mich aber auch weit über das Programmieren hinaus. Besonders <apple>Apple</apple> hat es mir angetan. Ich mag gutes Design, durchdachte Produkte und diese kleinen Details, über die sich vermutlich nur Menschen freuen, die viel zu lange auf Benutzeroberflächen schauen. Neue Apple-Produkte verfolge ich deshalb meistens mit einer Mischung aus Begeisterung und der Frage, ob ich das jetzt wirklich brauche. Die Antwort steht inzwischen in meinem Wohnzimmer: Ich besitze so ziemlich jedes Produkt und bin einer dieser Menschen, die ein ganzes Sideboard voller Apple-Kartons haben. Wegwerfen? Undenkbar, die sind schließlich auch gut designt.",
+      "p2": "Technologie interessiert mich aber auch weit über das Programmieren hinaus, besonders <apple>Apple</apple>. Seit dem iPhone 4 verfolge ich jedes neue Produkt mit einer Mischung aus Begeisterung und der Frage, ob ich das jetzt wirklich brauche. Die Antwort steht in meinem Wohnzimmer: ein ganzes Sideboard voller Apple-Kartons. Wegwerfen? Undenkbar, die sind schließlich auch gut designt.",
       "p3": "Wenn ich etwas Abstand vom Bildschirm brauche, zieht es mich gerne auf den <golf>Golfplatz</golf>. Ich mag die Mischung aus Ruhe, Konzentration und der Tatsache, dass dieser Sport einen regelmäßig daran erinnert, sich selbst nicht zu ernst zu nehmen. An manchen Tagen läuft alles genau so, wie man es sich vorgestellt hat, und an anderen ist man einfach froh, den Ball wiederzufinden. Damit der Kopf trotzdem frei bleibt, gehe ich außerdem regelmäßig joggen und ins Gym. Da weiß man wenigstens immer, wo das Gewicht liegt.",
       "p4": "Und dann ist da noch <latam>Lateinamerika</latam>. Mich packt dort jedes Mal die Reiselust, und ich komme selten zurück, ohne im Kopf schon die nächste Reise zu planen. Am meisten beeindrucken mich die Menschen: offen, herzlich und mit einer Leichtigkeit, die ansteckt. Man kommt als Fremder an und sitzt eine Stunde später mit am Tisch. Zu Hause laufen dann Cumbia und Bachata, beim Arbeiten, im Auto und auch dann noch, wenn aus „nur einem Song“ längst die ganze Playlist geworden ist."
     },
     "golfPhotos": [
       {
         "alt": "Fairway mit Sandbunker, zwei Golfcarts und Bergen im Hintergrund",
-        "title": "Bunker? Kennen wir uns"
+        "title": "Bunker? Wir kennen uns."
       },
       {
         "alt": "Weites Fairway in der tiefstehenden Sonne",
@@ -48,7 +48,7 @@
       },
       {
         "alt": "Dominik beim Abschlag auf dem Golfplatz",
-        "title": "das bin ich"
+        "title": "Das bin ich"
       },
       {
         "alt": "Golfbag am Hang über einem See in der Sonne",
@@ -63,17 +63,17 @@
         "title": "Der Teich hat gewonnen"
       }
     ],
-    "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus NRW. Werdegang, Golf und was mich antreibt."
+    "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus Köln, geboren in Ulm. Über Apple, Golf, Lateinamerika und was ihn antreibt."
   },
   "LocationsPage": {
     "title": "Orte",
-    "intro": "Ursprünglich komme ich aus dem Süden von Deutschland, genauer gesagt aus Ulm. Nach 26 Jahren wagte ich einen Neuanfang in einer neuen Stadt, Köln im <heart>Herzen</heart> von NRW, Deutschland. Heute bin ich weiterhin in NRW zu Hause.",
+    "intro": "Ursprünglich komme ich aus dem Süden Deutschlands, genauer gesagt aus Ulm. Nach 26 Jahren habe ich dort meine Koffer gepackt und in Köln neu angefangen. Die Stadt ist mir seitdem ans <heart>Herz</heart> gewachsen, und hier bin ich heute zu Hause.",
     "map": {
       "cologne": "Köln",
       "nersingen": "Nersingen"
     },
     "country": "Deutschland",
-    "description": "Von Ulm nach Köln: Herkunft, heutiges Zuhause und Kontakt zu Dominik Huber per E-Mail oder Cal.com."
+    "description": "Von Ulm nach Köln: wo Dominik Huber herkommt, wo er heute lebt und wie du ihn per E-Mail oder Cal.com erreichst."
   },
   "Nav": {
     "label": "Hauptnavigation",
@@ -109,7 +109,7 @@
   "TechStackPage": {
     "title": "Tech-Stack",
     "description": "Die Tools und Technologien, mit denen Dominik Huber arbeitet: Next.js, React, TypeScript und mehr.",
-    "intro": "Die Werkzeuge, mit denen ich arbeite, und die Projekte, in denen sie stecken. Angefangen mit Browser-Extensions in reinem JavaScript, heute Plattformen wie <strong>ProfitPath</strong> mit Next.js und TypeScript. Hier siehst du, was ich wie gut beherrsche und wo ich es eingesetzt habe.",
+    "intro": "Die Werkzeuge, mit denen ich arbeite, und die Projekte, in denen sie stecken. Angefangen hat es mit Browser-Extensions in reinem JavaScript, heute baue ich Plattformen wie <strong>ProfitPath</strong> mit Next.js und TypeScript. Hier siehst du, wie gut ich was beherrsche und wo ich es eingesetzt habe.",
     "stats": {
       "tools": "{count, plural, one {Werkzeug} other {Werkzeuge}}",
       "projects": "{count, plural, one {Projekt} other {Projekte}}",
@@ -166,12 +166,12 @@
       "python": {
         "name": "Python",
         "summary": "Scraping und Datenanalyse",
-        "description": "Eine Münchner Universität hat mich für ein Projekt engagiert, das Daten aus dem Web für Forschung und Lehre sammelt."
+        "description": "Mein Werkzeug für Scraping und Datenanalyse. Eine Münchner Universität hat mich dafür für ein Projekt engagiert, das Daten aus dem Web für Forschung und Lehre sammelt."
       },
       "go": {
         "name": "Go",
         "summary": "Schnelle Backends",
-        "description": "Extrem schnell und effizient. In einzelnen Projekten hat ein Go-Backend die Daten ans Frontend geliefert und die API-Requests bedient."
+        "description": "Für Backends, bei denen es auf jede Millisekunde ankommt. In einzelnen Projekten liefert ein Go-Backend die Daten ans Frontend und beantwortet die API-Requests."
       },
       "nodejs": {
         "name": "Node.js & Express",
@@ -186,12 +186,12 @@
       "tanstack": {
         "name": "TanStack",
         "summary": "Daten holen und zeigen",
-        "description": "Developer Experience zuerst: Query holt die Daten, Table zeigt sie in den großen Tabellen von ProfitPath. Auch diese Seite nutzt TanStack Query."
+        "description": "Query holt die Daten, Table zeigt sie, zum Beispiel in den großen Tabellen von ProfitPath. Auch diese Seite lädt ihre Daten mit TanStack Query."
       },
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relationale Daten",
-        "description": "Open-Source-Datenbank mit über 30 Jahren Entwicklung, bekannt für Zuverlässigkeit, Funktionsumfang und Performance."
+        "description": "Meine erste Wahl für relationale Daten. Auch Supabase, das bei ProfitPath die Anmeldung steuert, baut auf PostgreSQL auf."
       },
       "mongodb": {
         "name": "MongoDB",
@@ -211,7 +211,7 @@
       "betterAuth": {
         "name": "Better Auth",
         "summary": "Anmeldung, Open Source",
-        "description": "Das wohl umfassendste Open-Source-System für Authentifizierung in Web-Apps."
+        "description": "Anmeldung zum Selbsthosten, ohne Abhängigkeit von einem Anbieter. Meine Wahl, wenn ich die Authentifizierung selbst in der Hand haben will."
       }
     },
     "usedIn": "Eingesetzt in",
@@ -235,7 +235,7 @@
       "nexosproxies": {
         "title": "NexosProxies",
         "period": "2021",
-        "description": "Proxy-Netzwerk als Service. Ein eigenes IP-Proxy-Netzwerk, erst gegen die eigenen Kosten, dann als Service für andere in derselben Lage."
+        "description": "Proxy-Netzwerk als Service. Ein eigenes IP-Proxy-Netzwerk, erst um die eigenen Kosten zu senken, dann als Service für andere in derselben Lage."
       },
       "portfolio": {
         "title": "huberdominik.com",
@@ -271,8 +271,8 @@
         "description": "Das zweite Produkt der ProfitPath-Familie: Chrome-Extension sowie App für iOS und Android, die Produkte beim Besuch einer Website oder per Barcode analysiert."
       },
       "profitpath": {
-        "title": "UI/UX-Entwickler bei ProfitPath",
-        "description": "Ein Tool, mit dem Amazon-Seller profitable Produkte finden, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten."
+        "title": "Full-Stack-Entwickler bei ProfitPath",
+        "description": "Ein Tool, mit dem Amazon-Seller profitable Produkte finden, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten. Mein Schwerpunkt: Oberfläche und Nutzerführung."
       },
       "fourbyte": {
         "title": "FourByte GmbH mitgegründet",
@@ -321,7 +321,7 @@
       },
       "abitur": {
         "title": "Abitur",
-        "description": "Am Gymnasium in meiner Heimatstadt."
+        "description": "Der Abschluss nach neun Jahren Gymnasium."
       },
       "reisacher": {
         "title": "Schülerpraktikum bei Reisacher",
@@ -329,7 +329,7 @@
       },
       "school": {
         "title": "Gymnasium",
-        "description": "Das Gymnasium in meiner Heimatstadt, bis zum Abitur."
+        "description": "Neun Jahre in meiner Heimatstadt, bis zum Abitur."
       },
       "born": {
         "title": "pnpm install -g dominik",
@@ -343,6 +343,6 @@
     "more": "Mehr"
   },
   "Contact": {
-    "text": "Der schnellste Weg, um mit mir in Kontakt zu kommen, ist, mir eine simple <email>E-Mail</email> zu schreiben. Ich sollte innerhalb weniger Stunden antworten. Du hast ein Projekt im Kopf, das gut zu mir passen würde? Dann buch dir direkt einen 15-Minuten-Termin auf <cal>Cal.com</cal>"
+    "text": "Am schnellsten erreichst du mich mit einer kurzen <email>E-Mail</email>, meistens antworte ich innerhalb weniger Stunden. Du hast ein Projekt im Kopf, das zu mir passen könnte? Dann buch dir direkt einen 15-Minuten-Termin über <cal>Cal.com</cal>."
   }
 }

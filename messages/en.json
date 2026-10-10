@@ -2,7 +2,7 @@
   "Metadata": {
     "siteName": "Dominik Huber",
     "title": "Dominik Huber | Full-Stack Developer",
-    "description": "Self-taught software developer from Germany, building fast, precise interfaces with Next.js, React and TypeScript."
+    "description": "Full-stack developer with a focus on UI/UX design, born in Ulm and at home in Cologne. I build fast, thoughtful web apps with Next.js, React and TypeScript."
   },
   "Controls": {
     "switchLocale": "Auf Deutsch wechseln",
@@ -12,13 +12,13 @@
   },
   "Site": {
     "name": "Dominik Huber",
-    "role": "Full-Stack Developer",
+    "role": "Full-Stack Developer · UI/UX",
     "openForWork": "Open for work",
     "location": "in Germany"
   },
   "HomePage": {
-    "bio": "Hi, I'm Dominik, a UI/UX design engineer from Ulm, Germany. I originally come from the automotive and engine engineering industry, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first automation tools, which later helped more than 1,000 users buy limited releases. Over time, small scripts turned into real products, and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nI dug deeper into backend systems, APIs and scalable software, and eventually built applications with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> and <postgres>PostgreSQL</postgres> that give thousands of users access to several hundred million product records.",
-    "bioAfterGraph": "I love thoughtful interfaces, good interactions and the small details you might not consciously notice, but immediately miss when they're gone. Today I bring exactly these two worlds together: I design with an engineer's understanding and build with a designer's eye."
+    "bio": "Hi, I'm Dominik, a full-stack developer with a focus on UI/UX design. I was born in Ulm, and today I'm at home in Cologne. I studied automotive and engine engineering, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first tools, which later helped more than 1,000 users buy limited releases. Small scripts turned into real products, and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nAfter that, I dug deeper into backend systems, APIs and scalable software. Today I build applications with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> and <postgres>PostgreSQL</postgres> that give thousands of users access to several hundred million product records.",
+    "bioAfterGraph": "I love thoughtful interfaces, good interactions and the small details you don't consciously notice, but immediately miss when they're gone. That's exactly where my two worlds meet: I design with an engineer's understanding and build with a designer's eye."
   },
   "Socials": {
     "label": "Profiles and contact",
@@ -30,10 +30,10 @@
   "AboutPage": {
     "title": "About me",
     "intro": "My name is Dominik and I'm <years>{years}</years> <muted>years</muted>, <days>{days}</days> <muted>{days, plural, one {day} other {days}}</muted> and <seconds>{seconds}</seconds> <muted>{seconds, plural, one {second} other {seconds}}</muted> young{birthday, select, yes { (today is my <cake>birthday</cake>)} other {}}.",
-    "origin": "I was born in Ulm, Germany, and I'm a passionate full-stack developer.",
+    "origin": "I was born and raised in Ulm, and today I'm at home in Cologne.",
     "story": {
       "p1": "I probably spend more time in front of a screen than I'd like to admit. But at least it's usually for a good reason. I love writing code, turning new ideas into something real and building, step by step, a thought into something that actually works in the end. Most of the time, anyway.",
-      "p2": "My interest in technology goes far beyond programming, though. <apple>Apple</apple> in particular has won me over. I love good design, well-thought-out products and those small details that probably only delight people who spend far too long staring at user interfaces. So I usually follow new Apple products with a mix of excitement and the question of whether I really need them. The answer is sitting in my living room by now: I own pretty much every product, and I'm one of those people with an entire sideboard full of Apple boxes. Throw them away? Unthinkable. They're well designed too.",
+      "p2": "My interest in technology goes far beyond programming, though, especially when it comes to <apple>Apple</apple>. Since the iPhone 4, I've followed every new product with a mix of excitement and the question of whether I really need it. The answer is sitting in my living room: an entire sideboard full of Apple boxes. Throw them away? Unthinkable. They're well designed too.",
       "p3": "When I need a break from the screen, you'll often find me on the <golf>golf course</golf>. I like the mix of calm, focus and the fact that this sport regularly reminds you not to take yourself too seriously. Some days everything goes exactly as planned, and on others you're just happy to find your ball again. To clear my head on the other days, I also go running and hit the gym regularly. There, at least, you always know where the weight is.",
       "p4": "And then there's <latam>Latin America</latam>. Every trip there sparks my wanderlust, and I rarely come back without already planning the next one in my head. What impresses me most are the people: open, warm and with an ease that's contagious. You arrive as a stranger and an hour later you're sitting at the table with everyone. Back home it's Cumbia and Bachata, while I work, in the car and long after “just one song” has turned into the whole playlist."
     },
@@ -48,7 +48,7 @@
       },
       {
         "alt": "Dominik teeing off on the golf course",
-        "title": "that's me"
+        "title": "That's me"
       },
       {
         "alt": "Golf bag on a slope above a lake in the sun",
@@ -63,17 +63,17 @@
         "title": "The pond won"
       }
     ],
-    "description": "Who's behind the code: Dominik Huber, full-stack developer from NRW, Germany. Background, golf and what drives me."
+    "description": "Who's behind the code: Dominik Huber, a full-stack developer from Cologne, born in Ulm. On Apple, golf, Latin America and what drives him."
   },
   "LocationsPage": {
     "title": "Locations",
-    "intro": "Originally, I'm from the south of Germany, Ulm to be precise. After 26 years, I took the leap and started over in a new city: Cologne, in the <heart>heart</heart> of NRW, Germany. Today, NRW is still my home.",
+    "intro": "Originally, I'm from the south of Germany, Ulm to be precise. After 26 years, I packed my bags and started over in Cologne. The city has grown close to my <heart>heart</heart> since then, and it's where I'm at home today.",
     "map": {
       "cologne": "Cologne",
       "nersingen": "Nersingen"
     },
     "country": "Germany",
-    "description": "From Ulm to Cologne: Dominik Huber's roots, home today and how to get in touch by email or Cal.com."
+    "description": "From Ulm to Cologne: where Dominik Huber comes from, where he lives today and how to reach him by email or Cal.com."
   },
   "Nav": {
     "label": "Main navigation",
@@ -166,12 +166,12 @@
       "python": {
         "name": "Python",
         "summary": "Scraping and data analysis",
-        "description": "A university in Munich hired me for a project that collects data from the web for research and teaching."
+        "description": "My tool for scraping and data analysis. A university in Munich hired me for a project that collects data from the web for research and teaching."
       },
       "go": {
         "name": "Go",
         "summary": "Fast backends",
-        "description": "Extremely fast and efficient. In some projects a Go backend delivered the data to the frontend and handled the API requests."
+        "description": "For backends where every millisecond counts. In some projects, a Go backend delivers the data to the frontend and answers the API requests."
       },
       "nodejs": {
         "name": "Node.js & Express",
@@ -186,12 +186,12 @@
       "tanstack": {
         "name": "TanStack",
         "summary": "Fetching and showing data",
-        "description": "Developer experience first: Query fetches the data, Table shows it in ProfitPath's large tables. This site uses TanStack Query as well."
+        "description": "Query fetches the data, Table shows it, for example in ProfitPath's large tables. This site loads its data with TanStack Query as well."
       },
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relational data",
-        "description": "An open-source database with over 30 years of development, known for its reliability, feature set and performance."
+        "description": "My first choice for relational data. Supabase, which runs sign-in at ProfitPath, is built on PostgreSQL too."
       },
       "mongodb": {
         "name": "MongoDB",
@@ -211,7 +211,7 @@
       "betterAuth": {
         "name": "Better Auth",
         "summary": "Sign-in, open source",
-        "description": "Probably the most comprehensive open-source authentication system for web apps."
+        "description": "Self-hosted authentication without depending on a vendor. My choice when I want to keep authentication in my own hands."
       }
     },
     "usedIn": "Used in",
@@ -271,8 +271,8 @@
         "description": "The second product of the ProfitPath family: a Chrome extension and an app for iOS and Android that analyzes products when you visit a website or scan a barcode."
       },
       "profitpath": {
-        "title": "UI/UX developer at ProfitPath",
-        "description": "A tool that helps Amazon sellers find profitable products, updated daily from the data of more than 1,000 companies and suppliers."
+        "title": "Full-stack developer at ProfitPath",
+        "description": "A tool that helps Amazon sellers find profitable products, updated daily from the data of more than 1,000 companies and suppliers. My focus: interface and user experience."
       },
       "fourbyte": {
         "title": "Co-founded FourByte GmbH",
@@ -321,7 +321,7 @@
       },
       "abitur": {
         "title": "Abitur",
-        "description": "At the high school in my hometown."
+        "description": "The diploma after nine years of high school."
       },
       "reisacher": {
         "title": "School internship at Reisacher",
@@ -329,7 +329,7 @@
       },
       "school": {
         "title": "High school",
-        "description": "The high school in my hometown, up to the Abitur."
+        "description": "Nine years in my hometown, up to the Abitur."
       },
       "born": {
         "title": "pnpm install -g dominik",
@@ -343,6 +343,6 @@
     "more": "More"
   },
   "Contact": {
-    "text": "The fastest way to get in touch is to send me a simple <email>email</email>. I should reply within a few hours. Got a project in mind that would be a good fit? Then book a 15-minute call with me directly on <cal>cal.com</cal>"
+    "text": "The quickest way to reach me is a short <email>email</email>; I usually reply within a few hours. Got a project in mind that could be a good fit? Then book a 15-minute call directly on <cal>Cal.com</cal>."
   }
 }
