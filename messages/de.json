@@ -283,7 +283,7 @@
       },
       "nexosproxies": {
         "title": "NexosProxies",
-        "description": "Ein eigenes IP-Proxy-Netzwerk, erst für mich, dann als Service für andere in derselben Lage."
+        "description": "Ein eigenes IP-Proxy-Netzwerk, erst für mich, dann als Service für andere in derselben Lage. Technisch über IPv4 und IPv6, mit SOCKS5, Authentifizierung per USERNAME:PASSWORD, Squid als Proxy-Server und leistungsstarken dedizierten Servern."
       },
       "bachelor": {
         "title": "Bachelor of Science",

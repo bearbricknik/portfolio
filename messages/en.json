@@ -283,7 +283,7 @@
       },
       "nexosproxies": {
         "title": "NexosProxies",
-        "description": "My own IP proxy network, first for myself, then as a service for others in the same situation."
+        "description": "My own IP proxy network, first for myself, then as a service for others in the same situation. Technically over IPv4 and IPv6, with SOCKS5, USERNAME:PASSWORD authentication, Squid as the proxy server and powerful dedicated servers."
       },
       "bachelor": {
         "title": "Bachelor of Science",
