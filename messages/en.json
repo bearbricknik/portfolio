@@ -109,7 +109,7 @@
   "TechStackPage": {
     "title": "Tech stack",
     "description": "The tools and technologies Dominik Huber works with: Next.js, React, TypeScript and more.",
-    "intro": "The tools I work with and the projects they're part of. It started with browser extensions in plain JavaScript. Today I build platforms like <strong>ProfitPath</strong> with Next.js and TypeScript. Here you can see how well I know each tool and where I've used it.",
+    "intro": "The tools I work with and the projects they're part of. It all started with JavaScript and CSS, without any types. Today I build applications that are <strong>type-safe end to end</strong>, from frontend to backend: from sign-in and payments to databases handling millions of reads and writes. These aren't all the tools I use, but they're the essential ones.",
     "stats": {
       "tools": "{count, plural, one {tool} other {tools}}",
       "projects": "{count, plural, one {project} other {projects}}",
@@ -191,7 +191,7 @@
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relational data",
-        "description": "My first choice for relational data. Supabase, which runs sign-in at ProfitPath, is built on PostgreSQL too."
+        "description": "My first choice for relational data. At ProfitPath, PostgreSQL serves more than 200 million products, updated daily."
       },
       "mongodb": {
         "name": "MongoDB",
@@ -220,27 +220,27 @@
       "profitpath": {
         "title": "ProfitPath",
         "period": "2026",
-        "description": "A platform for Amazon sellers. Finds profitable products for online arbitrage: supplier search, wholesale scanning, competitor analysis and automatic profit calculation, updated daily from the data of over 1,000 companies and suppliers."
+        "description": "A platform for Amazon sellers. Finds profitable products for online arbitrage: more than 200 million products, updated daily and served from PostgreSQL, plus CSV scanning, competitor analysis, automatic profit calculation and much more."
       },
       "profitgo": {
         "title": "ProfitGo",
         "period": "2024",
-        "description": "Product analysis on the go. The second product of the ProfitPath family: analyze products as soon as you visit a website or scan a barcode."
+        "description": "For retail arbitrage. The second product in the ProfitPath family: product analysis, automatic profit calculation, returns handling, product tracking and much more."
       },
       "nexossolutions": {
         "title": "NexosSolutions",
         "period": "2022",
-        "description": "Automated purchasing software. A browser extension in plain JavaScript, HTML and CSS, plus an app for Android and iOS and its own API with a database behind it."
+        "description": "Automated checkout software. A browser extension and a mobile app built with Expo and React Native that make buying limited releases easier: release automation, bot protection bypasses and much more."
       },
       "nexosproxies": {
         "title": "NexosProxies",
         "period": "2021",
-        "description": "A proxy network as a service. My own IP proxy network, first to cut my own costs, then as a service for others in the same situation."
+        "description": "Proxy networks. My own dedicated residential and datacenter proxies, Squid as the proxy server, authentication in the IP:PORT:USER:PASSWORD format and much more."
       },
       "portfolio": {
         "title": "huberdominik.com",
         "period": "2026 – today",
-        "description": "My portfolio, the site you're on right now: bilingual without language URLs, text that streams in, a map with a driving car and a navigation written as a sentence."
+        "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."
       }
     },
     "tags": {
@@ -260,7 +260,7 @@
     "entries": {
       "portfolio": {
         "title": "huberdominik.com",
-        "description": "My portfolio, the site you're on right now: bilingual without language URLs, text that streams in, a map with a driving car and a navigation that's a sentence."
+        "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."
       },
       "stillBuilding": {
         "title": "ProfitPath, far from finished",

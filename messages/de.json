@@ -109,7 +109,7 @@
   "TechStackPage": {
     "title": "Tech-Stack",
     "description": "Die Tools und Technologien, mit denen Dominik Huber arbeitet: Next.js, React, TypeScript und mehr.",
-    "intro": "Die Werkzeuge, mit denen ich arbeite, und die Projekte, in denen sie stecken. Angefangen hat es mit Browser-Extensions in reinem JavaScript, heute baue ich Plattformen wie <strong>ProfitPath</strong> mit Next.js und TypeScript. Hier siehst du, wie gut ich was beherrsche und wo ich es eingesetzt habe.",
+    "intro": "Die Werkzeuge, mit denen ich arbeite, und die Projekte, in denen sie stecken. Angefangen hat alles mit JavaScript und CSS, ganz ohne Typen. Heute baue ich Anwendungen, die vom Frontend bis zum Backend <strong>durchgehend typsicher</strong> sind: von der Anmeldung über die Bezahlung bis zu Datenbanken, die Millionen Lese- und Schreibzugriffe stemmen. Das sind nicht alle Tools, mit denen ich arbeite, aber die wesentlichen.",
     "stats": {
       "tools": "{count, plural, one {Werkzeug} other {Werkzeuge}}",
       "projects": "{count, plural, one {Projekt} other {Projekte}}",
@@ -191,7 +191,7 @@
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relationale Daten",
-        "description": "Meine erste Wahl für relationale Daten. Auch Supabase, das bei ProfitPath die Anmeldung steuert, baut auf PostgreSQL auf."
+        "description": "Meine erste Wahl für relationale Daten. Bei ProfitPath liefert PostgreSQL über 200 Millionen Produkte aus, täglich aktualisiert."
       },
       "mongodb": {
         "name": "MongoDB",
@@ -220,27 +220,27 @@
       "profitpath": {
         "title": "ProfitPath",
         "period": "2026",
-        "description": "Plattform für Amazon-Seller. Findet profitable Produkte für Online-Arbitrage: Lieferantensuche, Wholesale-Scanning, Wettbewerbsanalyse und automatische Gewinnberechnung, täglich aktualisiert aus Daten von über 1.000 Unternehmen und Lieferanten."
+        "description": "Plattform für Amazon-Seller. Findet profitable Produkte für Online-Arbitrage: über 200 Millionen Produkte, täglich aktualisiert und aus PostgreSQL ausgeliefert, dazu CSV-Scanning, Wettbewerbsanalyse, automatische Gewinnberechnung und vieles mehr."
       },
       "profitgo": {
         "title": "ProfitGo",
         "period": "2024",
-        "description": "Produkt-Analyse unterwegs. Das zweite Produkt der ProfitPath-Familie: Produkte analysieren, sobald man eine Website besucht oder einen Barcode scannt."
+        "description": "Für Retail-Arbitrage. Das zweite Produkt der ProfitPath-Familie: Produktanalyse, automatische Gewinnberechnung, Retourenbearbeitung, Produkt-Tracking und vieles mehr."
       },
       "nexossolutions": {
         "title": "NexosSolutions",
         "period": "2022",
-        "description": "Automatisierte Kaufsoftware. Browser-Extension in reinem JavaScript, HTML und CSS, dazu eine App für Android und iOS und eine eigene API mit Datenbank dahinter."
+        "description": "Automatisierte Kaufsoftware. Browser-Extension und mobile App mit Expo und React Native, die den Kauf limitierter Ware vereinfachen: Release-Automatisierung, Umgehung von Bot-Schutz und vieles mehr."
       },
       "nexosproxies": {
         "title": "NexosProxies",
         "period": "2021",
-        "description": "Proxy-Netzwerk als Service. Ein eigenes IP-Proxy-Netzwerk, erst um die eigenen Kosten zu senken, dann als Service für andere in derselben Lage."
+        "description": "Proxy-Netzwerke. Eigene dedizierte Residential- und Datacenter-Proxies, Squid als Proxy-Server, Authentifizierung im Format IP:PORT:USER:PASSWORD und vieles mehr."
       },
       "portfolio": {
         "title": "huberdominik.com",
         "period": "2026 – heute",
-        "description": "Mein Portfolio, also die Seite, auf der du gerade bist: zweisprachig ohne Sprach-URLs, Text, der hereinstreamt, eine Karte mit fahrendem Auto und eine Navigation als Satz."
+        "description": "Mein Portfolio, die Seite, auf der du gerade bist: zweisprachig, mit Streaming-Text, Static und Partial Prerendering, Server-Side Rendering, Data Fetching mit TanStack Query und vielem mehr."
       }
     },
     "tags": {
@@ -260,7 +260,7 @@
     "entries": {
       "portfolio": {
         "title": "huberdominik.com",
-        "description": "Mein Portfolio, also die Seite, auf der du gerade bist: zweisprachig ohne Sprach-URLs, Text, der hereinstreamt, eine Karte mit fahrendem Auto und eine Navigation als Satz."
+        "description": "Mein Portfolio, die Seite, auf der du gerade bist: zweisprachig, mit Streaming-Text, Static und Partial Prerendering, Server-Side Rendering, Data Fetching mit TanStack Query und vielem mehr."
       },
       "stillBuilding": {
         "title": "ProfitPath, noch lange nicht fertig",

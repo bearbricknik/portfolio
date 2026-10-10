@@ -85,7 +85,7 @@ export const PROJECTS = [
   {
     key: "profitpath",
     mark: "PP",
-    tools: ["nextjs", "react", "typescript", "tanstack", "supabase", "stripe"],
+    tools: ["nextjs", "react", "typescript", "tanstack", "postgresql", "supabase", "stripe"],
     image: profitPathImage,
     hasDetails: true,
   },
