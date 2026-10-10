@@ -100,7 +100,7 @@ export const PROJECTS = [
   {
     key: "nexossolutions",
     mark: "NS",
-    tools: ["javascript", "reactNative", "nodejs", "mongodb"],
+    tools: ["javascript", "chromeExtensions", "reactNative", "nodejs", "mongodb"],
     image: nexosSolutionsImage,
     hasDetails: true,
   },
