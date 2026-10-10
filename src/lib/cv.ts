@@ -27,7 +27,6 @@ type CvEntryDefinition = {
 /** Newest first; an entry with a time span sits in its start year */
 export const CV_ENTRIES = [
   { key: "portfolio", year: 2026, until: "today", project: "portfolio" },
-  { key: "stillBuilding", year: 2026, related: ["profitpath"] },
   { key: "profitgo", year: 2025, project: "profitgo", related: ["profitpath"] },
   { key: "profitpath", year: 2023, until: "today", project: "profitpath" },
   { key: "fourbyte", year: 2023 },

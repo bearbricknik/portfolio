@@ -261,10 +261,6 @@
         "title": "huberdominik.com",
         "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."
       },
-      "stillBuilding": {
-        "title": "ProfitPath, far from finished",
-        "description": "What started as a side project has become my digital obsession: new features, fixed bugs and a little better every day."
-      },
       "profitgo": {
         "title": "Launch of ProfitGo",
         "description": "The second product of the ProfitPath family: a Chrome extension and an app for iOS and Android that analyzes products when you visit a website or scan a barcode."
