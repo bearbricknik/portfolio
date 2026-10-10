@@ -320,7 +320,7 @@
       },
       "abitur": {
         "title": "Abitur",
-        "description": "The diploma after nine years of high school."
+        "description": "Finished with a 2.7 (on the German scale, 1.0 is best), as the first in my family to graduate from a Gymnasium."
       },
       "reisacher": {
         "title": "School internship at Reisacher",
@@ -328,7 +328,7 @@
       },
       "school": {
         "title": "Bertha-von-Suttner-Gymnasium Neu-Ulm",
-        "description": "For nine years I worked toward my Abitur, which I finished with a 2.7 (on the German scale, 1.0 is best). That made me the first in my family to graduate from a Gymnasium."
+        "description": "I spent nine years here working toward my Abitur."
       },
       "born": {
         "title": "pnpm install -g dominik",

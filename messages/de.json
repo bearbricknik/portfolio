@@ -320,7 +320,7 @@
       },
       "abitur": {
         "title": "Abitur",
-        "description": "Der Abschluss nach neun Jahren Gymnasium."
+        "description": "Abgeschlossen mit 2,7, als Erster in meiner Familie mit einem gymnasialen Abschluss."
       },
       "reisacher": {
         "title": "Schülerpraktikum bei Reisacher",
@@ -328,7 +328,7 @@
       },
       "school": {
         "title": "Bertha-von-Suttner-Gymnasium Neu-Ulm",
-        "description": "Neun Jahre habe ich auf mein Abitur hingearbeitet, das ich mit 2,7 abgeschlossen habe. Damit bin ich der Erste in meiner Familie mit einem gymnasialen Abschluss."
+        "description": "Neun Jahre habe ich hier auf mein Abitur hingearbeitet."
       },
       "born": {
         "title": "pnpm install -g dominik",
