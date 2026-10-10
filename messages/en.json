@@ -196,7 +196,7 @@
       "mongodb": {
         "name": "MongoDB",
         "summary": "Documents instead of tables",
-        "description": "Documents instead of tables: flexible schemas in BSON and an aggregation pipeline for multi-stage analysis. At NexosSolutions, it held the user and product data of the extension and the app."
+        "description": "Documents instead of tables: flexible schemas in BSON and an aggregation pipeline for multi-stage analysis. At NexosSolutions, it held the user and product data of the extension and the app, and NexosProxies stored its data in MongoDB as well."
       },
       "supabase": {
         "name": "Supabase",

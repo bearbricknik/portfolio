@@ -196,7 +196,7 @@
       "mongodb": {
         "name": "MongoDB",
         "summary": "Dokumente statt Tabellen",
-        "description": "Dokumente statt Tabellen: flexible Schemas in BSON und eine Aggregation Pipeline für Auswertungen in mehreren Stufen. Bei NexosSolutions lagen darin die Nutzer- und Produktdaten von Extension und App."
+        "description": "Dokumente statt Tabellen: flexible Schemas in BSON und eine Aggregation Pipeline für Auswertungen in mehreren Stufen. Bei NexosSolutions lagen darin die Nutzer- und Produktdaten von Extension und App, und auch NexosProxies hat seine Daten in MongoDB gespeichert."
       },
       "supabase": {
         "name": "Supabase",

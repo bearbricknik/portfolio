@@ -107,7 +107,7 @@ export const PROJECTS = [
   {
     key: "nexosproxies",
     mark: "NP",
-    tools: [],
+    tools: ["mongodb"],
     tags: ["proxyServers", "networking"],
     image: nexosProxiesImage,
     hasDetails: true,
