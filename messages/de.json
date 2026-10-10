@@ -171,7 +171,7 @@
       "go": {
         "name": "Go",
         "summary": "Schnelle Backends",
-        "description": "Goroutines und Channels für Nebenläufigkeit ohne eigene Thread-Verwaltung, kompiliert zu einer einzigen statischen Binary. In einzelnen Projekten, unter anderem bei ProfitPath, liefert ein Go-Backend die Daten ans Frontend und beantwortet die API-Requests."
+        "description": "Goroutines und Channels für Nebenläufigkeit ohne eigene Thread-Verwaltung, kompiliert zu einer einzigen statischen Binary. Bei ProfitPath liefert ein Go-Backend die Daten ans Frontend und beantwortet die API-Requests."
       },
       "nodejs": {
         "name": "Node.js & Express",

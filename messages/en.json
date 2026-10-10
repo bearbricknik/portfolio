@@ -171,7 +171,7 @@
       "go": {
         "name": "Go",
         "summary": "Fast backends",
-        "description": "Goroutines and channels for concurrency without managing threads, compiled into a single static binary. In some projects, including ProfitPath, a Go backend delivers the data to the frontend and answers the API requests."
+        "description": "Goroutines and channels for concurrency without managing threads, compiled into a single static binary. At ProfitPath, a Go backend delivers the data to the frontend and answers the API requests."
       },
       "nodejs": {
         "name": "Node.js & Express",
