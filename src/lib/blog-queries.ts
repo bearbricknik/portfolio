@@ -21,10 +21,27 @@ export const blogKeys = {
   categories: (locale: Locale) => [...blogKeys.all, "categories", locale] as const,
 };
 
+/**
+ * The data always comes with the page, so this never runs in practice. It
+ * exists because TanStack Query expects a queryFn (and warns in development
+ * without one), and it says clearly what went wrong if it ever does run.
+ */
+function providedByThePage(queryKey: readonly unknown[]) {
+  return () => Promise.reject(new Error(`${JSON.stringify(queryKey)} is filled by the page on the server, not fetched in the browser`));
+}
+
 /** The overview's posts in one language (pinned first, then newest first) */
 export const blogPostsOptions = (locale: Locale) =>
-  queryOptions<BlogPostResult[]>({ queryKey: blogKeys.posts(locale), staleTime: Infinity });
+  queryOptions<BlogPostResult[]>({
+    queryKey: blogKeys.posts(locale),
+    queryFn: providedByThePage(blogKeys.posts(locale)),
+    staleTime: Infinity,
+  });
 
 /** The categories of the filter, with their number of posts */
 export const blogCategoriesOptions = (locale: Locale) =>
-  queryOptions<BlogCategory[]>({ queryKey: blogKeys.categories(locale), staleTime: Infinity });
+  queryOptions<BlogCategory[]>({
+    queryKey: blogKeys.categories(locale),
+    queryFn: providedByThePage(blogKeys.categories(locale)),
+    staleTime: Infinity,
+  });
