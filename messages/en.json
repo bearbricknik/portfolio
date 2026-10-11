@@ -135,82 +135,82 @@
     "tools": {
       "nextjs": {
         "name": "Next.js",
-        "summary": "My default for web apps",
+        "summary": "React framework for web apps",
         "description": "App Router with React Server Components: whatever the server can render stays on the server. Cache Components and Partial Prerendering serve a static shell from the cache and stream the rest into it. ProfitPath and this site run on it, here with every page prerendered per language."
       },
       "react": {
         "name": "React",
-        "summary": "Interfaces from components",
+        "summary": "Building interfaces from components",
         "description": "Components, hooks and a renderer that schedules updates by priority: transitions keep the interface responsive while work happens in the background, and Suspense handles loading states. The interfaces of ProfitPath and this site are built with it."
       },
       "reactNative": {
         "name": "React Native & Expo",
-        "summary": "Native apps with React",
+        "summary": "Native apps from React code",
         "description": "React components that render real native views, through the New Architecture with Fabric and TurboModules. Expo Router, EAS Build and over-the-air updates take care of navigation, builds and releases. That's how the NexosSolutions and ProfitGo apps for iOS and Android each came out of a single codebase."
       },
       "chromeExtensions": {
         "name": "Chrome extensions & Webpack",
-        "summary": "Tools right in the browser",
+        "summary": "Adding features to the browser",
         "description": "Built on Manifest V3: a service worker instead of a persistent background page, content scripts in an isolated world on the page and a strict Content Security Policy. Webpack bundles popup, service worker and content scripts from multiple entry points. Browser extensions were the core of NexosSolutions, and ProfitGo is available as a Chrome extension too."
       },
       "typescript": {
         "name": "TypeScript",
-        "summary": "Type safety, almost everywhere",
+        "summary": "JavaScript with static types",
         "description": "Structural typing, control-flow inference and generics make the interfaces between frontend, API and database checkable before any code runs. Strict mode is the default in ProfitPath and on this site."
       },
       "javascript": {
         "name": "JavaScript",
-        "summary": "Where it all started",
+        "summary": "The web's programming language",
         "description": "Single-threaded with an event loop, plus promises and async/await for everything that waits on the network. NexosSolutions was a browser extension in plain JavaScript that automated selecting, buying and checking out limited items through web requests."
       },
       "python": {
         "name": "Python",
-        "summary": "Scraping and data analysis",
+        "summary": "Scripting, scraping and data analysis",
         "description": "Concise syntax and a huge ecosystem for data. For a university in Munich, I used it to build a project that collects data from the web for research and teaching: requests and tls-client for requests that identify like a real browser, BeautifulSoup to parse HTML and pandas for the analysis."
       },
       "go": {
         "name": "Go",
-        "summary": "Fast backends",
+        "summary": "Compiled language for backends",
         "description": "Goroutines and channels for concurrency without managing threads, compiled into a single static binary. At ProfitPath, a Go backend delivers the data to the frontend and answers the API requests."
       },
       "nodejs": {
         "name": "Node.js & Express",
-        "summary": "APIs in JavaScript",
+        "summary": "JavaScript on the server",
         "description": "JavaScript on the server: an event loop with non-blocking I/O, built for many concurrent requests. With Express as the middleware pipeline, it ran the API behind NexosSolutions that fed the extension and the app with data."
       },
       "orpc": {
         "name": "oRPC",
-        "summary": "End-to-end type-safe APIs",
+        "summary": "Type-safe APIs without codegen",
         "description": "Procedures instead of endpoints: the client calls them like local functions, and types and schema validation apply on both sides, without any code generation. If needed, the same router is served as a REST API with an OpenAPI spec. At ProfitPath, oRPC connects frontend and backend, together with TanStack Query."
       },
       "tanstack": {
         "name": "TanStack",
-        "summary": "Fetching and showing data",
+        "summary": "Caching server data, rendering tables",
         "description": "Query caches server data per key and refreshes it in the background, stale-while-revalidate. Table is a headless engine for sorting, filtering and pagination, leaving the look entirely to your own code. At ProfitPath they power the large product tables; on this site, the commit calendar arrives in the browser prerendered through Query."
       },
       "postgresql": {
         "name": "PostgreSQL",
-        "summary": "Relational data",
+        "summary": "Relational SQL database",
         "description": "Relational, with MVCC so reads and writes run in parallel without blocking each other, and indexes like B-tree and GIN, including for JSONB. At ProfitPath, PostgreSQL serves more than 200 million products, updated daily."
       },
       "mongodb": {
         "name": "MongoDB",
-        "summary": "Documents instead of tables",
+        "summary": "Document-based NoSQL database",
         "description": "Documents instead of tables: flexible schemas in BSON and an aggregation pipeline for multi-stage analysis. At NexosSolutions, it held the user and product data of the extension and the app, and NexosProxies stored its data in MongoDB as well."
       },
       "supabase": {
         "name": "Supabase",
-        "summary": "A backend on PostgreSQL",
+        "summary": "Postgres backend, auth and storage",
         "description": "A full PostgreSQL with auth, Row Level Security right in the database, Realtime, Edge Functions and Storage. At ProfitPath we use it far beyond the database: RLS, database triggers and functions, Edge Functions and Storage, plus syncing subscriptions."
       },
       "stripe": {
         "name": "Stripe",
-        "summary": "Online payments",
+        "summary": "Handling online payments and subscriptions",
         "description": "Checkout and Billing for payments and subscriptions, signed webhooks for everything that happens asynchronously, and idempotency keys so a retried request never charges twice. At ProfitPath, Stripe handles payments with flexible payment options."
       },
       "betterAuth": {
         "name": "Better Auth",
-        "summary": "Sign-in, open source",
+        "summary": "Authentication for TypeScript apps",
         "description": "Authentication as a self-hosted TypeScript library: your own database through adapters, plugins for two-factor, passkeys and organizations with roles. Now in use at ProfitPath as well."
       }
     },
