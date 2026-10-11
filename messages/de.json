@@ -17,7 +17,7 @@
     "location": "in Deutschland"
   },
   "HomePage": {
-    "bio": "Hi, ich bin Dominik, Full-Stack-Entwickler mit Fokus auf UI/UX-Design. Gebürtig komme ich aus Ulm, zu Hause bin ich heute in Köln. Studiert habe ich Fahrzeug- und Motorentechnik, meine eigentliche Leidenschaft habe ich aber irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS habe ich meine ersten Tools gebaut, die später über 1.000 Nutzern geholfen haben, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden echte Produkte, und aus der Frage „Wie automatisiere ich das?“ wurde immer öfter „Wie baue ich das besser?“.\n\nDanach habe ich mich intensiver mit Backend-Systemen, APIs und skalierbarer Software beschäftigt und schließlich zusammen mit weiteren Gründern ProfitPath entwickelt, mein erstes großes SaaS, gebaut mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> und <postgres>PostgreSQL</postgres>. Heute greifen Tausende Nutzer über ProfitPath auf mehr als 200 Millionen Produktdaten zu, die täglich aktualisiert werden.",
+    "bio": "Hi, ich bin Dominik, Full-Stack-Entwickler mit Fokus auf UI/UX-Design. Gebürtig komme ich aus Ulm, zu Hause bin ich heute in Köln. Studiert habe ich Fahrzeug- und Motorentechnik, meine eigentliche Leidenschaft habe ich aber irgendwann zwischen Design und Software Engineering gefunden.\n\nAngefangen hat alles in der Sneaker-Szene. Mit JavaScript, HTML und CSS habe ich meine ersten Tools gebaut, die später über 1.000 Nutzern geholfen haben, limitierte Produkte zu kaufen. Aus kleinen Skripten wurden echte Produkte, und aus der Frage „Wie automatisiere ich das?“ wurde immer öfter „Wie baue ich das besser?“.\n\nDanach habe ich mich intensiver mit Backend-Systemen, APIs und skalierbarer Software beschäftigt und schließlich zusammen mit weiteren Gründern ProfitPath entwickelt, mein erstes großes SaaS, gebaut mit <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Golang</go> und <postgres>PostgreSQL</postgres>. Heute greifen Tausende Nutzer über ProfitPath auf mehr als 200 Millionen Produktdaten zu, die täglich aktualisiert werden.",
     "bioAfterGraph": "Ich interessiere mich besonders für durchdachte Interfaces, Mikrointeraktionen und die kleinen Details, die man nicht bewusst wahrnimmt, ohne die sich ein Design aber nicht richtig anfühlt. Ich gestalte mit dem Verständnis eines Engineers und entwickle mit dem Blick eines Designers."
   },
   "Socials": {
@@ -169,9 +169,9 @@
         "description": "Kompakte Syntax und ein riesiges Ökosystem für Daten. Für eine Münchner Universität habe ich damit ein Projekt umgesetzt, das Daten aus dem Web für Forschung und Lehre sammelt: requests und tls-client für Anfragen, die sich wie ein echter Browser ausweisen, BeautifulSoup zum Parsen von HTML und pandas für die Auswertung."
       },
       "go": {
-        "name": "Go",
+        "name": "Golang",
         "summary": "Kompilierte Sprache für Backends",
-        "description": "Goroutines und Channels für Nebenläufigkeit ohne eigene Thread-Verwaltung, kompiliert zu einer einzigen statischen Binary. Bei ProfitPath liefert ein Go-Backend die Daten ans Frontend und beantwortet die API-Requests."
+        "description": "Goroutines und Channels für Nebenläufigkeit ohne eigene Thread-Verwaltung, kompiliert zu einer einzigen statischen Binary. Bei ProfitPath liefert ein Golang-Backend die Daten ans Frontend und beantwortet die API-Requests."
       },
       "nodejs": {
         "name": "Node.js & Express",

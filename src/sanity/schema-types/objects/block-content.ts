@@ -14,7 +14,7 @@ const CODE_LANGUAGES = [
   { title: "JSON", value: "json" },
   { title: "Shell", value: "sh" },
   { title: "GROQ", value: "groq" },
-  { title: "Go", value: "go" },
+  { title: "Golang", value: "go" },
   { title: "Python", value: "python" },
   { title: "SQL", value: "sql" },
   { title: "Markdown", value: "markdown" },

@@ -17,7 +17,7 @@
     "location": "in Germany"
   },
   "HomePage": {
-    "bio": "Hi, I'm Dominik, a full-stack developer with a focus on UI/UX design. I was born in Ulm, and today I'm at home in Cologne. I studied automotive and engine engineering, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first tools, which later helped more than 1,000 users buy limited releases. Small scripts turned into real products, and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nAfter that, I dug deeper into backend systems, APIs and scalable software, and eventually built ProfitPath together with fellow founders: my first big SaaS, made with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Go</go> and <postgres>PostgreSQL</postgres>. Today, thousands of users rely on ProfitPath for access to more than 200 million product records, updated daily.",
+    "bio": "Hi, I'm Dominik, a full-stack developer with a focus on UI/UX design. I was born in Ulm, and today I'm at home in Cologne. I studied automotive and engine engineering, but somewhere between design and software engineering I found my real passion.\n\nIt all started in the sneaker scene. With JavaScript, HTML and CSS I built my first tools, which later helped more than 1,000 users buy limited releases. Small scripts turned into real products, and the question “How do I automate this?” more and more often became “How do I build this better?”\n\nAfter that, I dug deeper into backend systems, APIs and scalable software, and eventually built ProfitPath together with fellow founders: my first big SaaS, made with <next>Next.js</next>, <react>React</react>, <ts>TypeScript</ts>, <go>Golang</go> and <postgres>PostgreSQL</postgres>. Today, thousands of users rely on ProfitPath for access to more than 200 million product records, updated daily.",
     "bioAfterGraph": "I'm especially drawn to thoughtful interfaces, micro-interactions and the small details you don't consciously notice, but without which a design never feels quite right. I design with an engineer's understanding and build with a designer's eye."
   },
   "Socials": {
@@ -169,9 +169,9 @@
         "description": "Concise syntax and a huge ecosystem for data. For a university in Munich, I used it to build a project that collects data from the web for research and teaching: requests and tls-client for requests that identify like a real browser, BeautifulSoup to parse HTML and pandas for the analysis."
       },
       "go": {
-        "name": "Go",
+        "name": "Golang",
         "summary": "Compiled language for backends",
-        "description": "Goroutines and channels for concurrency without managing threads, compiled into a single static binary. At ProfitPath, a Go backend delivers the data to the frontend and answers the API requests."
+        "description": "Goroutines and channels for concurrency without managing threads, compiled into a single static binary. At ProfitPath, a Golang backend delivers the data to the frontend and answers the API requests."
       },
       "nodejs": {
         "name": "Node.js & Express",
