@@ -20,7 +20,7 @@ type PostCardProps = {
 
 /**
  * One post in the overview, as a row: a small cover on the left; category,
- * date and reading time, the title and the excerpt on the right. Hovering
+ * date and reading time, the title and the excerpt on the right.
  * zooms into the picture; its frame stays.
  */
 export function PostCard({ post, pinnedLabel, priority = false, className }: PostCardProps) {
@@ -48,7 +48,7 @@ export function PostCard({ post, pinnedLabel, priority = false, className }: Pos
           ratio={COVER_RATIO}
           sizes="(min-width: 640px) 132px, 96px"
           priority={priority}
-          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/card:scale-105 motion-reduce:transition-none"
+          className="object-cover"
         />
       </div>
       <div className="flex min-w-0 flex-col">
