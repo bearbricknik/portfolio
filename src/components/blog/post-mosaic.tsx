@@ -42,7 +42,7 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
   const posts = useMemo(() => results.map(({ _id, ...post }) => ({ ...post, id: _id })), [results]);
   const { filter } = useBlogFilter();
   const ref = useRef<HTMLDivElement>(null);
-  const visible = useRevealGate(ref, { waitForStreams: true });
+  const gateOpen = useRevealGate(ref, { waitForStreams: true });
   const reducedMotion = useReducedMotion();
 
   const shown = useMemo(
@@ -78,11 +78,21 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
   // initial state without animating them in. So every time it's shown again,
   // the cards mount fresh, straight in their final state: coming back from a
   // post is just the page's crossfade, no second staggered entrance.
+  // Only counts once the cards have actually appeared: React's Strict Mode
+  // runs effects twice on the first mount, which must not count as "shown
+  // again" (the cards would never animate in).
   const [generation, setGeneration] = useState(0);
-  const shownOnce = useRef(false);
+  const revealed = useRef(false);
+  // Once the cards have appeared they stay: nothing that happens later (the
+  // page shown again, Fast Refresh, a remount) can hide them again
+  const [everShown, setEverShown] = useState(false);
+  if (gateOpen && !everShown) setEverShown(true);
+  const visible = gateOpen || everShown;
   useEffect(() => {
-    if (shownOnce.current) setGeneration((current) => current + 1);
-    shownOnce.current = true;
+    if (visible) revealed.current = true;
+  }, [visible]);
+  useEffect(() => {
+    if (revealed.current) setGeneration((current) => current + 1);
   }, []);
 
   // The first appearance staggers through all cards; later (filter) changes are quicker
@@ -106,65 +116,70 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
     <LayoutGroup>
       {/* Phones: one column, the column wrappers dissolve (contents) and
           `order` keeps the reading order. From sm: two columns. */}
-      <div key={generation} ref={ref} className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:items-start">
-        {[0, 1].map((column) => (
-          <div
-            key={column}
-            // Without a toolbar the right column still starts lower (same offset)
-            className={cn("contents sm:flex sm:flex-col sm:gap-3", column === 1 && !toolbar && "sm:mt-9")}
-          >
-            {column === 1 && toolbar && (
-              // Phones: first in the single column (order), right-aligned
-              <motion.div
-                className="flex items-center justify-end max-sm:order-first"
-                style={{ height: TOOLBAR_HEIGHT }}
-                initial="hidden"
-                animate={visible ? "shown" : "hidden"}
-                variants={{
-                  hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
-                  shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
-                }}
-                inert={!visible}
-              >
-                {toolbar}
-              </motion.div>
-            )}
-            {column === 0 && !shown.length && <p className="text-sm text-muted-foreground">{labels.empty}</p>}
-            <AnimatePresence mode="popLayout" initial={false}>
-              {shown.map((post, index) =>
-                columnOf(post, index) === column ? (
-                  <motion.div
-                    key={post.id}
-                    layoutId={post.id}
-                    layout={!reducedMotion}
-                    data-post={post.id}
-                    style={{ order: index }}
-                    // Shown again after a post: already in place, no entrance
-                    initial={generation > 0 ? false : "hidden"}
-                    animate={visible ? "shown" : "hidden"}
-                    exit="leaving"
-                    // Invisible until revealed: not clickable or focusable before
-                    inert={!visible}
-                    variants={{
-                      hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98, filter: "blur(4px)" },
-                      shown: {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        filter: "blur(0px)",
-                        transition: { duration: 0.5, ease: EASE, delay: settled ? index * 0.04 : 0.08 + index * 0.06 },
-                      },
-                      leaving: { opacity: 0, scale: 0.96, filter: "blur(4px)", transition: { duration: 0.22 } },
-                    }}
-                    transition={{ layout: { duration: 0.52, ease: EASE } }}
-                  >
-                    <PostCard post={{ ...post, _id: post.id }} pinnedLabel={labels.pinned} priority={index < 2} />
-                  </motion.div>
-                ) : null,
+      {/* The measured element (ref) stays the same; only the inner grid
+          remounts when the page is shown again, so the in-view check keeps
+          observing an element that's still there */}
+      <div ref={ref}>
+        <div key={generation} className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:items-start">
+          {[0, 1].map((column) => (
+            <div
+              key={column}
+              // Without a toolbar the right column still starts lower (same offset)
+              className={cn("contents sm:flex sm:flex-col sm:gap-3", column === 1 && !toolbar && "sm:mt-9")}
+            >
+              {column === 1 && toolbar && (
+                // Phones: first in the single column (order), right-aligned
+                <motion.div
+                  className="flex items-center justify-end max-sm:order-first"
+                  style={{ height: TOOLBAR_HEIGHT }}
+                  initial="hidden"
+                  animate={visible ? "shown" : "hidden"}
+                  variants={{
+                    hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, filter: "blur(4px)" },
+                    shown: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5, ease: EASE } },
+                  }}
+                  inert={!visible}
+                >
+                  {toolbar}
+                </motion.div>
               )}
-            </AnimatePresence>
-          </div>
-        ))}
+              {column === 0 && !shown.length && <p className="text-sm text-muted-foreground">{labels.empty}</p>}
+              <AnimatePresence mode="popLayout" initial={false}>
+                {shown.map((post, index) =>
+                  columnOf(post, index) === column ? (
+                    <motion.div
+                      key={post.id}
+                      layoutId={post.id}
+                      layout={!reducedMotion}
+                      data-post={post.id}
+                      style={{ order: index }}
+                      // Shown again after a post: already in place, no entrance
+                      initial={generation > 0 ? false : "hidden"}
+                      animate={visible ? "shown" : "hidden"}
+                      exit="leaving"
+                      // Invisible until revealed: not clickable or focusable before
+                      inert={!visible}
+                      variants={{
+                        hidden: reducedMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.98, filter: "blur(4px)" },
+                        shown: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          filter: "blur(0px)",
+                          transition: { duration: 0.5, ease: EASE, delay: settled ? index * 0.04 : 0.08 + index * 0.06 },
+                        },
+                        leaving: { opacity: 0, scale: 0.96, filter: "blur(4px)", transition: { duration: 0.22 } },
+                      }}
+                      transition={{ layout: { duration: 0.52, ease: EASE } }}
+                    >
+                      <PostCard post={{ ...post, _id: post.id }} pinnedLabel={labels.pinned} priority={index < 2} />
+                    </motion.div>
+                  ) : null,
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
       </div>
     </LayoutGroup>
   );
