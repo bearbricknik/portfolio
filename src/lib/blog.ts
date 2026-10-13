@@ -24,6 +24,10 @@ export type BlogPostResult = {
   title: string;
   publishedAt: string;
   pinned: boolean;
+  /** One or two sentences, shown under the title */
+  excerpt: string;
+  /** Length of the text, for the reading time */
+  characters: number;
   category: { key: string; icon: string; title: string };
   cover: BlogCover;
 };

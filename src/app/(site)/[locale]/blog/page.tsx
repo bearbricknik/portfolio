@@ -37,7 +37,7 @@ export default async function Blog() {
           <Suspense>
             <PostMosaic
               labels={{ pinned: t("pinned"), empty: t("empty"), noPosts: t("noPosts") }}
-              // The filter sits in the space the lower right column leaves anyway
+              // Category tabs above the posts
               toolbar={<CategoryFilter labels={{ all: t("filterAll"), filter: t("filterLabel") }} />}
             />
           </Suspense>

@@ -31,6 +31,9 @@ const cover = `select(
   }
 )`;
 
+// The post's text in the visitor's language (German if there's no translation)
+const body = `coalesce(body[language == $locale][0].value, body[language == "de"][0].value)`;
+
 /** The posts of the overview, pinned first, then newest first, in the visitor's language */
 export const POST_CARDS_QUERY = defineQuery(`
   *[_type == "post" && defined(slug.de.current) && publishedAt <= now()] | order(pinned desc, publishedAt desc) {
@@ -39,6 +42,8 @@ export const POST_CARDS_QUERY = defineQuery(`
     "title": ${t("title")},
     publishedAt,
     "pinned": pinned == true,
+    "excerpt": ${t("excerpt")},
+    "characters": length(pt::text(${body})),
     "category": category->{ "key": key.current, icon, "title": ${t("title")} },
     "cover": ${cover}
   }
@@ -54,8 +59,6 @@ export const CATEGORIES_QUERY = defineQuery(`
   }
 `);
 
-// The post's text in the visitor's language (German if there's no translation)
-const body = `coalesce(body[language == $locale][0].value, body[language == "de"][0].value)`;
 
 /**
  * One post by either of its addresses, in the visitor's language: links to
