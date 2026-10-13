@@ -410,3 +410,14 @@ html .maplibregl-map {
     animation: none;
   }
 }
+
+/* Custom cursor over images (site-cursor.tsx): the backdrop in black and white
+   only, inverted, so the cursor contrasts with whatever pixel is beneath it */
+.cursor-on-image {
+  -webkit-backdrop-filter: grayscale(1) invert(1) contrast(100);
+  backdrop-filter: grayscale(1) invert(1) contrast(100);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+}

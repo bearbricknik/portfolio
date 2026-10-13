@@ -57,6 +57,74 @@ const LABEL_SPRING: SpringOptions = { stiffness: 220, damping: 28, mass: 0.6 };
 // Arrow ⇄ hand cross-fade
 const SHAPE_TRANSITION = { duration: 0.15, ease: "easeOut" } as const;
 
+const ARROW_PATH = "M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z";
+const HAND_PATH =
+  "M13 3c1.1 0 2 .9 2 2v8h.2c.2-1.1 1.1-2 2.3-2s2.1.9 2.3 2h.2c.2-1 1.1-1.7 2.2-1.7 1.2 0 2.1.9 2.2 2.1.3-.2.7-.3 1.1-.3 1.4 0 2.5 1.1 2.5 2.5v4.9c0 5.2-3.7 9-9 9h-1.4c-2.7 0-5-1.2-6.6-3.3l-5.4-7c-.8-1-.6-2.4.4-3.2 1-.8 2.5-.6 3.3.4l1.7 2V5c0-1.1.9-2 2-2Z";
+
+/** A shape as a CSS mask (for the part of the cursor over an image) */
+const maskOf = (path: string, viewBox: string) =>
+  `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><path d="${path}"/></svg>`)}")`;
+const ARROW_MASK = maskOf(ARROW_PATH, "0 0 40 40");
+const HAND_MASK = maskOf(HAND_PATH, "0 0 32 32");
+
+const HIDDEN = "inset(100%)";
+
+/**
+ * Over an image, the cursor turns black or white, whichever contrasts with the
+ * pixels beneath it (a backdrop filter: grayscale, invert, then a contrast so
+ * strong that only black and white remain). Only the part of the cursor that
+ * is actually over the image changes; elsewhere it stays as it is. Every frame
+ * the cursor's box is intersected with the image beneath it: that part shows
+ * the black-and-white version, and the normal cursor gets a hole there.
+ */
+function useCursorOverImages(
+  enabled: boolean,
+  box: React.RefObject<HTMLSpanElement | null>,
+  base: React.RefObject<HTMLSpanElement | null>,
+  onImage: React.RefObject<(HTMLSpanElement | null)[]>,
+) {
+  useEffect(() => {
+    if (!enabled) return;
+    let frame = 0;
+    const setClip = (clipBase: string, clipOnImage: string) => {
+      if (base.current) base.current.style.clipPath = clipBase;
+      for (const element of onImage.current) if (element) element.style.clipPath = clipOnImage;
+    };
+    const tick = () => {
+      frame = requestAnimationFrame(tick);
+      const element = box.current;
+      if (!element) return;
+      const r = element.getBoundingClientRect();
+      // The image under any corner or the middle of the cursor
+      const points = [
+        [r.left + r.width / 2, r.top + r.height / 2],
+        [r.left, r.top],
+        [r.right, r.top],
+        [r.left, r.bottom],
+        [r.right, r.bottom],
+      ];
+      let image: DOMRect | undefined;
+      for (const [x, y] of points) {
+        image = document.elementsFromPoint(x, y).find((el) => el.tagName === "IMG")?.getBoundingClientRect();
+        if (image) break;
+      }
+      if (!image) return setClip("none", HIDDEN);
+      const top = Math.max(0, image.top - r.top);
+      const left = Math.max(0, image.left - r.left);
+      const right = Math.max(0, r.right - image.right);
+      const bottom = Math.max(0, r.bottom - image.bottom);
+      const [x2, y2] = [r.width - right, r.height - bottom];
+      setClip(
+        // Everything except the part over the image (even-odd: a hole)
+        `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${left}px ${top}px, ${x2}px ${top}px, ${x2}px ${y2}px, ${left}px ${y2}px, ${left}px ${top}px)`,
+        `inset(${top}px ${right}px ${bottom}px ${left}px)`,
+      );
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [enabled, box, base, onImage]);
+}
+
 function subscribe(onChange: () => void) {
   const mql = window.matchMedia(FINE_POINTER_QUERY);
   mql.addEventListener("change", onChange);
@@ -161,6 +229,10 @@ export function SiteCursor() {
   const [visible, setVisible] = useState(false);
   const [pointer, setPointer] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const boxRef = useRef<HTMLSpanElement>(null);
+  const baseRef = useRef<HTMLSpanElement>(null);
+  const onImageRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  useCursorOverImages(hasFinePointer, boxRef, baseRef, onImageRefs);
 
   useEffect(() => {
     if (!hasFinePointer) return;
@@ -209,44 +281,62 @@ export function SiteCursor() {
     <CursorProvider global>
       <Cursor smoothing={reducedMotion ? undefined : CURSOR_SPRING}>
         {/* Arrow and hand share one box and cross-fade, so the size never jumps */}
-        <span className="relative block size-6">
-          <motion.svg
-            className="absolute inset-0 size-6 text-foreground"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
-            animate={{ opacity: pointer ? 0 : 1, scale: pointer ? 0.85 : 1 }}
-            transition={SHAPE_TRANSITION}
-          >
-            <path
-              fill="currentColor"
-              d="M1.8 4.4 7 36.2c.3 1.8 2.6 2.3 3.6.8l3.9-5.7c1.7-2.5 4.5-4.1 7.5-4.3l6.9-.5c1.8-.1 2.5-2.4 1.1-3.5L5 2.5c-1.4-1.1-3.5 0-3.3 1.9Z"
+        <span ref={boxRef} className="relative block size-6">
+          {/* Over images: black or white per pixel (see useCursorOverImages).
+              Behind the normal cursor, so its backdrop doesn't include it. */}
+          {[ARROW_MASK, HAND_MASK].map((mask, index) => (
+            <motion.span
+              key={mask}
+              ref={(element) => {
+                onImageRefs.current[index] = element;
+              }}
+              aria-hidden
+              className="cursor-on-image absolute inset-0"
+              style={{ maskImage: mask, WebkitMaskImage: mask, clipPath: HIDDEN }}
+              initial={false}
+              animate={index === 0 ? { opacity: pointer ? 0 : 1, scale: pointer ? 0.85 : 1 } : { opacity: pointer ? 1 : 0, scale: pointer ? 1 : 0.85 }}
+              transition={SHAPE_TRANSITION}
             />
-          </motion.svg>
-          <motion.svg
-            className="absolute inset-0 size-6 text-foreground"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 32 32"
-            initial={false}
-            animate={{ opacity: pointer ? 1 : 0, scale: pointer ? 1 : 0.85 }}
-            transition={SHAPE_TRANSITION}
-          >
-            {/* Pointing hand: filled like the arrow, with a thin outline in the
-                background color so it reads on light and dark content */}
-            <path
-              fill="currentColor"
-              stroke="var(--background)"
-              strokeWidth="1.2"
-              strokeLinejoin="round"
-              d="M13 3c1.1 0 2 .9 2 2v8h.2c.2-1.1 1.1-2 2.3-2s2.1.9 2.3 2h.2c.2-1 1.1-1.7 2.2-1.7 1.2 0 2.1.9 2.2 2.1.3-.2.7-.3 1.1-.3 1.4 0 2.5 1.1 2.5 2.5v4.9c0 5.2-3.7 9-9 9h-1.4c-2.7 0-5-1.2-6.6-3.3l-5.4-7c-.8-1-.6-2.4.4-3.2 1-.8 2.5-.6 3.3.4l1.7 2V5c0-1.1.9-2 2-2Z"
-            />
-            <path
-              fill="none"
-              stroke="var(--background)"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              d="M15 13v4.5M19.8 13v4.5M24.4 13.4v4"
-            />
-          </motion.svg>
+          ))}
+          <span ref={baseRef} className="absolute inset-0">
+            <motion.svg
+              className="absolute inset-0 size-6 text-foreground"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+              animate={{ opacity: pointer ? 0 : 1, scale: pointer ? 0.85 : 1 }}
+              transition={SHAPE_TRANSITION}
+            >
+              <path
+                fill="currentColor"
+                d={ARROW_PATH}
+              />
+            </motion.svg>
+            <motion.svg
+              className="absolute inset-0 size-6 text-foreground"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              initial={false}
+              animate={{ opacity: pointer ? 1 : 0, scale: pointer ? 1 : 0.85 }}
+              transition={SHAPE_TRANSITION}
+            >
+              {/* Pointing hand: filled like the arrow, with a thin outline in the
+                  background color so it reads on light and dark content */}
+              <path
+                fill="currentColor"
+                stroke="var(--background)"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+                d={HAND_PATH}
+              />
+              <path
+                fill="none"
+                stroke="var(--background)"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                d="M15 13v4.5M19.8 13v4.5M24.4 13.4v4"
+              />
+            </motion.svg>
+          </span>
         </span>
       </Cursor>
       <CursorLabel
