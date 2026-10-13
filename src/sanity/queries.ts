@@ -14,6 +14,23 @@ export const POST_SITEMAP_QUERY = defineQuery(`
 // A translated field in the visitor's language, falling back to German
 const t = (field: string) => `coalesce(${field}[language == $locale][0].value, ${field}[language == "de"][0].value)`;
 
+/**
+ * The cover in the visitor's language: the English cover on English pages if
+ * there is one, otherwise the main one (its description is used for both)
+ */
+const cover = `select(
+  $locale == "en" && defined(coverEn.asset) => {
+    "asset": coverEn.asset, "crop": coverEn.crop, "hotspot": coverEn.hotspot,
+    "alt": ${t("cover.alt")},
+    "lqip": coverEn.asset->metadata.lqip
+  },
+  cover {
+    asset, crop, hotspot,
+    "alt": ${t("alt")},
+    "lqip": asset->metadata.lqip
+  }
+)`;
+
 /** The posts of the overview, pinned first, then newest first, in the visitor's language */
 export const POST_CARDS_QUERY = defineQuery(`
   *[_type == "post" && defined(slug.de.current) && publishedAt <= now()] | order(pinned desc, publishedAt desc) {
@@ -23,11 +40,7 @@ export const POST_CARDS_QUERY = defineQuery(`
     publishedAt,
     "pinned": pinned == true,
     "category": category->{ "key": key.current, icon, "title": ${t("title")} },
-    "cover": cover {
-      asset, crop, hotspot,
-      "alt": ${t("alt")},
-      "lqip": asset->metadata.lqip
-    }
+    "cover": ${cover}
   }
 `);
 
@@ -58,11 +71,7 @@ export const POST_QUERY = defineQuery(`
     "excerpt": ${t("excerpt")},
     publishedAt,
     "category": category->{ "key": key.current, icon, "title": ${t("title")} },
-    "cover": cover {
-      asset, crop, hotspot,
-      "alt": ${t("alt")},
-      "lqip": asset->metadata.lqip
-    },
+    "cover": ${cover},
     "characters": length(pt::text(${body})),
     "body": ${body}[] {
       ...,

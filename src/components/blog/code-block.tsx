@@ -1,4 +1,5 @@
 import { IconCode } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
+import { cacheLife } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { codeToHtml } from "shiki";
 
@@ -17,16 +18,27 @@ const LINE_HEIGHT = 13 * 1.625;
 const PADDING_TOP = 12;
 
 /**
+ * The highlighted HTML of a piece of code, in both themes as CSS variables (no
+ * fixed colors); unknown languages as plain text. Cached: it only depends on
+ * code and language, and Shiki reads the clock internally, which a prerender
+ * doesn't allow outside a cache.
+ */
+async function highlight(code: string, language: string) {
+  "use cache";
+  cacheLife("max");
+  return codeToHtml(code, { lang: language, themes: THEMES, defaultColor: false }).catch(() =>
+    codeToHtml(code, { lang: "text", themes: THEMES, defaultColor: false }),
+  );
+}
+
+/**
  * A code block of a post, highlighted on the server (Shiki) in a light and a
  * dark theme; CSS switches between them with the site's theme (globals.css).
  * The header shows the file name (or the language) and a copy button.
  */
 export async function CodeBlock({ code, language = "text", filename }: CodeBlockProps) {
   const t = await getTranslations("BlogPage");
-  // Both themes as CSS variables, no fixed colors; unknown languages as plain text
-  const html = await codeToHtml(code, { lang: language, themes: THEMES, defaultColor: false }).catch(() =>
-    codeToHtml(code, { lang: "text", themes: THEMES, defaultColor: false }),
-  );
+  const html = await highlight(code, language);
 
   const lines = code.split("\n").length;
   const maxHeight = lines > MAX_LINES ? Math.round(PADDING_TOP + MAX_LINES * LINE_HEIGHT) : undefined;

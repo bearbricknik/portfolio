@@ -15,7 +15,8 @@ const slugFromTitle =
 
 /**
  * A blog post. One document for both languages: the texts are translated
- * fields, everything else (category, dates, cover) exists once. Each language
+ * fields, everything else (category, dates, cover) exists once, except an
+ * optional English cover. Each language
  * has its own slug: /blog/<slug-de> and /blog/<slug-en>.
  * Created and updated times come from Sanity (_createdAt, _updatedAt).
  */
@@ -101,6 +102,15 @@ export const post = defineType({
         }),
       ],
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      // Optional: the English page shows this instead (e.g. an image with English text)
+      name: "coverEn",
+      title: "Titelbild Englisch",
+      description: "Optional. Ohne eigenes Bild zeigt die englische Seite das Titelbild oben; die Bildbeschreibung kommt von dort.",
+      type: "image",
+      group: "content",
+      options: { hotspot: true },
     }),
     defineField({
       name: "excerpt",
