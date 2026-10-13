@@ -36,8 +36,10 @@ type CategoryFilterProps = {
 };
 
 /**
- * The categories as a row of text tabs, each with its number of posts; the
- * selected one in the text color. Empty categories aren't shown.
+ * The categories as a row of text tabs, each with its number of posts (like
+ * the counts next to the headings on /tech-stack); the selected one in the
+ * text color. Empty categories aren't shown, and with posts in only one
+ * category there's nothing to choose: then it renders nothing.
  */
 export function CategoryFilter({ labels }: CategoryFilterProps) {
   const { filter, setFilter } = useBlogFilter();
@@ -49,6 +51,8 @@ export function CategoryFilter({ labels }: CategoryFilterProps) {
     { key: ALL, title: labels.all, count: total },
     ...categories.filter((category) => category.count > 0),
   ];
+  // "All" plus a single category would always show the same posts
+  if (options.length <= 2) return null;
 
   return (
     <div role="group" aria-label={labels.filter} className="flex flex-wrap gap-x-3.5 gap-y-1 text-sm">
@@ -62,12 +66,12 @@ export function CategoryFilter({ labels }: CategoryFilterProps) {
             data-cursor="pointer"
             onClick={() => setFilter(option.key)}
             className={cn(
-              "inline-flex items-baseline gap-1 rounded-sm text-muted-foreground transition-colors duration-200 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50",
+              "inline-flex items-baseline gap-1.5 rounded-sm text-muted-foreground transition-colors duration-200 outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50",
               selected && "text-foreground",
             )}
           >
             {option.title}
-            <sup className="text-[0.625rem] text-muted-foreground/70 tabular-nums">{option.count}</sup>
+            <span className="text-xs text-muted-foreground tabular-nums">{option.count}</span>
           </button>
         );
       })}

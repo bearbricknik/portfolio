@@ -86,6 +86,8 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
       <div ref={ref} className="flex flex-col gap-4">
         {toolbar && (
           <motion.div
+            // The filter renders nothing with a single category: then no gap either
+            className="empty:hidden"
             initial="hidden"
             animate={visible ? "shown" : "hidden"}
             variants={{
