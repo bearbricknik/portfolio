@@ -6,11 +6,12 @@ import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
 import { PostBody } from "@/components/blog/post-body";
 import { LocaleAlternates } from "@/components/locale-alternates";
+import { MetaLine } from "@/components/meta-line";
 import { RoundButton } from "@/components/round-button";
 import { SanityImage } from "@/components/sanity-image";
 import { SectionHeading } from "@/components/section-heading";
 import type { Locale } from "@/i18n/config";
-import { CATEGORY_ICON, COVER_RATIO, readingMinutes } from "@/lib/blog";
+import { COVER_RATIO, readingMinutes } from "@/lib/blog";
 import { getPost as fetchPost, getPostSlugs } from "@/lib/blog-data.server";
 import { postAlternates } from "@/lib/blog-urls";
 import { urlFor } from "@/sanity/lib/image";
@@ -92,7 +93,6 @@ async function BlogPost({ params }: Pick<PageProps<"/[locale]/blog/[slug]">, "pa
   if (localSlug && localSlug !== decodeURIComponent(slug)) redirect(`/blog/${localSlug}`);
 
   const [t, format] = await Promise.all([getTranslations("BlogPage"), getFormatter()]);
-  const Icon = CATEGORY_ICON[post.category.icon] ?? CATEGORY_ICON.all;
 
   // Where the language switch goes: this post's address in each language
   const paths = Object.fromEntries(
@@ -108,20 +108,15 @@ async function BlogPost({ params }: Pick<PageProps<"/[locale]/blog/[slug]">, "pa
         as="div"
         waitForStreams={false}
         leading={<RoundButton icon={IconArrowLeft} label={t("back")} href="/blog" iconClassName="group-hover/round:-translate-x-0.5" />}
-        titleClassName="flex items-center gap-1.5 text-xs leading-none font-normal text-muted-foreground"
+        titleClassName="text-xs leading-none font-normal"
       >
-        <Icon className="size-3.5" />
-        {post.category.title}
-        <span aria-hidden className="opacity-50">
-          ·
-        </span>
-        <time dateTime={post.publishedAt}>
-          {format.dateTime(new Date(post.publishedAt), { day: "numeric", month: "short", year: "numeric" })}
-        </time>
-        <span aria-hidden className="opacity-50">
-          ·
-        </span>
-        {t("readingTime", { minutes: readingMinutes(post.characters) })}
+        <MetaLine>
+          {post.category.title}
+          <time dateTime={post.publishedAt}>
+            {format.dateTime(new Date(post.publishedAt), { day: "numeric", month: "short", year: "numeric" })}
+          </time>
+          {t("readingTime", { minutes: readingMinutes(post.characters) })}
+        </MetaLine>
       </SectionHeading>
 
       <h1 className="-mb-2 text-lg leading-snug font-medium text-balance">{post.title}</h1>

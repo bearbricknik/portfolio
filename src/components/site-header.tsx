@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { HandwrittenNote } from "@/components/handwritten-note";
+import { MetaLine } from "@/components/meta-line";
 import { SiteControls } from "@/components/site-controls";
 import { SiteNav } from "@/components/site-nav";
 
@@ -40,7 +41,10 @@ export function SiteHeader() {
             {t("name")}
           </Link>
         </span>
-        <p className="text-muted-foreground">{t("role")}</p>
+        <MetaLine>
+          {t("roleTitle")}
+          {t("roleFocus")}
+        </MetaLine>
       </div>
       <div className="flex items-center gap-1">
         <SiteControls className="sm:hidden" />

@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import { IconPin } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
 
+import { MetaLine } from "@/components/meta-line";
 import { SanityImage } from "@/components/sanity-image";
-import { type BlogPostResult, CATEGORY_ICON, COVER_RATIO, readingMinutes } from "@/lib/blog";
+import { type BlogPostResult, COVER_RATIO, readingMinutes } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
 type PostCardProps = {
@@ -23,7 +24,6 @@ type PostCardProps = {
  * zooms into the picture; its frame stays.
  */
 export function PostCard({ post, pinnedLabel, priority = false, className }: PostCardProps) {
-  const Icon = CATEGORY_ICON[post.category.icon] ?? CATEGORY_ICON.all;
   const format = useFormatter();
   const t = useTranslations("BlogPage");
 
@@ -51,25 +51,17 @@ export function PostCard({ post, pinnedLabel, priority = false, className }: Pos
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/card:scale-105 motion-reduce:transition-none"
         />
       </div>
-      <div className="flex min-w-0 flex-col gap-1.5">
-        {/* leading-none: exactly as tall as its icon */}
-        <span className="flex items-center gap-1.5 text-xs leading-none text-muted-foreground">
-          <Icon className="size-3.5" />
+      <div className="flex min-w-0 flex-col">
+        <MetaLine className="text-xs leading-none">
           {post.category.title}
-          <span aria-hidden className="opacity-50">
-            ·
-          </span>
           <time dateTime={post.publishedAt}>
             {format.dateTime(new Date(post.publishedAt), { day: "numeric", month: "short", year: "numeric" })}
           </time>
-          <span aria-hidden className="opacity-50">
-            ·
-          </span>
           {t("readingTime", { minutes: readingMinutes(post.characters) })}
-          {post.pinned && <IconPin aria-label={pinnedLabel} className="ml-auto size-3.5" />}
-        </span>
-        <h2 className="line-clamp-3 leading-snug font-medium text-balance">{post.title}</h2>
-        <p className="line-clamp-1 text-sm leading-relaxed text-muted-foreground sm:line-clamp-2">{post.excerpt}</p>
+          {post.pinned && <IconPin aria-label={pinnedLabel} className="size-3.5" />}
+        </MetaLine>
+        <h2 className="mt-2 line-clamp-3 leading-snug font-medium text-balance">{post.title}</h2>
+        <p className="mt-0.5 line-clamp-1 text-sm leading-normal text-muted-foreground sm:line-clamp-2">{post.excerpt}</p>
       </div>
     </Link>
   );

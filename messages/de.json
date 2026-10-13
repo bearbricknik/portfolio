@@ -13,6 +13,8 @@
   "Site": {
     "name": "Dominik Huber",
     "role": "Full-Stack Developer · UI/UX",
+    "roleTitle": "Full-Stack Developer",
+    "roleFocus": "UI/UX",
     "openForWork": "Offen für Projekte",
     "location": "in Deutschland"
   },
