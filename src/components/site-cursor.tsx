@@ -237,19 +237,35 @@ export function SiteCursor() {
   useEffect(() => {
     if (!hasFinePointer) return;
 
-    const handlePointerOver = (event: PointerEvent) => {
-      const target = event.target instanceof Element ? event.target : null;
-      const interactive = target?.closest(INTERACTIVE_SELECTOR);
+    // The interactive element under the pointer, if any
+    let current: Element | null = null;
+    const update = (target: Element | null) => {
+      const interactive = target?.closest(INTERACTIVE_SELECTOR) ?? null;
       const isPointer = interactive?.getAttribute("data-cursor") === POINTER_VALUE;
       const text = interactive && !isPointer ? getLabel(interactive) : "";
 
+      current = interactive;
       setPointer(isPointer || Boolean(interactive?.hasAttribute("data-cursor-pointer")));
       if (text) setLabel(text);
       setVisible(Boolean(text));
     };
 
+    const handlePointerOver = (event: PointerEvent) => update(event.target instanceof Element ? event.target : null);
+    // A page that is navigated away from is only hidden, not removed, so no
+    // pointerover follows (e.g. after clicking a post's back button): drop
+    // the hidden element's label as soon as the pointer moves again
+    const handlePointerMove = (event: PointerEvent) => {
+      if (current && !(current.isConnected && current.checkVisibility())) {
+        update(document.elementFromPoint(event.clientX, event.clientY));
+      }
+    };
+
     document.addEventListener("pointerover", handlePointerOver, { passive: true });
-    return () => document.removeEventListener("pointerover", handlePointerOver);
+    document.addEventListener("pointermove", handlePointerMove, { passive: true });
+    return () => {
+      document.removeEventListener("pointerover", handlePointerOver);
+      document.removeEventListener("pointermove", handlePointerMove);
+    };
   }, [hasFinePointer]);
 
   // Watch the page for overlays opening/closing (once per frame at most)
