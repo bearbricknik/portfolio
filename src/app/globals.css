@@ -374,11 +374,13 @@ html .maplibregl-map {
   color: var(--shiki-dark);
 }
 
-/* A post's content arriving (from the overview or in the other language):
-   fades in out of a slight blur. A plain animation on the live content, so
-   the scroll edges' backdrop blur, code blocks etc. stay correct throughout. */
+/* A post's content arriving (from the overview or in the other language),
+   and the overview coming back: fades in out of a slight blur. A gentle
+   ease-out over 600ms, so the change stays visible instead of snapping in
+   during the first frames. A plain animation on the live content, so the
+   scroll edges' backdrop blur, code blocks etc. stay correct throughout. */
 .content-in {
-  animation: content-in 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: content-in 600ms cubic-bezier(0.33, 1, 0.68, 1) both;
 }
 @keyframes content-in {
   from {
