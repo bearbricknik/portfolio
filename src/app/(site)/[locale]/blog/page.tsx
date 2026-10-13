@@ -25,7 +25,10 @@ export default async function Blog() {
   return (
     <BlogData locale={locale}>
       <BlogFilterProvider>
-        <section className="flex flex-col gap-4">
+        {/* content-in: the page fades in like a post does, also when coming
+            back from one (the hidden page is shown again, which restarts the
+            animation) */}
+        <section className="content-in flex flex-col gap-4">
           <h1 className="sr-only">{t("title")}</h1>
           <PageJsonLd namespace="BlogPage" path="/blog" />
           <PageIntro
