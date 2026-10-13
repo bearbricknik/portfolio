@@ -28,8 +28,10 @@ type SanityImageProps = {
  * it, one URL per width next/image asks for, in AVIF/WebP where supported.
  */
 export function SanityImage({ image, alt, lqip, ratio, width, height, sizes, priority = false, className }: SanityImageProps) {
+  // Quality 90 instead of the CDN's 75: covers and diagrams carry text,
+  // which turns soft and blotchy at lower settings
   const loader = ({ width: w }: { width: number }) => {
-    const url = urlFor(image).width(w).auto("format");
+    const url = urlFor(image).width(w).quality(90).auto("format");
     return (ratio ? url.height(Math.round(w * ratio)).fit("crop") : url).url();
   };
 

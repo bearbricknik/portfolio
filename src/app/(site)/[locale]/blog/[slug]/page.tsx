@@ -119,8 +119,6 @@ async function BlogPost({ params }: Pick<PageProps<"/[locale]/blog/[slug]">, "pa
         </MetaLine>
       </SectionHeading>
 
-      <h1 className="-mb-2 text-lg leading-snug font-medium text-balance">{post.title}</h1>
-
       <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-muted after:absolute after:inset-0 after:rounded-[inherit] after:ring-1 after:ring-foreground/10 after:ring-inset">
         <SanityImage
           image={post.cover}
@@ -133,6 +131,8 @@ async function BlogPost({ params }: Pick<PageProps<"/[locale]/blog/[slug]">, "pa
         />
       </div>
 
+      {/* The title opens the text, never above the picture */}
+      <h1 className="mt-2 -mb-2 text-lg leading-snug font-medium text-balance">{post.title}</h1>
       <p className="text-pretty">{post.excerpt}</p>
       <PostBody value={post.body} />
     </article>
