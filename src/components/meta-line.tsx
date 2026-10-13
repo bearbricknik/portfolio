@@ -19,7 +19,7 @@ export function MetaLine({ children, className }: MetaLineProps) {
     <span className={cn("flex flex-wrap items-center gap-x-2 gap-y-1 text-muted-foreground", className)}>
       {parts.map((part, index) => (
         <Fragment key={index}>
-          {index > 0 && <span aria-hidden className="h-[0.9em] w-px bg-current opacity-25" />}
+          {index > 0 && <span aria-hidden className="h-[0.9em] w-px rounded-full bg-current opacity-25" />}
           {part}
         </Fragment>
       ))}
