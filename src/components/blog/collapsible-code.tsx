@@ -59,7 +59,7 @@ export function CollapsibleCode({ maxHeight, labels, children }: CollapsibleCode
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         data-cursor="pointer"
-        className="absolute inset-x-0 bottom-0 flex h-9 items-center justify-center gap-1 border-t bg-muted/70 text-xs text-muted-foreground backdrop-blur-sm transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-inset"
+        className="absolute inset-x-0 bottom-0 flex h-7.5 items-center justify-center gap-1 border-t bg-muted/70 text-xs text-muted-foreground backdrop-blur-sm transition-colors outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-inset"
       >
         {open ? labels.less : labels.more}
         <IconChevronDownSmall
