@@ -352,7 +352,7 @@
     "play": "Play",
     "slowMotion": "Slow motion",
     "easingHint": "Both take 400 ms. Which one feels faster?",
-    "sample": "I build fast, thoughtful web apps with <next>Next.js</next> and <react>React</react>.",
+    "sample": "I build fast, thoughtful web apps with <next>Next.js</next> and <react>React</react>, from the very first sketch to the finished product",
     "variant": "Variant",
     "withBlur": "With blur",
     "withoutBlur": "Without",
