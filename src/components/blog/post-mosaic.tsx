@@ -73,6 +73,18 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
   }, [shown]);
 
   const columnOf = (post: { id: string }, index: number) => columns[post.id] ?? ((index % 2) as 0 | 1);
+  // Next.js keeps /blog alive in the background (<Activity>) while a post is
+  // open. When it's shown again, Motion puts the cards (layoutId) back to their
+  // initial state without animating them in. So every time it's shown again,
+  // the cards mount fresh, straight in their final state: coming back from a
+  // post is just the page's crossfade, no second staggered entrance.
+  const [generation, setGeneration] = useState(0);
+  const shownOnce = useRef(false);
+  useEffect(() => {
+    if (shownOnce.current) setGeneration((current) => current + 1);
+    shownOnce.current = true;
+  }, []);
+
   // The first appearance staggers through all cards; later (filter) changes are quicker
   const [settled, setSettled] = useState(false);
   useEffect(() => {
@@ -94,7 +106,7 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
     <LayoutGroup>
       {/* Phones: one column, the column wrappers dissolve (contents) and
           `order` keeps the reading order. From sm: two columns. */}
-      <div ref={ref} className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:items-start">
+      <div key={generation} ref={ref} className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:items-start">
         {[0, 1].map((column) => (
           <div
             key={column}
@@ -127,7 +139,8 @@ export function PostMosaic({ labels, toolbar }: PostMosaicProps) {
                     layout={!reducedMotion}
                     data-post={post.id}
                     style={{ order: index }}
-                    initial="hidden"
+                    // Shown again after a post: already in place, no entrance
+                    initial={generation > 0 ? false : "hidden"}
                     animate={visible ? "shown" : "hidden"}
                     exit="leaving"
                     // Invisible until revealed: not clickable or focusable before

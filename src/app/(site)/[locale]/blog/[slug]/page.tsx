@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { IconArrowLeft } from "@central-icons-react/round-outlined-radius-3-stroke-1.5";
@@ -60,11 +61,27 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[sl
 }
 
 /**
+ * The page itself doesn't read the URL: the post (which depends on the slug)
+ * renders inside a Suspense boundary, so the route's shared shell stays free
+ * of URL data and Partial Prefetching can prefetch it once for every post.
+ * Known posts are still fully prerendered (their data is cached), and the
+ * blog cards prefetch the whole post, so opening one from there is instant.
+ */
+export default function BlogPostPage({ params }: PageProps<"/[locale]/blog/[slug]">) {
+  return (
+    // Keeps roughly a post's height while it loads, so the footer doesn't jump
+    <Suspense fallback={<div aria-hidden className="min-h-[70vh]" />}>
+      <BlogPost params={params} />
+    </Suspense>
+  );
+}
+
+/**
  * A blog post, always built the same way: a row with the back button,
  * category, date and reading time; the title; the cover; the excerpt as
  * the lead; the text.
  */
-export default async function BlogPostPage({ params }: PageProps<"/[locale]/blog/[slug]">) {
+async function BlogPost({ params }: Pick<PageProps<"/[locale]/blog/[slug]">, "params">) {
   const { slug } = await params;
   const { post, locale } = await getPost(slug);
   if (!post) notFound();
