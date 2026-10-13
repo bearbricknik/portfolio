@@ -1,4 +1,5 @@
 import { ImageIcon } from "@sanity/icons/Image";
+import { PlayIcon } from "@sanity/icons/Play";
 import { LinkIcon } from "@sanity/icons/Link";
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { defineArrayMember, defineField, defineType } from "sanity";
@@ -20,9 +21,16 @@ const CODE_LANGUAGES = [
   { title: "Markdown", value: "markdown" },
 ];
 
+/** Interactive demos a post can embed (texts and labels come from the site's messages) */
+const DEMOS = [
+  { title: "Kurven: ease-in gegen das Ease-out der Seite", value: "easing" },
+  { title: "Text: Wörter mit und ohne Unschärfe", value: "blurText" },
+  { title: "Feder: Polaroid beim Drüberfahren", value: "spring" },
+];
+
 /**
  * The text of a post: paragraphs, headings, quotes, lists, links (external
- * and to other posts), inline code, images and code blocks. Used once per
+ * and to other posts), inline code, images, code blocks and interactive demos. Used once per
  * language (internationalized array).
  */
 export const blockContent = defineType({
@@ -101,6 +109,29 @@ export const blockContent = defineType({
       type: "code",
       title: "Code",
       options: { language: "typescript", languageAlternatives: CODE_LANGUAGES, withFilename: true },
+    }),
+    defineArrayMember({
+      // An interactive example, built in the site's code (src/components/blog/post-demos.tsx)
+      name: "demo",
+      title: "Demo",
+      type: "object",
+      icon: PlayIcon,
+      fields: [
+        defineField({
+          name: "kind",
+          title: "Demo",
+          type: "string",
+          options: { list: DEMOS, layout: "radio" },
+          validation: (rule) => rule.required(),
+        }),
+      ],
+      preview: {
+        select: { kind: "kind" },
+        prepare: ({ kind }) => ({
+          title: DEMOS.find((demo) => demo.value === kind)?.title ?? "Demo",
+          subtitle: "Demo",
+        }),
+      },
     }),
   ],
 });

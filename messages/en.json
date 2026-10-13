@@ -345,5 +345,21 @@
   },
   "Contact": {
     "text": "The quickest way to reach me is a short <email>email</email>. I usually reply within a few hours. Got a project in mind that could be a good fit? Then book a 15-minute call directly on <cal>Cal.com</cal>."
+  },
+  "BlogDemos": {
+    "easeIn": "ease-in",
+    "mySite": "My site",
+    "play": "Play",
+    "slowMotion": "Slow motion",
+    "easingHint": "Both take 400 ms. Which one feels faster?",
+    "sample": "I build fast, thoughtful web apps with <next>Next.js</next> and <react>React</react>.",
+    "variant": "Variant",
+    "withBlur": "With blur",
+    "withoutBlur": "Without",
+    "spring": "Spring",
+    "noAnimation": "No animation",
+    "springHint": "The same spring as on the site",
+    "hoverMe": "Hover me",
+    "photoAlt": "Dominik teeing off on the golf course"
   }
 }

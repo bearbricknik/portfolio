@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "next-sanity";
 
 import { CodeBlock } from "@/components/blog/code-block";
+import { type DemoKind, PostDemo } from "@/components/blog/post-demos";
 import { SanityImage } from "@/components/sanity-image";
 
 type BodyImage = {
@@ -65,6 +66,7 @@ const components: PortableTextComponents = {
     },
     code: ({ value }: { value: { code?: string; language?: string; filename?: string } }) =>
       value.code ? <CodeBlock code={value.code} language={value.language} filename={value.filename} /> : null,
+    demo: ({ value }: { value: { kind?: DemoKind } }) => (value.kind ? <PostDemo kind={value.kind} /> : null),
   },
 };
 

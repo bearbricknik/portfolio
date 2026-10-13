@@ -79,7 +79,7 @@ export async function generateMetadata(): Promise<Metadata> {
 // The only message namespaces client components read (useTranslations in a
 // "use client" file); everything else is rendered on the server and stays out
 // of the page's payload. Add a namespace here when a client component needs it.
-const CLIENT_NAMESPACES = ["Controls", "Nav", "AboutPage", "ContributionGraph", "BlogPage"] as const;
+const CLIENT_NAMESPACES = ["Controls", "Nav", "AboutPage", "ContributionGraph", "BlogPage", "BlogDemos"] as const;
 
 // Every page exists once per language; the proxy picks the visitor's (src/proxy.ts)
 export function generateStaticParams() {

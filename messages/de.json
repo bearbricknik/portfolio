@@ -345,5 +345,21 @@
   },
   "Contact": {
     "text": "Am schnellsten erreichst du mich mit einer kurzen <email>E-Mail</email>, meistens antworte ich innerhalb weniger Stunden. Du hast ein Projekt im Kopf, das zu mir passen könnte? Dann buch dir direkt einen 15-Minuten-Termin über <cal>Cal.com</cal>."
+  },
+  "BlogDemos": {
+    "easeIn": "ease-in",
+    "mySite": "Meine Seite",
+    "play": "Abspielen",
+    "slowMotion": "Zeitlupe",
+    "easingHint": "Beide dauern 400 ms. Welche wirkt schneller?",
+    "sample": "Ich baue schnelle, durchdachte Web-Apps mit <next>Next.js</next> und <react>React</react>.",
+    "variant": "Variante",
+    "withBlur": "Mit Unschärfe",
+    "withoutBlur": "Ohne",
+    "spring": "Feder",
+    "noAnimation": "Ohne Animation",
+    "springHint": "Die gleiche Feder wie auf der Seite",
+    "hoverMe": "Fahr drüber",
+    "photoAlt": "Dominik beim Abschlag auf dem Golfplatz"
   }
 }

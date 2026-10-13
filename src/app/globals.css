@@ -212,6 +212,12 @@
   animation: stream-pop 250ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
+/* A token that just appears at its turn, without any transition (the blog's
+   comparison demo) */
+.stream-instant {
+  animation: stream-instant 1ms step-end both;
+}
+
 .stream-fade-up {
   animation: stream-fade-up 350ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
@@ -235,6 +241,12 @@
   to {
     opacity: 1;
     filter: blur(0);
+  }
+}
+
+@keyframes stream-instant {
+  from {
+    opacity: 0;
   }
 }
 
