@@ -21,7 +21,6 @@ type PostCardProps = {
 /**
  * One post in the overview, as a row: a small cover on the left; category,
  * date and reading time, the title and the excerpt on the right.
- * zooms into the picture; its frame stays.
  */
 export function PostCard({ post, pinnedLabel, priority = false, className }: PostCardProps) {
   const format = useFormatter();
