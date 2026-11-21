@@ -106,6 +106,7 @@ export default function TechStack() {
               image: image && { ...image, alt: title },
               tags: "tags" in project ? project.tags.map((tag) => t(`tags.${tag}`)) : undefined,
               tools: project.tools.map((key) => ({ key, name: t(`tools.${key}.name`) })),
+              url: "url" in project ? project.url : undefined,
               hasDetails: "hasDetails" in project && project.hasDetails,
               moreLabel: t("more", { project: title }),
             };

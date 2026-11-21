@@ -126,7 +126,8 @@
       "languages": "Languages",
       "backend": "Backend & APIs",
       "databases": "Databases",
-      "services": "Services"
+      "services": "Services",
+      "testing": "Testing"
     },
     "levels": {
       "beginner": "Beginner",
@@ -138,7 +139,12 @@
       "nextjs": {
         "name": "Next.js",
         "summary": "React framework for web apps",
-        "description": "App Router with React Server Components: whatever the server can render stays on the server. Cache Components and Partial Prerendering serve a static shell from the cache and stream the rest into it. ProfitPath and this site run on it, here with every page prerendered per language."
+        "description": "App Router with React Server Components: whatever the server can render stays on the server. Cache Components and Partial Prerendering serve a static shell from the cache and stream the rest into it. ProfitPath, Dein Betriebsrat and this site run on it: Dein Betriebsrat as an installable web app with a service worker, this site with every page prerendered per language."
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "summary": "Utility CSS right in the markup",
+        "description": "Styles as utility classes right on the element, design tokens as CSS variables and, since version 4, an engine that only generates what's actually used. At Dein Betriebsrat and on this site it builds the entire interface together with shadcn/ui, dark mode included."
       },
       "react": {
         "name": "React",
@@ -190,6 +196,11 @@
         "summary": "Caching server data, rendering tables",
         "description": "Query caches server data per key and refreshes it in the background, stale-while-revalidate. Table is a headless engine for sorting, filtering and pagination, leaving the look entirely to your own code. At ProfitPath they power the large product tables; on this site, the commit calendar arrives in the browser prerendered through Query."
       },
+      "zod": {
+        "name": "Zod",
+        "summary": "Schemas that become types",
+        "description": "A schema describes the data once: Zod checks it at runtime and derives the TypeScript type from it. At Dein Betriebsrat it validates forms with React Hook Form, server actions and environment variables, wherever data comes in from outside."
+      },
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relational SQL database",
@@ -203,17 +214,27 @@
       "supabase": {
         "name": "Supabase",
         "summary": "Postgres backend, auth and storage",
-        "description": "A full PostgreSQL with auth, Row Level Security right in the database, Realtime, Edge Functions and Storage. At ProfitPath we use it far beyond the database: RLS, database triggers and functions, Edge Functions and Storage, plus syncing subscriptions."
+        "description": "A full PostgreSQL with auth, Row Level Security right in the database, Realtime, Edge Functions and Storage. At ProfitPath we use it far beyond the database: RLS, database triggers and functions, Edge Functions and Storage, plus syncing subscriptions. At Dein Betriebsrat the web app and the mobile app share the same database, secured with RLS, with Edge Functions for downloads and ZIP exports of the election documents."
       },
       "stripe": {
         "name": "Stripe",
         "summary": "Handling online payments and subscriptions",
-        "description": "Checkout and Billing for payments and subscriptions, signed webhooks for everything that happens asynchronously, and idempotency keys so a retried request never charges twice. At ProfitPath, Stripe handles payments with flexible payment options."
+        "description": "Checkout and Billing for payments and subscriptions, signed webhooks for everything that happens asynchronously, and idempotency keys so a retried request never charges twice. At ProfitPath, Stripe handles payments with flexible payment options. At Dein Betriebsrat it runs one-time payments and subscriptions, plus the customer portal where customers manage their subscription themselves."
       },
       "betterAuth": {
         "name": "Better Auth",
         "summary": "Authentication for TypeScript apps",
         "description": "Authentication as a self-hosted TypeScript library: your own database through adapters, plugins for two-factor, passkeys and organizations with roles. Now in use at ProfitPath as well."
+      },
+      "vitest": {
+        "name": "Vitest",
+        "summary": "Fast unit tests built on Vite",
+        "description": "A test runner built on Vite with a Jest-compatible API, native TypeScript and watch mode. At Dein Betriebsrat it covers the logic an election depends on: deadlines in the election calendar, voter eligibility, hints along the way and much more."
+      },
+      "playwright": {
+        "name": "Playwright",
+        "summary": "Browsers controlled by code",
+        "description": "Controls Chromium, Firefox and WebKit from code, for end-to-end tests and anything that would otherwise be clicking by hand. At Dein Betriebsrat it automatically captures the landing page screenshots in both languages and the Open Graph image."
       }
     },
     "usedIn": "Used in",
@@ -243,6 +264,11 @@
         "title": "huberdominik.com",
         "period": "2026 – today",
         "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."
+      },
+      "deinbetriebsrat": {
+        "title": "Dein Betriebsrat",
+        "period": "2025 – today",
+        "description": "Software for works council elections in Germany. Guides election committees through the election step by step: an election calendar with automatically calculated deadlines, voter lists via Excel import, candidate lists, postal voting, seat allocation by d’Hondt and every letter as a ready-made document, plus an app for iOS and Android."
       }
     },
     "tags": {
@@ -266,6 +292,10 @@
       "portfolio": {
         "title": "huberdominik.com",
         "description": "My portfolio, the site you're on right now: bilingual, with streaming text, static and partial prerendering, server-side rendering, data fetching with TanStack Query and much more."
+      },
+      "deinbetriebsrat": {
+        "title": "Founder of Dein Betriebsrat GmbH",
+        "description": "Software for works council elections, built myself from idea to finished product: a web app with Next.js and Supabase, plus an app for iOS and Android. It guides election committees through the election step by step, calculates every deadline automatically and creates every letter as a ready-made document."
       },
       "profitgo": {
         "title": "Launch of ProfitGo",

@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 
+import deinBetriebsratImage from "@/assets/cv/deinbetriebsrat.jpg";
 import nexosProxiesImage from "@/assets/cv/nexosproxies.png";
 import nexosSolutionsImage from "@/assets/cv/nexossolutions.jpeg";
 import profitGoImage from "@/assets/cv/profitgo.png";
@@ -18,7 +19,7 @@ import { OG_IMAGES } from "@/lib/og-images";
 export type SkillLevel = "beginner" | "basic" | "intermediate" | "professional";
 
 /** Areas the tools are grouped into, in display order */
-export const TOOL_GROUPS = ["interface", "languages", "backend", "databases", "services"] as const;
+export const TOOL_GROUPS = ["interface", "languages", "backend", "databases", "services", "testing"] as const;
 export type ToolGroup = (typeof TOOL_GROUPS)[number];
 
 /** Bars filled in the skill meter per level (out of `SKILL_LEVEL_MAX`) */
@@ -44,6 +45,7 @@ export const TOOLS = [
   { key: "nextjs", group: "interface", level: "professional", mark: "N", color: "text-foreground" },
   { key: "react", group: "interface", level: "intermediate", mark: "Re", color: "text-cyan-500" },
   { key: "reactNative", group: "interface", level: "intermediate", mark: "RN", color: "text-cyan-500" },
+  { key: "tailwind", group: "interface", level: "professional", mark: "Tw", color: "text-sky-400" },
   { key: "chromeExtensions", group: "interface", level: "intermediate", mark: "Ex", color: "text-violet-500" },
   { key: "typescript", group: "languages", level: "intermediate", mark: "TS", color: "text-blue-500" },
   { key: "javascript", group: "languages", level: "professional", mark: "JS", color: "text-yellow-500" },
@@ -52,11 +54,14 @@ export const TOOLS = [
   { key: "nodejs", group: "backend", level: "professional", mark: "No", color: "text-green-500" },
   { key: "orpc", group: "backend", level: "beginner", mark: "oR", color: "text-pink-500" },
   { key: "tanstack", group: "backend", level: "intermediate", mark: "TQ", color: "text-orange-500" },
+  { key: "zod", group: "backend", level: "intermediate", mark: "Zo", color: "text-blue-600" },
   { key: "postgresql", group: "databases", level: "intermediate", mark: "Pg", color: "text-blue-400" },
   { key: "mongodb", group: "databases", level: "intermediate", mark: "Mo", color: "text-green-600" },
   { key: "supabase", group: "services", level: "professional", mark: "Sb", color: "text-emerald-500" },
   { key: "stripe", group: "services", level: "professional", mark: "St", color: "text-indigo-500" },
   { key: "betterAuth", group: "services", level: "intermediate", mark: "BA", color: "text-foreground" },
+  { key: "vitest", group: "testing", level: "intermediate", mark: "Vi", color: "text-lime-500" },
+  { key: "playwright", group: "testing", level: "basic", mark: "Pw", color: "text-green-500" },
 ] as const satisfies readonly ToolDefinition[];
 
 export type ToolKey = (typeof TOOLS)[number]["key"];
@@ -75,13 +80,41 @@ type ProjectDefinition = {
   tags?: readonly ProjectTag[];
   /** A picture, or "og" for the site's Open Graph image in the visitor's language */
   image?: StaticImageData | "og";
+  /** Side of the picture that stays when it's cropped (default: center) */
+  imageFocus?: "left" | "right";
   /** Has a detail modal: shows the round "more" button */
   hasDetails?: boolean;
+  /** The project's live site, linked from its card and its CV entry */
+  url?: `https://${string}`;
 };
 
 /** Newest first */
 export const PROJECTS = [
-  { key: "portfolio", mark: "HD", tools: ["nextjs", "react", "typescript", "tanstack"], image: "og" },
+  { key: "portfolio", mark: "HD", tools: ["nextjs", "react", "typescript", "tailwind", "tanstack"], image: "og" },
+  {
+    key: "deinbetriebsrat",
+    mark: "DB",
+    tools: [
+      "nextjs",
+      "react",
+      "typescript",
+      "tailwind",
+      "reactNative",
+      "tanstack",
+      "zod",
+      "postgresql",
+      "supabase",
+      "stripe",
+      "vitest",
+      "playwright",
+    ],
+    tags: ["ios", "android"],
+    // The site's Open Graph image (German only; its headline sits on the left)
+    image: deinBetriebsratImage,
+    imageFocus: "left",
+    url: "https://dein-betriebsrat.com",
+    hasDetails: true,
+  },
   {
     key: "profitpath",
     mark: "PP",
@@ -134,8 +167,11 @@ export function projectImage(project: Project, locale: Locale) {
   if (!("image" in project)) return undefined;
   return project.image === "og"
     ? { src: OG_IMAGES[locale], focus: "left" as const }
-    : { src: project.image, focus: undefined };
+    : { src: project.image, focus: "imageFocus" in project ? project.imageFocus : undefined };
 }
+
+/** The host of a project's live site, e.g. "dein-betriebsrat.com" (its link label) */
+export const projectHost = (url: string) => new URL(url).host.replace(/^www\./, "");
 
 /** Looks up a project by key */
 export const projectByKey = (key: ProjectKey): Project => PROJECTS.find((project) => project.key === key)!;

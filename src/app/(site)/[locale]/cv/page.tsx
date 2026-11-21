@@ -7,7 +7,7 @@ import { CvYear } from "@/components/cv/cv-year";
 import { PageIntro } from "@/components/page-intro";
 import { PageJsonLd } from "@/components/page-json-ld";
 import { Tag } from "@/components/tag";
-import { ProjectLink, ToolLink } from "@/components/tech-stack/tech-links";
+import { ProjectLink, ProjectSiteLink, ToolLink } from "@/components/tech-stack/tech-links";
 import type { Locale } from "@/i18n/config";
 import { cvAnchor, type CvEntry as CvEntryData, cvEntryOfProject, CV_ENTRIES, CV_ROWS } from "@/lib/cv";
 import { pageMetadata } from "@/lib/metadata";
@@ -41,8 +41,9 @@ export default function CV() {
     return undefined;
   };
 
-  // Only coding entries carry badges: related projects (jump to their entry
-  // here), then the project's tools (to /tech-stack) and plain tags
+  // Only coding entries carry badges: the project's live site, related
+  // projects (jump to their entry here), then the project's tools (to
+  // /tech-stack) and plain tags
   const footer = (entry: CvEntryData) => {
     const related = "related" in entry ? entry.related : [];
     const project = "project" in entry ? projectByKey(entry.project) : undefined;
@@ -50,6 +51,7 @@ export default function CV() {
 
     return (
       <>
+        {project && "url" in project && <ProjectSiteLink url={project.url} />}
         {related.map((key) => {
           const home = cvEntryOfProject(key);
           return (

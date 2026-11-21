@@ -126,7 +126,8 @@
       "languages": "Sprachen",
       "backend": "Backend & APIs",
       "databases": "Datenbanken",
-      "services": "Dienste"
+      "services": "Dienste",
+      "testing": "Tests"
     },
     "levels": {
       "beginner": "Einsteiger",
@@ -138,7 +139,12 @@
       "nextjs": {
         "name": "Next.js",
         "summary": "React-Framework für Web-Apps",
-        "description": "App Router mit React Server Components: Was der Server rendern kann, bleibt auf dem Server. Cache Components und Partial Prerendering liefern eine statische Hülle aus dem Cache, in die der Rest gestreamt wird. Darauf laufen ProfitPath und diese Seite, hier jede Seite vorgerendert pro Sprache."
+        "description": "App Router mit React Server Components: Was der Server rendern kann, bleibt auf dem Server. Cache Components und Partial Prerendering liefern eine statische Hülle aus dem Cache, in die der Rest gestreamt wird. Darauf laufen ProfitPath, Dein Betriebsrat und diese Seite: Dein Betriebsrat als installierbare Web-App mit Service Worker, hier jede Seite vorgerendert pro Sprache."
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "summary": "Utility-CSS direkt im Markup",
+        "description": "Styles als Utility-Klassen direkt am Element, Design-Tokens als CSS-Variablen und seit Version 4 eine Engine, die nur erzeugt, was wirklich genutzt wird. Bei Dein Betriebsrat und auf dieser Seite baut es zusammen mit shadcn/ui die komplette Oberfläche, inklusive Dark Mode."
       },
       "react": {
         "name": "React",
@@ -190,6 +196,11 @@
         "summary": "Serverdaten cachen, Tabellen rendern",
         "description": "Query cached Serverdaten pro Schlüssel und aktualisiert sie im Hintergrund nach dem Stale-While-Revalidate-Prinzip. Table ist eine Headless-Engine für Sortierung, Filter und Pagination, das Aussehen bleibt komplett beim eigenen Code. Bei ProfitPath zeigen sie die großen Produkttabellen, auf dieser Seite kommt der Commit-Kalender vorgerendert über Query in den Browser."
       },
+      "zod": {
+        "name": "Zod",
+        "summary": "Schemas, aus denen Typen werden",
+        "description": "Ein Schema beschreibt die Daten einmal: Zod prüft sie zur Laufzeit und leitet daraus den TypeScript-Typ ab. Bei Dein Betriebsrat validiert es Formulare mit React Hook Form, Server Actions und Umgebungsvariablen, also überall dort, wo Daten von außen kommen."
+      },
       "postgresql": {
         "name": "PostgreSQL",
         "summary": "Relationale SQL-Datenbank",
@@ -203,17 +214,27 @@
       "supabase": {
         "name": "Supabase",
         "summary": "Postgres-Backend mit Auth und Storage",
-        "description": "Ein vollständiges PostgreSQL mit Auth, Row Level Security direkt in der Datenbank, Realtime, Edge Functions und Storage. Bei ProfitPath nutzen wir es weit über die Datenbank hinaus: RLS, Datenbank-Trigger und -Funktionen, Edge Functions und Storage, dazu die Synchronisierung der Abos."
+        "description": "Ein vollständiges PostgreSQL mit Auth, Row Level Security direkt in der Datenbank, Realtime, Edge Functions und Storage. Bei ProfitPath nutzen wir es weit über die Datenbank hinaus: RLS, Datenbank-Trigger und -Funktionen, Edge Functions und Storage, dazu die Synchronisierung der Abos. Bei Dein Betriebsrat teilen sich Web-App und Mobile-App dieselbe Datenbank, abgesichert über RLS, mit Edge Functions für Downloads und ZIP-Exporte der Wahlunterlagen."
       },
       "stripe": {
         "name": "Stripe",
         "summary": "Online-Zahlungen und Abos abwickeln",
-        "description": "Checkout und Billing für Zahlungen und Abos, signierte Webhooks für alles, was asynchron passiert, und Idempotency Keys, damit kein wiederholter Request doppelt abbucht. Bei ProfitPath wickelt Stripe die Zahlungen ab, mit flexiblen Bezahloptionen."
+        "description": "Checkout und Billing für Zahlungen und Abos, signierte Webhooks für alles, was asynchron passiert, und Idempotency Keys, damit kein wiederholter Request doppelt abbucht. Bei ProfitPath wickelt Stripe die Zahlungen ab, mit flexiblen Bezahloptionen. Bei Dein Betriebsrat laufen darüber Einmalzahlungen und Abos, dazu das Kundenportal, in dem Kunden ihr Abo selbst verwalten."
       },
       "betterAuth": {
         "name": "Better Auth",
         "summary": "Authentifizierung für TypeScript-Apps",
         "description": "Authentifizierung als TypeScript-Bibliothek zum Selbsthosten: die eigene Datenbank über Adapter, Plugins für Zwei-Faktor, Passkeys und Organisationen mit Rollen. Mittlerweile auch bei ProfitPath im Einsatz."
+      },
+      "vitest": {
+        "name": "Vitest",
+        "summary": "Schnelle Unit-Tests auf Vite-Basis",
+        "description": "Testrunner auf Basis von Vite mit Jest-kompatibler API, nativem TypeScript und Watch-Mode. Bei Dein Betriebsrat sichert es die Logik ab, an der bei einer Wahl alles hängt: Fristen im Wahlkalender, Wahlberechtigung, Hinweise im Ablauf und vieles mehr."
+      },
+      "playwright": {
+        "name": "Playwright",
+        "summary": "Browser per Code steuern",
+        "description": "Steuert Chromium, Firefox und WebKit per Code, für End-to-End-Tests und alles, was sonst Klickarbeit wäre. Bei Dein Betriebsrat nimmt es automatisch die Screenshots für die Landingpage in beiden Sprachen und das Open-Graph-Bild auf."
       }
     },
     "usedIn": "Eingesetzt in",
@@ -243,6 +264,11 @@
         "title": "huberdominik.com",
         "period": "2026 – heute",
         "description": "Mein Portfolio, die Seite, auf der du gerade bist: zweisprachig, mit Streaming-Text, Static und Partial Prerendering, Server-Side Rendering, Data Fetching mit TanStack Query und vielem mehr."
+      },
+      "deinbetriebsrat": {
+        "title": "Dein Betriebsrat",
+        "period": "2025 – heute",
+        "description": "Software für Betriebsratswahlen. Führt Wahlvorstände Schritt für Schritt durch die Wahl: Wahlkalender mit automatisch berechneten Fristen, Wählerliste per Excel-Import, Wahlvorschläge, Briefwahl, Sitzverteilung nach d’Hondt und alle Schreiben als fertige Dokumente, dazu eine App für iOS und Android."
       }
     },
     "tags": {
@@ -266,6 +292,10 @@
       "portfolio": {
         "title": "huberdominik.com",
         "description": "Mein Portfolio, die Seite, auf der du gerade bist: zweisprachig, mit Streaming-Text, Static und Partial Prerendering, Server-Side Rendering, Data Fetching mit TanStack Query und vielem mehr."
+      },
+      "deinbetriebsrat": {
+        "title": "Gründer der Dein Betriebsrat GmbH",
+        "description": "Software für Betriebsratswahlen, von der Idee bis zum fertigen Produkt selbst gebaut: eine Web-App mit Next.js und Supabase, dazu eine App für iOS und Android. Sie führt Wahlvorstände Schritt für Schritt durch die Wahl, berechnet alle Fristen automatisch und erstellt jedes Schreiben als fertiges Dokument."
       },
       "profitgo": {
         "title": "Launch von ProfitGo",

@@ -3,13 +3,15 @@
 import { useState } from "react";
 
 import { ProjectCard, type ProjectCardProps } from "@/components/project-card";
-import { ToolLink } from "@/components/tech-stack/tech-links";
+import { ProjectSiteLink, ToolLink } from "@/components/tech-stack/tech-links";
 import { projectAnchor, type ProjectKey, type ToolKey } from "@/lib/tech-stack";
 
 export type ProjectListItem = Omit<ProjectCardProps, "id" | "links" | "onMore" | "tilt" | "priority"> & {
   key: ProjectKey;
   /** Tools used in the project, rendered as links to their rows */
   tools: { key: ToolKey; name: string }[];
+  /** The project's live site: a link chip in front of the tools */
+  url?: string;
   /** Has more to show: renders the round button */
   hasDetails: boolean;
 };
@@ -25,7 +27,7 @@ export function ProjectList({ projects }: { projects: ProjectListItem[] }) {
 
   return (
     <div className="flex flex-col">
-      {projects.map(({ key, tools, hasDetails, ...project }, index) => (
+      {projects.map(({ key, tools, url, hasDetails, ...project }, index) => (
         <ProjectCard
           key={key}
           {...project}
@@ -34,11 +36,16 @@ export function ProjectList({ projects }: { projects: ProjectListItem[] }) {
           tilt={0}
           priority={index === 0}
           onMore={hasDetails ? () => setDetailsFor(key) : undefined}
-          links={tools.map((tool) => (
-            <ToolLink key={tool.key} tool={tool.key}>
-              {tool.name}
-            </ToolLink>
-          ))}
+          links={
+            <>
+              {url && <ProjectSiteLink url={url} />}
+              {tools.map((tool) => (
+                <ToolLink key={tool.key} tool={tool.key}>
+                  {tool.name}
+                </ToolLink>
+              ))}
+            </>
+          }
         />
       ))}
     </div>
