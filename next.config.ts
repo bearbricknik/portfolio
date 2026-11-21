@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
   // verification build without breaking a running dev server on `.next`
   distDir: process.env.NEXT_DIST_DIR || ".next",
   experimental: {
+    // Agent-assisted upgrades: only security releases
+    agentUpgrade: "security",
     // Tree-shake per-import from the full Central Icons sets (~2k icons each)
     // so only the icons actually imported get bundled.
     optimizePackageImports: [
