@@ -82,8 +82,7 @@ export async function HiPage({ name }: { name: string | null }) {
     // No streaming or entrance animations here: everything is there at once
     <InstantReveal>
       <HiStateProvider name={name}>
-        {/* data-hi: the layout gives this page a slimmer frame on phones */}
-        <section data-hi className="flex flex-col gap-4 pb-16">
+        <section className="flex flex-col gap-4 pb-16">
           <h1 className="sr-only">{t("title")}</h1>
 
           <PageIntro id="hi-intro" content={t.rich("intro", { ...nameArgs(name), ...rich })} />
