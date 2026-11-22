@@ -119,7 +119,13 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
         <NextIntlClientProvider messages={clientMessages}>
           <Providers>
             {/* Viewport-sized frame, independent of the body's height */}
-            <div className="fixed inset-0 flex flex-col p-6">
+            <div
+              className={
+                // /hi on phones: less frame at the sides, so the story and the
+                // boarding pass get the width (the page marks itself with data-hi)
+                "fixed inset-0 flex flex-col p-6 max-sm:has-[[data-hi]]:px-3"
+              }
+            >
               {/* Fixed sheet inside the padded viewport; only its content scrolls */}
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                 <ScrollContainer
@@ -127,7 +133,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
                   className="flex flex-col overflow-x-hidden overscroll-none"
                 >
                   {/* Header and footer are shared by every page; pages only bring their content */}
-                  <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-12 leading-relaxed">
+                  <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-12 leading-relaxed max-sm:has-[[data-hi]]:px-2">
                     {/* /hi stands on its own: no header, footer, corner controls, ⌘K hint or intro there */}
                     <HiddenOnHi>
                       <SiteHeader />

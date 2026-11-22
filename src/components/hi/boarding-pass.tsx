@@ -137,7 +137,7 @@ function PrintedStub({
     const { heights, times, ease } = feedKeyframes(height);
     wrapper.style.height = "0px";
     // Hangs from the slot while feeding: pinned to the wrapper's bottom, inside its padding
-    Object.assign(paper.style, { position: "absolute", left: "1.25rem", right: "1.25rem", bottom: "0" });
+    Object.assign(paper.style, { position: "absolute", left: "var(--pass-x)", right: "var(--pass-x)", bottom: "0" });
     // Paper plus spacer always add up to the final height: the page keeps its
     // length, so it can glide to where the whole ticket shows, in step with the print
     const reserve = () => {
@@ -156,9 +156,9 @@ function PrintedStub({
   }, [reducedMotion, spacerRef]);
 
   return (
-    <div ref={wrapperRef} className="relative -mt-2 overflow-hidden px-5">
+    <div ref={wrapperRef} className="relative -mt-2 overflow-hidden px-(--pass-x)">
       <div ref={paperRef}>
-        <div className="bg-white/12 px-4 pt-5 pb-6" style={{ mask: TEAR_EDGE, WebkitMask: TEAR_EDGE }}>
+        <div className="bg-white/12 px-3 pt-5 pb-6 sm:px-4" style={{ mask: TEAR_EDGE, WebkitMask: TEAR_EDGE }}>
           {children}
         </div>
       </div>
@@ -180,7 +180,7 @@ function PrintedStub({
 function WarmingUp({ label, reducedMotion }: { label: string; reducedMotion: boolean }) {
   return (
     <div className="-mt-2 flex flex-col items-center pb-5">
-      <div className="h-2 w-full px-5">
+      <div className="h-2 w-full px-(--pass-x)">
         <motion.div
           aria-hidden
           className="bg-white/12"
@@ -214,7 +214,7 @@ function Field({ label, children, className }: { label: string; children: React.
   return (
     <div className={cn("flex min-w-0 flex-col gap-0.5", className)}>
       <Label>{label}</Label>
-      <span className="truncate font-medium">{children}</span>
+      <span className="font-medium wrap-break-word">{children}</span>
     </div>
   );
 }
@@ -262,7 +262,7 @@ function TicketCode({ text }: { text: string }) {
     <svg
       aria-hidden
       viewBox={`-1 -1 ${CODE_SIZE + 2} ${CODE_SIZE + 2}`}
-      className="size-24 shrink-0 rounded-lg bg-white p-1 text-[#4898F8]"
+      className="size-20 shrink-0 rounded-lg bg-white p-1 text-[#4898F8] sm:size-24"
       shapeRendering="crispEdges"
     >
       {codeModules(text).map(([x, y]) => (
@@ -363,14 +363,19 @@ export function BoardingPass({ labels, after }: { labels: BoardingPassLabels; af
       ref={ref}
       onSubmit={submit}
       noValidate
-      className={cn("w-full overflow-hidden rounded-2xl text-sm text-white", HI_ACCENT_BG)}
+      className={cn(
+        "w-full overflow-hidden rounded-2xl text-sm text-white",
+        // Side padding of the pass, shared by the printed stub (also its inline position): tighter on phones
+        "[--pass-x:--spacing(4)] sm:[--pass-x:--spacing(5)]",
+        HI_ACCENT_BG,
+      )}
       initial={instant ? false : reducedMotion ? { opacity: 0 } : { opacity: 0, y: 24, filter: "blur(4px)" }}
       animate={visible ? { opacity: 1, y: 0, filter: "blur(0px)" } : undefined}
       transition={{ duration: 0.7, ease: EASE }}
       // Not usable before it has appeared
       inert={!visible}
     >
-      <div className="flex flex-col gap-5 px-5 pt-4 pb-5">
+      <div className="flex flex-col gap-5 px-(--pass-x) pt-4 pb-5">
         <div className="flex items-center justify-between text-xs text-white/70">
           <span>{labels.title}</span>
           <span>{labels.subtitle}</span>
@@ -465,12 +470,12 @@ export function BoardingPass({ labels, after }: { labels: BoardingPassLabels; af
                   }}
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-start gap-3">
                       {/* Drawn once the stub is out */}
                       <CheckMark reducedMotion={reducedMotion} delay={reducedMotion ? 0 : PRINT_DURATION} />
                       <div className="flex min-w-0 flex-col">
                         <span className="font-medium">{labels.checkedIn}</span>
-                        <span className="truncate text-white/75">
+                        <span className="text-white/75 wrap-anywhere">
                           {labels.checkedInText
                             .replace("{channel}", labels.channels[channel])
                             // The number as typed (with its spaces), handle and email cleaned up
@@ -479,12 +484,12 @@ export function BoardingPass({ labels, after }: { labels: BoardingPassLabels; af
                       </div>
                     </div>
                     {/* What stays a secret until the date, next to the ticket code */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <dl className="flex min-w-0 flex-1 flex-col gap-2">
                         {labels.secrets.map(({ label, value }) => (
                           <div key={label} className="flex min-w-0 flex-col">
                             <dt className="text-xs text-white/70">{label}</dt>
-                            <dd className="truncate font-medium">{value}</dd>
+                            <dd className="font-medium wrap-break-word">{value}</dd>
                           </div>
                         ))}
                       </dl>
@@ -502,7 +507,7 @@ export function BoardingPass({ labels, after }: { labels: BoardingPassLabels; af
           </motion.div>
         ) : (
           <motion.div key="form" {...fold}>
-            <div className="flex flex-col gap-3 px-5 pt-4 pb-5">
+            <div className="flex flex-col gap-3 px-(--pass-x) pt-4 pb-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="font-medium">{labels.contact}</span>
                 <div role="radiogroup" aria-label={labels.contact} className="flex gap-1">
