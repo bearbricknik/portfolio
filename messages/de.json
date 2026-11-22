@@ -67,6 +67,98 @@
     ],
     "description": "Wer hinter dem Code steckt: Dominik Huber, Full-Stack-Entwickler aus Köln, geboren in Ulm. Über Apple, Golf, Lateinamerika und was ihn antreibt."
   },
+  "HiPage": {
+    "title": "Eine Geschichte mit offenem Ende",
+    "metaTitle": "{hasName, select, yes {Hi {name}} other {Hi}} 👋",
+    "metaDescription": "Eine kurze Geschichte. Das Ende schreibst du.",
+    "intro": "{hasName, select, yes {Hey {name},} other {Hey du,}} ich glaube, du liest das gerade abends. Das Handy in der Hand, das Licht schon gedimmt, eigentlich wolltest du nur kurz schauen, wer dahintersteckt. Und jetzt bist du hier.\n\nBleib noch einen Moment. Was jetzt kommt, ist keine Nachricht, sondern eine kleine Geschichte. Die zweite Hauptrolle ist noch nicht besetzt.\n\nEs gibt nur eine Regel: Entscheiden darfst du erst am Ende. Bis dahin sammle ich Pluspunkte. Den ersten <plus>Pluspunkt</plus> gibt’s allein dafür, dass du noch liest.",
+    "aboutHeading": "Ein Abend im Dezember",
+    "about": "Stell dir vor, es ist Dezember und bald Weihnachten. Die Stadt riecht nach gebrannten Mandeln und Glühwein, überall hängen Lichterketten, und ich warte schon am Eingang des Weihnachtsmarkts, als du um die Ecke kommst. Nicht, weil du zu spät bist, sondern weil ich nie zu spät komme.\n\nDer erste Glühwein geht auf mich, der zweite auch (<plus>Pluspunkt</plus>). Wir wärmen uns die Hände an den Tassen und stehen ein kleines bisschen näher beieinander, als die Kälte es eigentlich verlangt. Du erzählst mir von dir, und ich höre wirklich zu. Dann bist du mit Fragen dran: Ich bin {years}, komme aus Ulm und bin zu einem Viertel Italiener, was die Hände beim Reden erklärt, und warum ich dabei fast deinen Glühwein umstoße. Beruflich entwickle ich als Selbstständiger Apps und Webseiten, und ja, diese hier habe ich nur für dich gebaut. Den Rest der Zeit findest du mich beim Joggen, im Gym, auf dem Padelcourt oder auf dem Golfplatz. Beim Golf lerne ich Geduld, beim Padel, dass man zu zweit besser spielt.\n\nAls du fragst, warum ich gerade Spanisch lerne, lächle ich nur und sage etwas, das du nicht verstehst. Übersetzen werde ich es dir nicht. Noch nicht.",
+    "matchHeading": "Zwischendurch: ein kleines Experiment",
+    "match": "Bevor wir weiterziehen: Das bin ich. Neben mir ist noch ein Platz frei, und ich frage mich, wie wir zwei zusammen aussehen würden. Finden wir’s heraus: Tipp auf den leeren Rahmen und wähl ein Foto von dir.",
+    "matchPhoto": {
+      "me": "Ich",
+      "meAlt": "Dominik",
+      "you": "Du?",
+      "pick": "Foto von dir auswählen",
+      "change": "Anderes Foto wählen",
+      "youAlt": "Dein Foto",
+      "matched": "Das könnten wir sein",
+      "privacy": "Dein Foto bleibt auf deinem Handy, hochgeladen wird nichts."
+    },
+    "moreHeading": "Der Weg nach Hause",
+    "aboutMore": "Als die ersten Stände schließen, fängt es an zu schneien. Ganz leicht, die Art Schnee, die nicht liegen bleibt, aber alles ein bisschen leiser macht. Deine Hand findet meine, und keiner von uns weiß hinterher, wer angefangen hat. Dir ist kalt, also teilen wir uns meinen Schal und die Wärme meiner Jackentasche.\n\nIrgendwann hört der Schnee auf und der Himmel reißt auf. Zwischen zwei Laternen bleibst du stehen und schaust nach oben. Ich zeige dir, wo Norden ist, und erzähle dir viel zu viel über die Sterne. Du lachst, und ich nehme mir vor, öfter zu viel zu erzählen.\n\nNatürlich bringe ich dich nach Hause. Vor deiner Tür gibt es einen Moment, in dem keiner von uns etwas sagt. Was dann passiert, verrate ich hier nicht. Nur so viel: Zehn Minuten später leuchtet dein Handy auf. „Bist du gut angekommen?“ (<plus>Pluspunkt</plus>)",
+    "tripHeading": "Was danach kommt",
+    "trip": "Ein paar Weihnachtsmärkte und viel zu viele Glühweine später sitzen wir an Weihnachten vielleicht schon bei meiner Familie am Tisch. Irgendwer fragt, wie wir uns eigentlich kennengelernt haben. Du grinst mich an und fängst an zu erzählen: von einer Webseite, einem Ticket und einem Abend im Dezember. Alle wollen die Geschichte hören, und wir erzählen sie jedes Mal ein bisschen schöner.\n\nUnd irgendwann sitzen wir zusammen am Gate. Zwei Tickets, ein Ziel. Welches, entscheidest du, ich trag’s dir schon mal aufs Ticket ein. Für so viel Vorfreude gönne ich mir einen <plus>Pluspunkt</plus>.",
+    "tripHint": "Tipp auf ein Foto",
+    "tripPicked": "Gute Wahl. Ich hab’s mir gemerkt.",
+    "trips": {
+      "tokyo": {
+        "label": "Tokio",
+        "alt": "Tempel in Tokio mit Kirschblüten, davor zwei Frauen im Kimono"
+      },
+      "amalfi": {
+        "label": "Amalfi-Küste",
+        "alt": "Bunte Häuser am Hang über türkisem Meer an der Amalfi-Küste"
+      }
+    },
+    "dateHeading": "Das letzte Kapitel",
+    "date": "<total></total> Pluspunkte. Ich finde, die Beweislage ist ziemlich erdrückend. Jede gute Kennenlerngeschichte braucht einen Anfang, und unsere beginnt mit einem Ticket. Es liegt schon bereit, du musst nur noch einchecken 👇",
+    "pass": {
+      "title": "Boarding Pass",
+      "subtitle": "Erstes Date",
+      "origin": "Köln",
+      "passenger": "Passagierin",
+      "namePlaceholder": "Dein Name",
+      "nameInvalid": "Wie heißt du?",
+      "surprise": "Überraschung",
+      "seat": "Sitzplatz",
+      "seatValue": "Direkt neben mir",
+      "luggage": "Gepäck",
+      "luggageValue": "Gute Laune",
+      "contact": "Wie erreiche ich dich?",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "instagram": "Instagram",
+        "email": "E-Mail"
+      },
+      "placeholders": {
+        "whatsapp": "+49 170 1234567",
+        "instagram": "dein.name",
+        "email": "du@beispiel.de"
+      },
+      "invalid": {
+        "whatsapp": "Das sieht noch nicht nach einer Nummer aus.",
+        "instagram": "Nur Buchstaben, Zahlen, Punkt und Unterstrich.",
+        "email": "Da fehlt noch was an der E-Mail."
+      },
+      "privacy": "Landet nur bei mir, versprochen. Kein Spam, keine Werbung.",
+      "submit": "Einchecken",
+      "sending": "Ticket wird gedruckt …",
+      "checkedIn": "Eingecheckt, gute Reise!",
+      "checkedInText": "Ich melde mich über {channel}: {contact}",
+      "secrets": {
+        "date": {
+          "label": "Datum",
+          "value": "Streng geheim"
+        },
+        "place": {
+          "label": "Treffpunkt",
+          "value": "Wird noch verraten"
+        },
+        "dress": {
+          "label": "Dresscode",
+          "value": "Schwarzes Kleid, hohe Schuhe"
+        }
+      },
+      "done": "Mehr verrate ich noch nicht …",
+      "error": "Hat nicht geklappt. Versuch’s gleich nochmal."
+    },
+    "points": {
+      "one": "Pluspunkt",
+      "other": "Pluspunkte"
+    }
+  },
   "LocationsPage": {
     "title": "Orte",
     "intro": "Ursprünglich komme ich aus dem Süden Deutschlands, genauer gesagt aus Ulm. Nach 26 Jahren habe ich dort meine Koffer gepackt und in Köln neu angefangen. Die Stadt ist mir seitdem ans <heart>Herz</heart> gewachsen, und hier bin ich heute zu Hause.",

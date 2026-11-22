@@ -3,7 +3,7 @@
 import { type ReactNode, useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-import { type RevealGateOptions, useRevealGate } from "@/components/scroll-reveal";
+import { type RevealGateOptions, useInstantReveal, useRevealGate } from "@/components/scroll-reveal";
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = RevealGateOptions & {
@@ -40,6 +40,7 @@ export function SectionHeading({
   const ref = useRef<HTMLDivElement>(null);
   const visible = useRevealGate(ref, { after, waitForStreams });
   const reducedMotion = useReducedMotion();
+  const instant = useInstantReveal();
 
   return (
     // Title, count and line fade in together
@@ -48,7 +49,7 @@ export function SectionHeading({
       id={id}
       // Title and count share the baseline; the line sits in the middle of the row
       className={cn("flex gap-2", leading ? "items-center" : "items-baseline", className)}
-      initial="hidden"
+      initial={instant ? false : "hidden"}
       animate={visible ? "shown" : "hidden"}
       // Not interactive until it has appeared (e.g. links, the back button)
       inert={!visible}

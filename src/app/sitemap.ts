@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache";
 
 import { locales } from "@/i18n/config";
 import { getPostSlugs } from "@/lib/blog-data.server";
+import { isHiPath } from "@/lib/hi";
 import { postAlternates, postUrl } from "@/lib/blog-urls";
 import { ROUTES, type AppRoute } from "@/lib/routes";
 import { siteConfig } from "@/lib/site";
@@ -18,7 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   cacheLife("hours");
 
   const pages = (ROUTES as AppRoute[])
-    .filter((route) => !route.excludeFromSitemap)
+    // /hi is only for people who get the link: never listed, even if added to ROUTES
+    .filter((route) => !route.excludeFromSitemap && !isHiPath(route.href))
     .map(({ href, changeFrequency = "monthly", priority = 0.8 }) => ({
       url: `${siteConfig.url}${href === "/" ? "" : href}`,
       lastModified: new Date(),

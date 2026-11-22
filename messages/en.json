@@ -67,6 +67,98 @@
     ],
     "description": "Who's behind the code: Dominik Huber, a full-stack developer from Cologne, born in Ulm. On Apple, golf, Latin America and what drives him."
   },
+  "HiPage": {
+    "title": "A story with an open ending",
+    "metaTitle": "{hasName, select, yes {Hi {name}} other {Hi}} 👋",
+    "metaDescription": "A short story. You write the ending.",
+    "intro": "{hasName, select, yes {Hey {name},} other {Hey you,}} I think you’re reading this in the evening. Phone in hand, the lights already dimmed, you only meant to take a quick look at who’s behind this. And now you’re here.\n\nStay a moment longer. What follows isn’t a message, it’s a little story. The second lead hasn’t been cast yet.\n\nThere’s only one rule: you only get to decide at the end. Until then I’m collecting bonus points. The first <plus>bonus point</plus> is just for still reading.",
+    "aboutHeading": "An evening in December",
+    "about": "Imagine it’s December and Christmas is around the corner. The city smells of roasted almonds and mulled wine, fairy lights everywhere, and I’m already waiting at the entrance of the Christmas market when you come around the corner. Not because you’re late, but because I’m never late.\n\nThe first mulled wine is on me, the second one too (<plus>bonus point</plus>). We warm our hands on the mugs and stand a little closer together than the cold really calls for. You tell me about yourself, and I actually listen. Then it’s your turn to ask: I’m {years}, from Ulm, and a quarter Italian, which explains the hands while talking, and why I nearly knock over your mulled wine. For a living I’m a freelance developer building apps and websites, and yes, I built this one just for you. The rest of the time you’ll find me running, at the gym, on the padel court or on the golf course. Golf teaches me patience, padel that you play better as two.\n\nWhen you ask why I’m learning Spanish, I just smile and say something you don’t understand. I won’t translate it for you. Not yet.",
+    "matchHeading": "In between: a little experiment",
+    "match": "Before we move on: that’s me. There’s an empty spot next to me, and I can’t help wondering what the two of us would look like together. Let’s find out: tap the empty frame and pick a photo of yourself.",
+    "matchPhoto": {
+      "me": "Me",
+      "meAlt": "Dominik",
+      "you": "You?",
+      "pick": "Pick a photo of yourself",
+      "change": "Pick another photo",
+      "youAlt": "Your photo",
+      "matched": "This could be us",
+      "privacy": "Your photo stays on your phone, nothing gets uploaded."
+    },
+    "moreHeading": "The way home",
+    "aboutMore": "As the first stalls close, it starts to snow. Just lightly, the kind of snow that doesn’t stay but makes everything a little quieter. Your hand finds mine, and afterwards neither of us knows who started it. You’re cold, so we share my scarf and the warmth of my coat pocket.\n\nAt some point the snow stops and the sky clears. Between two streetlights you stop and look up. I show you which way is north and tell you far too much about the stars. You laugh, and I make a note to tell you too much more often.\n\nOf course I walk you home. At your door there’s a moment when neither of us says anything. What happens then, I won’t tell here. Only this: ten minutes later your phone lights up. “Did you get home safe?” (<plus>bonus point</plus>)",
+    "tripHeading": "What comes after",
+    "trip": "A few Christmas markets and far too many mulled wines later, maybe we’re already sitting at my family’s table at Christmas. Someone asks how we actually met. You grin at me and start telling: about a website, a ticket and an evening in December. Everyone wants to hear the story, and every time we tell it a little more beautifully.\n\nAnd someday we’re sitting at the gate together. Two tickets, one destination. Which one is up to you, I’ll put it on your ticket already. For that much anticipation I’ll give myself a <plus>bonus point</plus>.",
+    "tripHint": "Tap a photo",
+    "tripPicked": "Good choice. I’ve made a note.",
+    "trips": {
+      "tokyo": {
+        "label": "Tokyo",
+        "alt": "Temple in Tokyo with cherry blossoms, two women in kimonos in front"
+      },
+      "amalfi": {
+        "label": "Amalfi Coast",
+        "alt": "Colorful houses on a hillside above a turquoise sea on the Amalfi Coast"
+      }
+    },
+    "dateHeading": "The last chapter",
+    "date": "<total></total> bonus points. I’d say the evidence is pretty overwhelming. Every good how-we-met story needs a beginning, and ours starts with a ticket. It’s ready and waiting, all you have to do is check in 👇",
+    "pass": {
+      "title": "Boarding Pass",
+      "subtitle": "First date",
+      "origin": "Cologne",
+      "passenger": "Passenger",
+      "namePlaceholder": "Your name",
+      "nameInvalid": "What’s your name?",
+      "surprise": "Surprise",
+      "seat": "Seat",
+      "seatValue": "Right next to me",
+      "luggage": "Luggage",
+      "luggageValue": "Good mood",
+      "contact": "How do I reach you?",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "instagram": "Instagram",
+        "email": "Email"
+      },
+      "placeholders": {
+        "whatsapp": "+49 170 1234567",
+        "instagram": "your.name",
+        "email": "you@example.com"
+      },
+      "invalid": {
+        "whatsapp": "That doesn’t look like a number yet.",
+        "instagram": "Only letters, numbers, dots and underscores.",
+        "email": "Something’s missing in that email."
+      },
+      "privacy": "Only I’ll see this, promise. No spam, no ads.",
+      "submit": "Check in",
+      "sending": "Printing your ticket …",
+      "checkedIn": "Checked in, have a good trip!",
+      "checkedInText": "I’ll reach out on {channel}: {contact}",
+      "secrets": {
+        "date": {
+          "label": "Date",
+          "value": "Top secret"
+        },
+        "place": {
+          "label": "Meeting point",
+          "value": "To be revealed"
+        },
+        "dress": {
+          "label": "Dress code",
+          "value": "Black dress, high heels"
+        }
+      },
+      "done": "That’s all I’m giving away for now …",
+      "error": "That didn’t work. Give it another try."
+    },
+    "points": {
+      "one": "bonus point",
+      "other": "bonus points"
+    }
+  },
   "LocationsPage": {
     "title": "Locations",
     "intro": "Originally, I'm from the south of Germany, Ulm to be precise. After 26 years, I packed my bags and started over in Cologne. The city has grown close to my <heart>heart</heart> since then, and it's where I'm at home today.",

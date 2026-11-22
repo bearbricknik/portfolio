@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useLocale } from "next-intl";
 
 import { Polaroid, type PolaroidPhoto, type PolaroidSize } from "@/components/polaroid";
-import { type RevealGateOptions, useRevealGate } from "@/components/scroll-reveal";
+import { type RevealGateOptions, useInstantReveal, useRevealGate } from "@/components/scroll-reveal";
 import { cn } from "@/lib/utils";
 import { useStreamingStore } from "@/stores/streaming-store";
 
@@ -85,6 +85,7 @@ export function PolaroidFan({
   const reducedMotion = useReducedMotion() ?? false;
   const ref = useRef<HTMLUListElement>(null);
   const visible = useRevealGate(ref, { after });
+  const instant = useInstantReveal();
   const locale = useLocale();
   const markSeen = useStreamingStore((state) => state.markSeen);
   useEffect(() => {
@@ -158,7 +159,7 @@ export function PolaroidFan({
                 transforms. Plain values, no variant labels: the card's rest/focus
                 must still reach the title inside */}
             <motion.div
-              initial={dealtOut}
+              initial={instant ? false : dealtOut}
               animate={visible ? dealtIn : dealtOut}
               transition={{ duration: FAN_DEAL_DURATION, ease: EASE, delay: visible && !reducedMotion ? index * FAN_DEAL_STAGGER : 0 }}
             >

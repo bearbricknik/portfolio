@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 import { LOCALE_COOKIE } from "@/i18n/config";
+import { HI_DEFAULT_LOCALE, HI_LOCALE_PARAM, isHiPath } from "@/lib/hi";
 import { cn } from "@/lib/utils";
 import { useLocaleAlternatesStore } from "@/stores/locale-alternates-store";
 
@@ -35,6 +36,17 @@ export function LocaleSwitcher({ className }: { className?: string }) {
   }, [pathname, router]);
 
   const switchLocale = () => {
+    // /hi has its own rule (always German unless ?lang=en, see lib/hi.ts): the
+    // language lives in the address there, the site-wide cookie stays untouched
+    if (isHiPath(pathname)) {
+      const href = target === HI_DEFAULT_LOCALE ? pathname : `${pathname}?${HI_LOCALE_PARAM}=${target}`;
+      startTransition(() => {
+        router.replace(href, { scroll: false });
+        // The shared layout (header, footer, this switch) follows the new language too
+        router.refresh();
+      });
+      return;
+    }
     document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
     if (!alternatePath || alternatePath === pathname) {
       // Same address in both languages (also a post without a translation of

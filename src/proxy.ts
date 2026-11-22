@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { isLocale, LOCALE_COOKIE } from "@/i18n/config";
+import { isLocale, type Locale, LOCALE_COOKIE } from "@/i18n/config";
 import { resolveLocale } from "@/i18n/negotiate";
+import { HI_DEFAULT_LOCALE, HI_LOCALE_PARAM, isHiPath } from "@/lib/hi";
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
@@ -29,15 +30,28 @@ export function proxy(request: NextRequest) {
     return response;
   }
 
-  const locale = resolveLocale({
-    cookie: request.cookies.get(LOCALE_COOKIE)?.value,
-    acceptLanguage: request.headers.get("accept-language"),
-    country: request.headers.get("x-vercel-ip-country"),
-  });
+  const locale = isHiPath(pathname)
+    ? hiLocale(request)
+    : resolveLocale({
+        cookie: request.cookies.get(LOCALE_COOKIE)?.value,
+        acceptLanguage: request.headers.get("accept-language"),
+        country: request.headers.get("x-vercel-ip-country"),
+      });
 
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(url);
+  const response = NextResponse.rewrite(url);
+  // /hi is only for people who get the link: besides the page's noindex meta,
+  // a header search engines honor for every response (not listed in
+  // robots.txt on purpose, that file is public and would advertise it)
+  if (isHiPath(pathname)) response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  return response;
+}
+
+/** /hi always opens in German; English only via ?lang=en, never via the cookie (lib/hi.ts) */
+function hiLocale(request: NextRequest): Locale {
+  const requested = request.nextUrl.searchParams.get(HI_LOCALE_PARAM) ?? undefined;
+  return isLocale(requested) ? requested : HI_DEFAULT_LOCALE;
 }
 
 export const config = {

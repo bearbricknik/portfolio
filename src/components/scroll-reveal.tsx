@@ -1,6 +1,6 @@
 "use client";
 
-import { type RefObject, useRef } from "react";
+import { createContext, type RefObject, useContext, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 
 import { useStreamingStore, useStreamsIdle } from "@/stores/streaming-store";
@@ -16,8 +16,25 @@ export type RevealGateOptions = {
   waitForStreams?: boolean;
 };
 
+const InstantRevealContext = createContext(false);
+
 /**
- * True once the element is in view AND the stream conditions are met. Shared
+ * Everything inside shows up right away: streaming text renders complete and
+ * reveal-style components (useRevealGate) start in their final state, with no
+ * entrance animation. Interactions still animate.
+ */
+export function InstantReveal({ children }: { children: React.ReactNode }) {
+  return <InstantRevealContext value={true}>{children}</InstantRevealContext>;
+}
+
+/** True inside <InstantReveal>: skip entrance animations (e.g. `initial={false}`) */
+export function useInstantReveal() {
+  return useContext(InstantRevealContext);
+}
+
+/**
+ * True once the element is in view AND the stream conditions are met (always
+ * inside <InstantReveal>). Shared
  * by ScrollReveal and other reveal-style components.
  */
 export function useRevealGate(ref: RefObject<Element | null>, { after, waitForStreams }: RevealGateOptions = {}) {
@@ -26,7 +43,8 @@ export function useRevealGate(ref: RefObject<Element | null>, { after, waitForSt
   const inView = useInView(ref, { once: true, amount: 0.25 });
   const streamDone = useStreamingStore((state) => (after ? state.seen[after] === true : true));
   const streamsIdle = useStreamsIdle();
-  return inView && streamDone && (!waitForStreams || streamsIdle);
+  const instant = useInstantReveal();
+  return instant || (inView && streamDone && (!waitForStreams || streamsIdle));
 }
 
 type ScrollRevealProps = RevealGateOptions & {

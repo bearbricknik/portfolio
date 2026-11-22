@@ -14,6 +14,7 @@ import {
   useState,
 } from "react";
 
+import { useInstantReveal } from "@/components/scroll-reveal";
 import { cn } from "@/lib/utils";
 import { useStreamingStore } from "@/stores/streaming-store";
 
@@ -143,6 +144,11 @@ type StreamingTextProps = {
   loop?: boolean;
   /** Milliseconds the finished text stays before a loop restarts */
   holdMs?: number;
+  /**
+   * Render the complete text right away, no streaming (by default inside
+   * <InstantReveal>); content waiting for it with `after` shows right away too
+   */
+  instant?: boolean;
   /** Show a caret after the last streamed token */
   caret?: boolean;
   /** Called once the stream has finished (not called while looping) */
@@ -167,6 +173,7 @@ export function StreamingText({
   loop = false,
   holdMs = 3400,
   caret = true,
+  instant: instantProp,
   onDone,
   className,
   textClassName,
@@ -185,7 +192,9 @@ export function StreamingText({
   const markSeen = useStreamingStore((state) => state.markSeen);
   const setActive = useStreamingStore((state) => state.setActive);
   const registryKey = useId();
-  const animated = !seen;
+  const instantContext = useInstantReveal();
+  const instant = instantProp ?? instantContext;
+  const animated = !seen && !instant;
   const done = seen || (started && count >= tokens.length);
 
   // Start when the component enters the viewport
@@ -213,6 +222,11 @@ export function StreamingText({
     setActive(registryKey, true);
     return () => setActive(registryKey, false);
   }, [animated, done, loop, registryKey, setActive]);
+
+  // Shown complete from the start: counts as finished for anything waiting on it
+  useEffect(() => {
+    if (instant && id) markSeen(id);
+  }, [instant, id, markSeen]);
 
   const handleDone = useEffectEvent(() => {
     if (id) markSeen(id);

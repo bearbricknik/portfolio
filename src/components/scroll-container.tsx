@@ -55,6 +55,35 @@ export function scrollToCenter(element: HTMLElement, { immediate = false, onArri
   });
 }
 
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+
+/**
+ * Scrolls in one smooth move so the element, once it has grown by `growth` px
+ * at its bottom, fits in view with `margin` below it; never so far that its
+ * top leaves the view (`topGap` above it). The room for the growth has to
+ * exist already (e.g. a spacer), the page can't scroll past its end.
+ */
+export function scrollForGrowth(
+  element: HTMLElement,
+  growth: number,
+  { margin = 0, topGap = 24, duration = 1 }: { margin?: number; topGap?: number; duration?: number } = {},
+) {
+  const lenis = activeLenis;
+  const viewport = lenis
+    ? (lenis.options.wrapper as HTMLElement).getBoundingClientRect()
+    : { top: 0, bottom: window.innerHeight };
+  const rect = element.getBoundingClientRect();
+  const delta = Math.min(rect.bottom + growth + margin - viewport.bottom, rect.top - viewport.top - topGap);
+  if (delta <= 0) return;
+  if (!lenis) {
+    window.scrollBy({ top: delta, behavior: "smooth" });
+    return;
+  }
+  // The page may just have grown (spacer), so Lenis measures again first
+  lenis.resize();
+  lenis.scrollTo(lenis.scroll + delta, { duration, easing: easeInOutCubic });
+}
+
 /**
  * Scrollable area with smooth, eased scrolling (Lenis) and a blurred edge at the
  * top/bottom whenever content is hidden there. Edge state is written to data

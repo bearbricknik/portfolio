@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Nothing_You_Could_Do } from "next/font/google";
 import { CommandHint } from "@/components/command-hint";
+import { HiddenOnHi } from "@/components/hidden-on-hi";
 import { IntroOverlay } from "@/components/intro-overlay";
 import { JsonLd } from "@/components/json-ld";
 import { Providers } from "@/components/providers";
@@ -127,22 +128,33 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
                 >
                   {/* Header and footer are shared by every page; pages only bring their content */}
                   <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-12 leading-relaxed">
-                    <SiteHeader />
+                    {/* /hi stands on its own: no header, footer, corner controls, ⌘K hint or intro there */}
+                    <HiddenOnHi>
+                      <SiteHeader />
+                    </HiddenOnHi>
                     <main className="flex flex-col">{children}</main>
-                    <SiteFooter />
+                    <HiddenOnHi>
+                      <SiteFooter />
+                    </HiddenOnHi>
                   </div>
                 </ScrollContainer>
               </div>
               {/* Language and theme in the top right corner, mirroring the ⌘K hint
                   below; on phones they sit next to the navigation instead */}
               {/* z-20: above the scroll fades (z-10) */}
-              <SiteControls className="absolute top-4 right-4 z-20 hidden sm:flex" />
+              <HiddenOnHi>
+                <SiteControls className="absolute top-4 right-4 z-20 hidden sm:flex" />
+              </HiddenOnHi>
               {/* ⌘K / Ctrl+K hint in the bottom right corner: same 4px offset to the
                   right and bottom, so it fits the 24px padding exactly (Kbd = 20px) */}
               {/* z-20: above the scroll fades (z-10), which it overlaps at this offset */}
-              <CommandHint className="absolute right-4 bottom-4 z-20" />
+              <HiddenOnHi>
+                <CommandHint className="absolute right-4 bottom-4 z-20" />
+              </HiddenOnHi>
             </div>
-            <IntroOverlay />
+            <HiddenOnHi>
+              <IntroOverlay />
+            </HiddenOnHi>
             <SiteCursor />
           </Providers>
         </NextIntlClientProvider>
